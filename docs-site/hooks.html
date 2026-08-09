@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hooks — Claude Diamonds</title>
-<meta name="description" content="Placeholder page — the hooks lesson has not been built yet.">
+<meta name="description" content="Where hooks fire inside the agentic loop, what they can see, and what they can block — sourced from Anthropic's own documentation.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%92%A0%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -22,11 +22,145 @@
     </nav>
   </header>
 
-  <div class="placeholder-body">
-    <span class="placeholder-badge">Not built yet</span>
-    <h1 class="head">Hooks</h1>
-    <p>This page will cover where hooks fire inside the agent loop — before a tool runs, after it returns, when the agent finishes — and what each one can see and block.</p>
-    <p>Until it's built, read Anthropic's own explanation: <a href="https://code.claude.com/docs/en/agent-sdk/agent-loop#hooks">hooks, in the agent-loop docs</a>.</p>
+  <div class="shell">
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-label">On this page</p>
+      <ol>
+        <li><a href="#s1"><span class="n">01</span>What a hook is</a></li>
+        <li><a href="#s2"><span class="n">02</span>Where hooks fire in the loop</a></li>
+        <li><a href="#s3"><span class="n">03</span>Four events worth knowing</a></li>
+        <li><a href="#s4"><span class="n">04</span>Blocking a tool call</a></li>
+        <li><a href="#s5"><span class="n">05</span>A worked example</a></li>
+      </ol>
+    </nav>
+
+    <main>
+      <header class="doc-head">
+        <p class="eyebrow">Claude Diamonds — learning</p>
+        <h1 class="head">Hooks</h1>
+        <p class="dek">Shell commands, HTTP endpoints, or LLM prompts that run automatically at fixed points in Claude Code's lifecycle — not something Claude decides to invoke, but something the harness runs around it.</p>
+        <div class="doc-meta">
+          <span><strong>1</strong> Anthropic source</span>
+          <span><strong>5</strong> sections</span>
+          <span>Source: <a href="https://code.claude.com/docs/en/hooks">Hooks reference</a></span>
+        </div>
+      </header>
+
+      <div class="legend">
+        <span class="item"><span class="tag tag-loop">session-level</span> fires once per session — start or end</span>
+        <span class="item"><span class="tag tag-pattern">per-turn</span> fires once per turn — prompt submitted, Claude stops</span>
+        <span class="item"><span class="tag tag-turn">per-tool-call</span> fires on every tool call inside the agentic loop</span>
+      </div>
+
+      <section class="stage" id="s1">
+        <div class="stage-head"><span class="stage-num">01</span><h2>What a hook is</h2></div>
+        <p class="stage-sub">Source: <a href="https://code.claude.com/docs/en/hooks">Hooks reference</a>.</p>
+        <p>Anthropic's own definition: hooks are "user-defined shell commands, HTTP endpoints, or LLM prompts that execute automatically at specific points in Claude Code's lifecycle." That's the whole idea. A hook doesn't wait to be asked — it fires because a lifecycle point was reached, not because Claude called a tool named "hook." Claude Code has more than twenty distinct hook events, grouped by how often they fire: once per session, once per turn, or once per tool call inside the agentic loop covered on the <a href="loops.html">loops page</a>.</p>
+      </section>
+
+      <section class="stage" id="s2">
+        <div class="stage-head"><span class="stage-num">02</span><h2>Where hooks fire in the loop</h2></div>
+        <p class="stage-sub">Mapped onto the same mechanical loop from the loops lesson: receive prompt, evaluate, execute tools, repeat, return result.</p>
+        <p><code>UserPromptSubmit</code> fires before Claude even sees your prompt — outside the agentic loop entirely. Once the loop starts, <code>PreToolUse</code> fires immediately before each tool call executes, and <code>PostToolUse</code> immediately after it succeeds — both fire on every single tool call, every turn, for as long as the loop runs. When Claude finally produces a turn with no tool calls and the loop ends, <code>Stop</code> fires once. <code>SessionStart</code> and <code>SessionEnd</code> sit outside all of that, firing once when the session begins and once when it terminates.</p>
+
+        <div class="figure">
+          <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SessionStart fires once before anything else. UserPromptSubmit fires before the agentic loop. Inside the loop, PreToolUse fires before each tool call and PostToolUse fires after, repeating every turn. Stop fires once when the loop ends. SessionEnd fires once at session close.">
+            <text x="20" y="24" font-family="Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700" class="pattern-c" fill="currentColor">SessionStart — once</text>
+            <text x="20" y="44" font-family="Iowan, Georgia, serif" font-size="10.5" fill="currentColor" opacity="0.7">init, context injection</text>
+
+            <path d="M20,55 V70" stroke="currentColor" stroke-width="2" marker-end="url(#h1)"/>
+
+            <rect x="10" y="72" width="150" height="46" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+            <text x="85" y="99" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="currentColor">UserPromptSubmit</text>
+
+            <path d="M160,95 H195" stroke="currentColor" stroke-width="2" marker-end="url(#h2)"/>
+
+            <rect x="200" y="55" width="330" height="120" rx="10" fill="none" stroke="currentColor" class="accent" stroke-width="2.5"/>
+            <text x="215" y="78" font-family="Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="700" class="accent" fill="currentColor">AGENTIC LOOP</text>
+
+            <rect x="220" y="92" width="120" height="60" rx="8" fill="none" stroke="currentColor" class="turn-c" stroke-width="2"/>
+            <text x="280" y="115" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="11" class="turn-c" fill="currentColor">PreToolUse</text>
+            <text x="280" y="132" text-anchor="middle" font-family="Iowan, Georgia, serif" font-size="9.5" class="turn-c" fill="currentColor" opacity="0.8">before tool runs</text>
+
+            <path d="M340,122 H380" stroke="currentColor" class="turn-c" stroke-width="2" marker-end="url(#h3)"/>
+
+            <rect x="385" y="92" width="130" height="60" rx="8" fill="none" stroke="currentColor" class="turn-c" stroke-width="2"/>
+            <text x="450" y="115" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="11" class="turn-c" fill="currentColor">PostToolUse</text>
+            <text x="450" y="132" text-anchor="middle" font-family="Iowan, Georgia, serif" font-size="9.5" class="turn-c" fill="currentColor" opacity="0.8">after tool returns</text>
+
+            <path d="M450,152 C 450,200 280,200 280,152" fill="none" stroke="currentColor" class="turn-c" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#h4)"/>
+            <text x="365" y="200" text-anchor="middle" font-family="Iowan, Georgia, serif" font-size="10" fill="currentColor" class="turn-c">repeats every tool call, every turn</text>
+
+            <path d="M530,105 H565" stroke="currentColor" stroke-width="2" marker-end="url(#h5)"/>
+
+            <rect x="570" y="80" width="120" height="46" rx="8" fill="none" stroke="currentColor" class="pattern-c" stroke-width="2"/>
+            <text x="630" y="107" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="11" class="pattern-c" fill="currentColor">Stop — once</text>
+
+            <text x="570" y="150" font-family="Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700" class="pattern-c" fill="currentColor">SessionEnd — once</text>
+            <text x="570" y="168" font-family="Iowan, Georgia, serif" font-size="10.5" fill="currentColor" opacity="0.7">cleanup, logging</text>
+
+            <defs>
+              <marker id="h1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="currentColor"/></marker>
+              <marker id="h2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="currentColor"/></marker>
+              <marker id="h3" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="currentColor" class="turn-c"/></marker>
+              <marker id="h4" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="currentColor" class="turn-c"/></marker>
+              <marker id="h5" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="currentColor"/></marker>
+            </defs>
+          </svg>
+          <p class="figcaption">PreToolUse and PostToolUse fire on every tool call, every turn, for as long as the agentic loop runs. Stop fires exactly once, the moment the loop ends.</p>
+        </div>
+      </section>
+
+      <section class="stage" id="s3">
+        <div class="stage-head"><span class="stage-num">03</span><h2>Four events worth knowing</h2></div>
+        <p class="stage-sub">Claude Code defines more than twenty hook events in total. These four cover the cases most lessons reach for first.</p>
+        <div class="scrollwrap">
+          <table>
+            <thead><tr><th>Event</th><th>Fires</th><th>Commonly used for</th></tr></thead>
+            <tbody>
+              <tr><td><span class="tag tag-turn">PreToolUse</span></td><td>Before a tool call executes</td><td>Security policy, input validation, blocking destructive commands</td></tr>
+              <tr><td><span class="tag tag-turn">PostToolUse</span></td><td>After a tool call succeeds</td><td>Validation, logging, redacting or annotating tool output</td></tr>
+              <tr><td><span class="tag tag-pattern">Stop</span></td><td>When Claude finishes a turn with no further tool calls</td><td>Checking the response, injecting feedback to continue the conversation</td></tr>
+              <tr><td><span class="tag tag-loop">SessionStart</span></td><td>Once, when a session begins or resumes</td><td>Environment setup, injecting context Claude should see from the start</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="caption spaced">The rest cover narrower cases — subagents starting or stopping, a watched file changing on disk, a worktree being created, an MCP server asking the user for input. Same mechanism throughout: a fixed lifecycle point, a command or endpoint that runs automatically.</p>
+      </section>
+
+      <section class="stage" id="s4">
+        <div class="stage-head"><span class="stage-num">04</span><h2>Blocking a tool call</h2></div>
+        <p class="stage-sub">Two ways to signal a block, and one exit code that matters more than the rest.</p>
+        <p>A <code>PreToolUse</code> hook can stop a tool call before it ever runs. It signals that two ways: exiting with status code <code>2</code>, or returning JSON with <code>hookSpecificOutput.permissionDecision: "deny"</code>. Anthropic's documentation is explicit about the exit-code convention: "Claude Code treats exit code 1 as a non-blocking error and proceeds with the action, even though 1 is the conventional Unix failure code. If your hook is meant to enforce a policy, use <code>exit 2</code>."</p>
+        <p>Blocking isn't silent. Anthropic states plainly what happens next: "Claude Code reads the JSON decision, blocks the tool call, and shows Claude the reason." With exit code 2, that reason is whatever the hook wrote to stderr. With the JSON form, it's the <code>permissionDecisionReason</code> field. Either way, the tool never runs, and Claude sees why — it can explain the block to you, or try a different approach, rather than silently retrying the same blocked call.</p>
+      </section>
+
+      <section class="stage" id="s5">
+        <div class="stage-head"><span class="stage-num">05</span><h2>A worked example</h2></div>
+        <p class="stage-sub">Anthropic's own example: a <code>PreToolUse</code> hook guarding against <code>rm -rf</code>.</p>
+        <p>The hook matches on the <code>Bash</code> tool, inspects the command Claude is about to run, and decides whether to let it through.</p>
+        <div class="scrollwrap">
+          <table>
+            <thead><tr><th>Step</th><th>What happens</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">1</td><td>Claude decides to call <code>Bash</code> with a command, as part of a turn</td></tr>
+              <tr><td class="mono">2</td><td><code>PreToolUse</code> fires before execution; the hook reads <code>tool_input.command</code> from its JSON input</td></tr>
+              <tr><td class="mono">3</td><td>If the command matches <code>rm -rf</code>, the hook returns <code>permissionDecision: "deny"</code> with a reason; otherwise it exits 0 and normal permission handling applies</td></tr>
+              <tr><td class="mono">4</td><td>On deny, the tool never runs — Claude receives the <code>permissionDecisionReason</code> text and continues the turn knowing why</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout">
+          <strong>A hook is a policy layer, not the permission system itself.</strong> Anthropic's own guidance: "To enforce a hard allow or deny, use the permission system rather than a hook." Hooks are for logic a static permission rule can't express — inspecting the actual command text, checking external state, deciding case by case.
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <footer>
+        Source: <a href="https://code.claude.com/docs/en/hooks">Hooks reference</a>. This page restates Anthropic's own documentation; that page is canonical, and updates ahead of this one.
+      </footer>
+    </main>
   </div>
 </body>
 </html>

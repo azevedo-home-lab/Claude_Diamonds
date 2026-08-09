@@ -11,6 +11,8 @@ carry the enforcement machinery. That lives in the reference implementation,
 (WFM), which this document cites rather than copies. You can read this and
 understand the method without running WFM.
 
+New to how Claude Code itself works? A short [learning site](https://azevedo-home-lab.github.io/Claude_Diamonds/) covers turns, the agentic loop, and loop patterns — background for this method, published separately from it.
+
 ## Why
 
 Two different kinds of thinking get asked of one tool, and the tool fails at

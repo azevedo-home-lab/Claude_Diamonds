@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Turns, the agentic loop, and loop patterns — Claude Diamonds</title>
+<meta name="description" content="What a turn is, what the agentic loop does, and how /goal, /loop, and /schedule differ — sourced from Anthropic's own documentation.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%92%A0%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">Claude Diamonds — Learning</a>
+    <nav>
+      <a href="index.html">Learning hub</a>
+      <a href="loops.html" aria-current="page">Loops</a>
+      <a href="context.html">Context</a>
+      <a href="hooks.html">Hooks</a>
+      <a href="subagents.html">Subagents</a>
+      <a href="https://github.com/azevedo-home-lab/Claude_Diamonds#readme">Two Diamonds ↗</a>
+      <a href="https://github.com/azevedo-home-lab/Claude_Diamonds">GitHub ↗</a>
+    </nav>
+  </header>
+
+  <div class="shell">
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-label">On this page</p>
+      <ol>
+        <li><a href="#s1"><span class="n">01</span>Three words people mix up</a></li>
+        <li><a href="#s2"><span class="n">02</span>The loop, conceptually</a></li>
+        <li><a href="#s3"><span class="n">03</span>The loop, mechanically</a></li>
+        <li><a href="#s4"><span class="n">04</span>What one turn actually is</a></li>
+        <li><a href="#s5"><span class="n">05</span>Bounding the loop</a></li>
+        <li><a href="#s6"><span class="n">06</span>The four loop patterns</a></li>
+        <li><a href="#s7"><span class="n">07</span>Where the human stays</a></li>
+        <li><a href="#s8"><span class="n">08</span>Correcting a common claim</a></li>
+      </ol>
+    </nav>
+
+    <main>
+      <header class="doc-head">
+        <p class="eyebrow">Claude Diamonds — learning</p>
+        <h1 class="head">Turns, the agentic loop, and loop patterns</h1>
+        <p class="dek">Three words that get used interchangeably and shouldn't be. What each one means, how they nest, and how Anthropic itself describes the machinery twice — once as a concept, once as a mechanism.</p>
+        <div class="doc-meta">
+          <span><strong>3</strong> Anthropic sources</span>
+          <span><strong>8</strong> sections</span>
+          <span>Sources: <a href="https://code.claude.com/docs/en/how-claude-code-works">How Claude Code works</a>, <a href="https://code.claude.com/docs/en/agent-sdk/agent-loop">How the agent loop works</a>, <a href="https://claude.com/blog/getting-started-with-loops">Loop engineering</a></span>
+        </div>
+      </header>
+
+      <div class="legend">
+        <span class="item"><span class="tag tag-turn">turn</span> one round trip: model output, tool execution, result back</span>
+        <span class="item"><span class="tag tag-loop">agentic loop</span> the cycle of turns inside one prompt</span>
+        <span class="item"><span class="tag tag-pattern">loop pattern</span> what re-triggers a new prompt from outside</span>
+      </div>
+
+      <section class="stage" id="s1">
+        <div class="stage-head"><span class="stage-num">01</span><h2>Three words people mix up</h2></div>
+        <p class="stage-sub">The payload, first, before the mechanics.</p>
+        <p>A <strong>turn</strong> is one round trip: Claude produces output, the harness executes any tool calls in it, and the results feed back to Claude automatically. The <strong>agentic loop</strong> is the cycle of turns that runs inside a single prompt — it starts when you submit, and ends when Claude responds with no tool calls. A <strong>loop pattern</strong> is a layer outside all of that: something that decides when to send another prompt in the first place. <code>/goal</code>, <code>/loop</code>, and <code>/schedule</code> are loop patterns. They don't touch the engine — they just decide when to start the next turn.</p>
+
+        <div class="figure">
+          <svg viewBox="0 0 720 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three nested scopes: a loop pattern contains prompts, each prompt contains an agentic loop, each agentic loop contains turns.">
+            <rect x="10" y="10" width="700" height="200" rx="14" fill="none" stroke="currentColor" class="pattern-c" stroke-width="2" stroke-dasharray="6 5"/>
+            <text x="30" y="34" font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="700" class="pattern-c" fill="currentColor">LOOP PATTERN — re-triggers prompts</text>
+
+            <rect x="40" y="55" width="290" height="140" rx="10" fill="none" stroke="currentColor" class="accent" stroke-width="2"/>
+            <text x="55" y="78" font-family="Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="700" class="accent" fill="currentColor">AGENTIC LOOP</text>
+            <text x="55" y="94" font-family="Iowan, Georgia, serif" font-size="11" fill="currentColor" opacity="0.75">one prompt, many turns</text>
+
+            <rect x="60" y="108" width="100" height="60" rx="8" fill="none" stroke="currentColor" class="turn-c" stroke-width="2"/>
+            <text x="80" y="143" font-family="Helvetica Neue, Arial, sans-serif" font-size="12" class="turn-c" fill="currentColor">turn 1</text>
+            <rect x="190" y="108" width="100" height="60" rx="8" fill="none" stroke="currentColor" class="turn-c" stroke-width="2"/>
+            <text x="207" y="143" font-family="Helvetica Neue, Arial, sans-serif" font-size="12" class="turn-c" fill="currentColor">turn 2…</text>
+            <path d="M160,138 H190" stroke="currentColor" class="turn-c" stroke-width="2" marker-end="url(#arrow1)"/>
+
+            <rect x="390" y="55" width="290" height="140" rx="10" fill="none" stroke="currentColor" class="accent" stroke-width="2" stroke-dasharray="3 4" opacity="0.55"/>
+            <text x="405" y="78" font-family="Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="700" class="accent" fill="currentColor" opacity="0.7">next prompt →</text>
+            <text x="405" y="140" font-family="Iowan, Georgia, serif" font-size="11" fill="currentColor" opacity="0.6">another agentic loop,</text>
+            <text x="405" y="156" font-family="Iowan, Georgia, serif" font-size="11" fill="currentColor" opacity="0.6">triggered by the pattern</text>
+
+            <path d="M330,125 H390" stroke="currentColor" class="pattern-c" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arrow2)"/>
+
+            <defs>
+              <marker id="arrow1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="currentColor" class="turn-c"/></marker>
+              <marker id="arrow2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="currentColor" class="pattern-c"/></marker>
+            </defs>
+          </svg>
+          <p class="figcaption">Turns nest inside one agentic loop; a loop pattern decides when a new prompt — and a new agentic loop — begins.</p>
+        </div>
+      </section>
+
+      <section class="stage" id="s2">
+        <div class="stage-head"><span class="stage-num">02</span><h2>The loop, conceptually</h2></div>
+        <p class="stage-sub">Source: <a href="https://code.claude.com/docs/en/how-claude-code-works">How Claude Code works</a>.</p>
+        <p>Anthropic's conceptual description of the agentic loop names three phases: <strong>gather context</strong>, <strong>take action</strong>, and <strong>verify results</strong>. These blend together rather than running in strict sequence — Claude uses tools throughout, whether searching files to understand code, editing to make changes, or running tests to check its own work. A simple question might only need the first phase. A bug fix cycles through all three repeatedly. You're part of this loop too: you can interrupt at any point to steer Claude, add context, or ask for a different approach.</p>
+
+        <div class="figure">
+          <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three phases in a cycle: gather context, take action, verify results, looping back to gather context, with a human interrupt arrow pointing in.">
+            <g font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="700">
+              <circle cx="150" cy="80" r="62" fill="none" stroke="currentColor" class="accent" stroke-width="2.5"/>
+              <text x="150" y="76" text-anchor="middle" fill="currentColor" class="accent">Gather</text>
+              <text x="150" y="94" text-anchor="middle" fill="currentColor" class="accent">context</text>
+
+              <circle cx="490" cy="80" r="62" fill="none" stroke="currentColor" class="turn-c" stroke-width="2.5"/>
+              <text x="490" y="76" text-anchor="middle" fill="currentColor" class="turn-c">Take</text>
+              <text x="490" y="94" text-anchor="middle" fill="currentColor" class="turn-c">action</text>
+
+              <circle cx="320" cy="210" r="62" fill="none" stroke="currentColor" class="pattern-c" stroke-width="2.5"/>
+              <text x="320" y="206" text-anchor="middle" fill="currentColor" class="pattern-c">Verify</text>
+              <text x="320" y="224" text-anchor="middle" fill="currentColor" class="pattern-c">results</text>
+            </g>
+
+            <path d="M208,60 A280,280 0 0 1 432,60" fill="none" stroke="currentColor" opacity="0.6" stroke-width="2" marker-end="url(#a1)"/>
+            <path d="M470,138 A280,280 0 0 1 372,196" fill="none" stroke="currentColor" opacity="0.6" stroke-width="2" marker-end="url(#a2)"/>
+            <path d="M268,196 A280,280 0 0 1 170,138" fill="none" stroke="currentColor" opacity="0.6" stroke-width="2" marker-end="url(#a3)"/>
+
+            <text x="45" y="30" font-family="Iowan, Georgia, serif" font-size="11" fill="currentColor" opacity="0.7">↖ you can interrupt at any point</text>
+            <path d="M100,35 L110,55" stroke="currentColor" opacity="0.55" stroke-width="1.5" stroke-dasharray="3 3"/>
+
+            <defs>
+              <marker id="a1" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="currentColor" opacity="0.6"/></marker>
+              <marker id="a2" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="currentColor" opacity="0.6"/></marker>
+              <marker id="a3" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="currentColor" opacity="0.6"/></marker>
+            </defs>
+          </svg>
+          <p class="figcaption">The three phases blend and repeat until the task is complete. You can interrupt at any point.</p>
+        </div>
+      </section>
+
+      <section class="stage" id="s3">
+        <div class="stage-head"><span class="stage-num">03</span><h2>The loop, mechanically</h2></div>
+        <p class="stage-sub">Source: <a href="https://code.claude.com/docs/en/agent-sdk/agent-loop">How the agent loop works</a>. Same machine, viewed closer.</p>
+        <p>Anthropic's mechanical description names five steps: <strong>receive prompt</strong> (Claude gets your prompt plus system prompt, tool definitions, and history), <strong>evaluate and respond</strong> (Claude decides how to proceed — text, tool calls, or both), <strong>execute tools</strong> (the harness runs each requested tool and collects results), <strong>repeat</strong> (steps two and three cycle — each full cycle is one turn), and <strong>return result</strong> (a final response with no tool calls ends the loop). This is not a competing model of the loop — it's the same three-phase cycle, described at the level of what actually executes.</p>
+
+        <div class="figure">
+          <svg viewBox="0 0 680 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Prompt enters the loop; Claude evaluates; if it requests tool calls, results feed back into another evaluation; otherwise it returns the final answer.">
+            <rect x="10" y="90" width="120" height="60" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+            <text x="70" y="125" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="12" fill="currentColor">Your prompt</text>
+
+            <path d="M130,120 H185" stroke="currentColor" stroke-width="2" marker-end="url(#b1)"/>
+
+            <rect x="190" y="80" width="160" height="80" rx="10" fill="none" stroke="currentColor" class="accent" stroke-width="2.5"/>
+            <text x="270" y="115" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="700" fill="currentColor" class="accent">Evaluate</text>
+            <text x="270" y="132" text-anchor="middle" font-family="Iowan, Georgia, serif" font-size="10.5" fill="currentColor" class="accent" opacity="0.8">decide next step</text>
+
+            <path d="M350,105 C 420,60 480,60 500,90" fill="none" stroke="currentColor" class="turn-c" stroke-width="2" marker-end="url(#b2)"/>
+            <text x="400" y="60" font-family="Iowan, Georgia, serif" font-size="11" fill="currentColor" class="turn-c">tool call requested</text>
+
+            <rect x="500" y="80" width="150" height="70" rx="8" fill="none" stroke="currentColor" class="turn-c" stroke-width="2"/>
+            <text x="575" y="112" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="12" fill="currentColor" class="turn-c">Execute tools</text>
+            <text x="575" y="129" text-anchor="middle" font-family="Iowan, Georgia, serif" font-size="10.5" fill="currentColor" class="turn-c" opacity="0.8">= one turn</text>
+
+            <path d="M575,150 C 575,200 350,200 270,160" fill="none" stroke="currentColor" class="turn-c" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#b3)"/>
+            <text x="330" y="205" font-family="Iowan, Georgia, serif" font-size="11" fill="currentColor" class="turn-c">results feed back — repeat</text>
+
+            <path d="M350,140 C 380,175 380,205 350,215" fill="none" stroke="currentColor" class="pattern-c" stroke-width="2" marker-end="url(#b4)"/>
+            <rect x="200" y="205" width="180" height="30" rx="6" fill="none" stroke="currentColor" class="pattern-c" stroke-width="2"/>
+            <text x="290" y="225" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="currentColor" class="pattern-c">Return result — no tool calls</text>
+
+            <defs>
+              <marker id="b1" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="currentColor"/></marker>
+              <marker id="b2" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="currentColor" class="turn-c"/></marker>
+              <marker id="b3" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="currentColor" class="turn-c"/></marker>
+              <marker id="b4" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="currentColor" class="pattern-c"/></marker>
+            </defs>
+          </svg>
+          <p class="figcaption">Each evaluate→execute cycle is one turn. The loop ends the first time evaluation produces no tool calls.</p>
+        </div>
+      </section>
+
+      <section class="stage" id="s4">
+        <div class="stage-head"><span class="stage-num">04</span><h2>What one turn actually is</h2></div>
+        <p class="stage-sub">Anthropic's own worked example: "Fix the failing tests in <code>auth.ts</code>."</p>
+        <p>A turn is one round trip: Claude produces output that may include tool calls, the harness runs them, and the results feed back to Claude — all without returning control to you. Turns continue until Claude produces output with no tool calls. Here is Anthropic's own four-turn trace of that prompt.</p>
+
+        <div class="scrollwrap">
+          <table>
+            <thead><tr><th>Turn</th><th>Claude did</th><th>What came back</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">1</td><td>Called <code>Bash</code> to run <code>npm test</code></td><td>Three failures</td></tr>
+              <tr><td class="mono">2</td><td>Called <code>Read</code> on <code>auth.ts</code> and <code>auth.test.ts</code></td><td>File contents</td></tr>
+              <tr><td class="mono">3</td><td>Called <code>Edit</code> to fix <code>auth.ts</code>, then <code>Bash</code> to re-run tests</td><td>All three tests pass</td></tr>
+              <tr><td class="mono">4 (final)</td><td>Text-only response, no tool calls</td><td>"Fixed the auth bug, all three tests pass now."</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="caption">Four turns total: three carried tool calls, one was text-only and ended the loop.</p>
+      </section>
+
+      <section class="stage" id="s5">
+        <div class="stage-head"><span class="stage-num">05</span><h2>Bounding the loop</h2></div>
+        <p class="stage-sub">Without a limit, the loop runs until Claude decides it's done — fine for a scoped task, risky for "improve this codebase."</p>
+        <p>The SDK exposes two caps. <code>max_turns</code> limits tool-use round trips only — a text-only turn doesn't count against it. <code>max_budget_usd</code> caps spend, and it covers subagents too: their cost counts toward the parent's total, and once the cap is hit, spawning another subagent fails outright.</p>
+        <p>When a run ends, a result message reports which of five ways it ended:</p>
+        <div class="scrollwrap">
+          <table>
+            <thead><tr><th>Result</th><th>What happened</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">success</td><td>Claude finished the task normally</td></tr>
+              <tr><td class="mono">error_max_turns</td><td>Hit the turn limit before finishing</td></tr>
+              <tr><td class="mono">error_max_budget_usd</td><td>Hit the budget limit before finishing</td></tr>
+              <tr><td class="mono">error_during_execution</td><td>An error interrupted the loop — an API failure or a cancelled request</td></tr>
+              <tr><td class="mono">error_max_structured_output_retries</td><td>No valid structured output within the retry limit</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="stage" id="s6">
+        <div class="stage-head"><span class="stage-num">06</span><h2>The four loop patterns</h2></div>
+        <p class="stage-sub">Source: <a href="https://claude.com/blog/getting-started-with-loops">Loop engineering: getting started with loops</a>. This is the layer outside the agentic loop — what decides when a new prompt starts.</p>
+
+        <div class="figure">
+          <svg viewBox="0 0 700 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Four loop patterns arranged on an axis from human-triggered to autonomous: turn-based, goal-based, time-based, proactive.">
+            <line x1="40" y1="70" x2="660" y2="70" stroke="currentColor" stroke-width="2" opacity="0.4"/>
+            <text x="40" y="30" font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="currentColor" opacity="0.65">human-triggered</text>
+            <text x="595" y="30" font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="currentColor" opacity="0.65">autonomous</text>
+
+            <g font-family="Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="700">
+              <circle cx="80" cy="70" r="9" fill="currentColor" class="accent"/>
+              <text x="80" y="105" text-anchor="middle" fill="currentColor" class="accent">Turn-based</text>
+
+              <circle cx="280" cy="70" r="9" fill="currentColor" class="turn-c"/>
+              <text x="280" y="105" text-anchor="middle" fill="currentColor" class="turn-c">Goal-based</text>
+
+              <circle cx="480" cy="70" r="9" fill="currentColor" class="pattern-c"/>
+              <text x="480" y="105" text-anchor="middle" fill="currentColor" class="pattern-c">Time-based</text>
+
+              <circle cx="640" cy="70" r="9" fill="currentColor" opacity="0.85"/>
+              <text x="640" y="105" text-anchor="middle" fill="currentColor" opacity="0.85">Proactive</text>
+            </g>
+          </svg>
+          <p class="figcaption">Each pattern moves further from a person triggering each run by hand.</p>
+        </div>
+
+        <div class="scrollwrap">
+          <table>
+            <thead><tr><th>Pattern</th><th>Trigger</th><th>Stops when</th><th>Best for</th></tr></thead>
+            <tbody>
+              <tr><td><span class="tag tag-loop">turn-based</span></td><td>A user prompt</td><td>Claude decides the task is complete, or needs more context</td><td>Shorter tasks outside a regular process</td></tr>
+              <tr><td><span class="tag tag-turn">goal-based</span> · <code>/goal</code></td><td>A manual, real-time prompt naming a condition</td><td>The goal is achieved, or max turns is reached</td><td>Tasks with a verifiable exit criterion</td></tr>
+              <tr><td><span class="tag tag-pattern">time-based</span> · <code>/loop</code>, <code>/schedule</code></td><td>A fixed time interval</td><td>User cancellation, or the work is done</td><td>Recurring work; watching an external system</td></tr>
+              <tr><td>proactive</td><td>An event or a schedule, no person in the loop</td><td>Each individual task exits once its own goal is met</td><td>Well-defined recurring work — triage, dependency upgrades</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="caption spaced">Anthropic's own example for goal-based loops: <code>"/goal get the homepage Lighthouse score to 90+, stop after 5 tries"</code>. Proactive loops are a composition of the other three — <code>/schedule</code>, <code>/goal</code>, skills, and auto mode working together.</p>
+      </section>
+
+      <section class="stage" id="s7">
+        <div class="stage-head"><span class="stage-num">07</span><h2>Where the human stays</h2></div>
+        <p class="stage-sub">A self-checking loop grades its own work. That's a real limit, and Anthropic says so directly.</p>
+        <p>Anthropic's own guidance for loop engineering: encode manual checks as skills with quantitative metrics, so Claude can verify its own work end-to-end rather than eyeballing it. And where bias matters, use a separate review agent — not the same one that did the work — to check it.</p>
+        <div class="callout bridge">
+          <strong>The general principle, not a pitch.</strong> A loop that grades itself is only as reliable as its own judgment. The strongest version separates the two: one loop does the work, a different, independent check decides if it's done. <a href="https://github.com/azevedo-home-lab/claude-code-workflows">claude-code-workflows</a> is one concrete example of that separation, built as an external judge/gate chain rather than a self-graded loop — worth a look if this idea is useful to you.
+        </div>
+      </section>
+
+      <section class="stage" id="s8">
+        <div class="stage-head"><span class="stage-num">08</span><h2>Correcting a common claim</h2></div>
+        <p class="stage-sub">Worth stating plainly, since it's easy to get wrong — this page did, earlier in its own drafting.</p>
+        <p><code>/goal</code> is often described online as a community-authored convention: a Markdown file you drop into <code>.claude/commands/</code> yourself, with no first-party backing. That undersells it. Anthropic documents <code>/goal</code> directly, as one of four named loop patterns, complete with its own worked example. It is Anthropic-documented behavior, not a fan-made trick that happens to work.</p>
+      </section>
+
+      <hr class="divider">
+
+      <footer>
+        Sources: <a href="https://code.claude.com/docs/en/how-claude-code-works">How Claude Code works</a> · <a href="https://code.claude.com/docs/en/agent-sdk/agent-loop">How the agent loop works</a> · <a href="https://claude.com/blog/getting-started-with-loops">Loop engineering: getting started with loops</a>. This page restates Anthropic's own documentation; those pages are canonical, and update ahead of this one.
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

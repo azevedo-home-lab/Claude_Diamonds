@@ -10,8 +10,12 @@ for what this is and how to tell it's done.
 `loops.html` — turns, the agentic loop, and loop patterns. Fully built,
 sourced from three Anthropic pages, cited on the page itself.
 
-`context.html`, `hooks.html`, `subagents.html` — placeholders, reserving
-the URL and shared shell for future lessons.
+`subagents.html` — a subagent's fresh context window, what it inherits
+at spawn, and what returns to its parent. Fully built, sourced from
+Anthropic's `sub-agents` documentation, cited on the page itself.
+
+`context.html`, `hooks.html` — placeholders, reserving the URL and
+shared shell for future lessons.
 
 ## Serving this
 

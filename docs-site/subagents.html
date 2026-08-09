@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Subagents — Claude Diamonds</title>
-<meta name="description" content="Placeholder page — the subagents lesson has not been built yet.">
+<meta name="description" content="What a subagent inherits when it spawns, why it starts with a fresh context window, and what returns to its parent — sourced from Anthropic's own documentation.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%92%A0%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -22,11 +22,135 @@
     </nav>
   </header>
 
-  <div class="placeholder-body">
-    <span class="placeholder-badge">Not built yet</span>
-    <h1 class="head">Subagents</h1>
-    <p>This page will cover how a subagent's context differs from its parent's, what it inherits at spawn, and when delegating to one actually saves tokens instead of costing more.</p>
-    <p>Until it's built, read Anthropic's own explanation: <a href="https://code.claude.com/docs/en/agent-sdk/agent-loop#keep-context-efficient">subagents, in the agent-loop docs</a>.</p>
+  <div class="shell">
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-label">On this page</p>
+      <ol>
+        <li><a href="#s1"><span class="n">01</span>Why a subagent exists</a></li>
+        <li><a href="#s2"><span class="n">02</span>A fresh context window</a></li>
+        <li><a href="#s3"><span class="n">03</span>What a subagent inherits at spawn</a></li>
+        <li><a href="#s4"><span class="n">04</span>What a subagent does <em>not</em> inherit</a></li>
+        <li><a href="#s5"><span class="n">05</span>What comes back to the parent</a></li>
+        <li><a href="#s6"><span class="n">06</span>Built-in subagents</a></li>
+        <li><a href="#s7"><span class="n">07</span>When delegating actually helps</a></li>
+      </ol>
+    </nav>
+
+    <main>
+      <header class="doc-head">
+        <p class="eyebrow">Claude Diamonds — learning</p>
+        <h1 class="head">Subagents</h1>
+        <p class="dek">A subagent is a second Claude, doing a piece of work in a context window of its own. What it starts with, what it can't see, and what makes it back to you when it's done — all of it traces to one page in Anthropic's own documentation.</p>
+        <div class="doc-meta">
+          <span><strong>1</strong> Anthropic source</span>
+          <span><strong>7</strong> sections</span>
+          <span>Source: <a href="https://code.claude.com/docs/en/sub-agents">Create custom subagents</a></span>
+        </div>
+      </header>
+
+      <section class="stage" id="s1">
+        <div class="stage-head"><span class="stage-num">01</span><h2>Why a subagent exists</h2></div>
+        <p class="stage-sub">Source: <a href="https://code.claude.com/docs/en/sub-agents">Create custom subagents</a>.</p>
+        <p>Anthropic's own framing: use a subagent when a side task would flood your main conversation with search results, logs, or file contents you won't reference again. The subagent does that work in its own context and returns only the summary. Each subagent runs in its own context window with a custom system prompt, specific tool access, and independent permissions. When Claude encounters a task that matches a subagent's description, it delegates to that subagent, which works independently and returns results.</p>
+      </section>
+
+      <section class="stage" id="s2">
+        <div class="stage-head"><span class="stage-num">02</span><h2>A fresh context window</h2></div>
+        <p class="stage-sub">Source: <a href="https://code.claude.com/docs/en/sub-agents#manage-subagent-context">Manage subagent context</a>.</p>
+        <p>Anthropic's own wording is direct: "Each subagent starts with a fresh, isolated context window. It doesn't see your conversation history, the skills you've already invoked, or the files Claude has already read." Claude composes a delegation message that summarizes the task, and the subagent works from that message outward — not from anything already in the parent's transcript.</p>
+
+        <div class="figure">
+          <svg viewBox="0 0 680 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The parent conversation's context window is full of history. A subagent spawns with its own separate, empty context window, connected to the parent only by a delegation task message.">
+            <rect x="20" y="20" width="280" height="170" rx="10" fill="none" stroke="currentColor" class="accent" stroke-width="2.5"/>
+            <text x="40" y="48" font-family="Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="700" class="accent" fill="currentColor">PARENT CONVERSATION</text>
+            <rect x="40" y="62" width="240" height="14" rx="3" fill="currentColor" class="accent" opacity="0.35"/>
+            <rect x="40" y="82" width="240" height="14" rx="3" fill="currentColor" class="accent" opacity="0.35"/>
+            <rect x="40" y="102" width="180" height="14" rx="3" fill="currentColor" class="accent" opacity="0.35"/>
+            <rect x="40" y="122" width="240" height="14" rx="3" fill="currentColor" class="accent" opacity="0.35"/>
+            <rect x="40" y="142" width="150" height="14" rx="3" fill="currentColor" class="accent" opacity="0.35"/>
+            <text x="40" y="172" font-family="Iowan, Georgia, serif" font-size="10.5" fill="currentColor" class="accent" opacity="0.75">accumulated history</text>
+
+            <path d="M300,105 H400" stroke="currentColor" class="turn-c" stroke-width="2" marker-end="url(#c1)"/>
+            <text x="305" y="98" font-family="Iowan, Georgia, serif" font-size="10.5" fill="currentColor" class="turn-c">delegation task message</text>
+
+            <rect x="400" y="20" width="260" height="170" rx="10" fill="none" stroke="currentColor" class="turn-c" stroke-width="2.5" stroke-dasharray="5 4"/>
+            <text x="420" y="48" font-family="Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="700" class="turn-c" fill="currentColor">SUBAGENT — fresh window</text>
+            <text x="420" y="110" font-family="Iowan, Georgia, serif" font-size="11" fill="currentColor" class="turn-c" opacity="0.8">no parent history</text>
+            <text x="420" y="128" font-family="Iowan, Georgia, serif" font-size="11" fill="currentColor" class="turn-c" opacity="0.8">no skills already invoked</text>
+            <text x="420" y="146" font-family="Iowan, Georgia, serif" font-size="11" fill="currentColor" class="turn-c" opacity="0.8">no files already read</text>
+
+            <defs>
+              <marker id="c1" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="currentColor" class="turn-c"/></marker>
+            </defs>
+          </svg>
+          <p class="figcaption">The subagent's window starts empty except for the delegation message — the parent's accumulated history stays behind.</p>
+        </div>
+      </section>
+
+      <section class="stage" id="s3">
+        <div class="stage-head"><span class="stage-num">03</span><h2>What a subagent inherits at spawn</h2></div>
+        <p class="stage-sub">Source: <a href="https://code.claude.com/docs/en/sub-agents#what-loads-at-startup">What loads at startup</a>.</p>
+        <p>A non-fork subagent's initial context contains a specific, named set of things. Its own <strong>system prompt</strong> — the agent's own prompt plus environment details Claude Code appends, not the full Claude Code system prompt. The <strong>task message</strong> — the delegation prompt Claude writes when it hands off the work. And the full <strong>CLAUDE.md hierarchy</strong> the main conversation loads: <code>~/.claude/CLAUDE.md</code>, project rules, <code>CLAUDE.local.md</code>, and managed policy files.</p>
+
+        <div class="scrollwrap">
+          <table>
+            <thead><tr><th>Loads at startup</th><th>What it is</th></tr></thead>
+            <tbody>
+              <tr><td>System prompt</td><td>The subagent's own prompt, plus environment details — never the parent's full system prompt</td></tr>
+              <tr><td>Task message</td><td>The delegation prompt Claude writes when handing off the work</td></tr>
+              <tr><td><code>CLAUDE.md</code> hierarchy</td><td>Every level the parent conversation loads: user, project, local, and managed policy files</td></tr>
+              <tr><td>Git status</td><td>A snapshot taken at the start of the parent session, when the working directory is a git repo</td></tr>
+              <tr><td>Preloaded skills</td><td>Full content of any skill named in the subagent's <code>skills</code> field</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="caption">Two built-in subagents, Explore and Plan, are named exceptions: they skip <code>CLAUDE.md</code> and git status to keep research fast and inexpensive.</p>
+      </section>
+
+      <section class="stage" id="s4">
+        <div class="stage-head"><span class="stage-num">04</span><h2>What a subagent does <em>not</em> inherit</h2></div>
+        <p class="stage-sub">Source: <a href="https://code.claude.com/docs/en/sub-agents#what-loads-at-startup">What loads at startup</a>. The gaps matter as much as the list above.</p>
+        <p>Three things from the parent conversation never reach a non-fork subagent. Your <strong>output style</strong> doesn't shape its responses, since the subagent runs its own system prompt. The parent's <strong>auto memory</strong> isn't loaded — a subagent gets persistent memory of its own only through its <code>memory</code> field. And its <strong>context window size</strong> is set by its own model, not the parent's: delegating to a smaller model gives that subagent the smaller window that model has.</p>
+      </section>
+
+      <section class="stage" id="s5">
+        <div class="stage-head"><span class="stage-num">05</span><h2>What comes back to the parent</h2></div>
+        <p class="stage-sub">Source: <a href="https://code.claude.com/docs/en/sub-agents">Create custom subagents</a>, isolating high-volume operations.</p>
+        <p>When a subagent finishes, Claude sees only its final response — not the search results, file contents, or intermediate tool calls that produced it. Anthropic states the payoff directly: running tests, fetching documentation, or processing log files can consume significant context; delegating that work to a subagent keeps the verbose output in the subagent's own context, while only the relevant summary returns to the main conversation. That gap between what the subagent processed and what it hands back is the entire reason subagents save context.</p>
+        <div class="callout bridge">
+          <strong>Not free, though.</strong> Anthropic's own warning: when subagents complete, their results return to your main conversation, and running many subagents that each return detailed results can still consume significant context. Delegating helps because a subagent's <em>working</em> context stays contained — not because its final answer costs nothing.
+        </div>
+      </section>
+
+      <section class="stage" id="s6">
+        <div class="stage-head"><span class="stage-num">06</span><h2>Built-in subagents</h2></div>
+        <p class="stage-sub">Source: <a href="https://code.claude.com/docs/en/sub-agents#built-in-subagents">Built-in subagents</a>.</p>
+        <p>Claude Code ships several subagents that Claude uses automatically, each suited to a different job.</p>
+        <div class="scrollwrap">
+          <table>
+            <thead><tr><th>Subagent</th><th>Tools</th><th>Purpose</th></tr></thead>
+            <tbody>
+              <tr><td><span class="tag tag-loop">Explore</span></td><td>Read-only; Write and Edit denied</td><td>File discovery, code search, codebase exploration — skips <code>CLAUDE.md</code> and git status</td></tr>
+              <tr><td><span class="tag tag-turn">Plan</span></td><td>Read-only; Write and Edit denied</td><td>Codebase research during plan mode, so exploration output stays out of the read-only main conversation</td></tr>
+              <tr><td><span class="tag tag-pattern">General-purpose</span></td><td>Every tool available to subagents</td><td>Complex research, multi-step operations, code modifications</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="stage" id="s7">
+        <div class="stage-head"><span class="stage-num">07</span><h2>When delegating actually helps</h2></div>
+        <p class="stage-sub">Source: <a href="https://code.claude.com/docs/en/sub-agents#choose-between-subagents-and-main-conversation">Choose between subagents and main conversation</a>.</p>
+        <p>Anthropic draws the line plainly. Stay in the <strong>main conversation</strong> when the task needs frequent back-and-forth, when planning, implementation, and testing share significant context, when the change is quick and targeted, or when latency matters — subagents start fresh and may need time to gather context. Reach for a <strong>subagent</strong> when the task produces verbose output you don't need in your main context, when you want to enforce tool restrictions or permissions, or when the work is self-contained and can return as a summary.</p>
+        <p class="caption spaced">The fresh context window is the whole trade: a subagent costs you the latency of starting cold, and buys back a main conversation that never had to hold what it found along the way.</p>
+      </section>
+
+      <hr class="divider">
+
+      <footer>
+        Source: <a href="https://code.claude.com/docs/en/sub-agents">Create custom subagents</a>. This page restates Anthropic's own documentation; that page is canonical, and updates ahead of this one.
+      </footer>
+    </main>
   </div>
 </body>
 </html>

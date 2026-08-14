@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 96" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" role="img" aria-label="How to run it: Capture, Frame, Design, Rank, then Promote at the gate, then Develop.">
+  <title>How to run it — six steps, one gate</title>
+  <style>
+    .chip  { fill:#faf9f6; stroke:#d8d4cb; stroke-width:1.2; }
+    .gatec { fill:#f7e7e5; stroke:#a83232; stroke-width:1.4; stroke-dasharray:5 4; }
+    .devc  { fill:#e9f0e7; stroke:#5c7a5c; stroke-width:1.2; }
+    .num   { fill:#83868d; font-size:9.5px; }
+    .name  { fill:#1e2024; font-size:12.5px; font-weight:600; }
+    .gname { fill:#a83232; font-size:12.5px; font-weight:700; }
+    .dname { fill:#5c7a5c; font-size:12.5px; font-weight:700; }
+    .arrow { stroke:#83868d; stroke-width:1.2; fill:none; }
+    .ah    { fill:#83868d; }
+    @media (prefers-color-scheme: dark) {
+      .chip  { fill:#1f2124; stroke:#35373b; }
+      .gatec { fill:#2e1e1d; stroke:#d97a7a; }
+      .devc  { fill:#1f2a20; stroke:#8fb28f; }
+      .num   { fill:#83868d; }
+      .name  { fill:#eceae4; }
+      .gname { fill:#d97a7a; }
+      .dname { fill:#8fb28f; }
+    }
+  </style>
+
+  <rect class="chip" x="4"   y="26" width="92" height="44" rx="10"/>
+  <text class="num"  x="50" y="43" text-anchor="middle">1</text>
+  <text class="name" x="50" y="59" text-anchor="middle">Capture</text>
+  <path class="arrow" d="M96 48 h8"/><path class="ah" d="M104 44.5 l7 3.5 -7 3.5 z"/>
+
+  <rect class="chip" x="112" y="26" width="92" height="44" rx="10"/>
+  <text class="num"  x="158" y="43" text-anchor="middle">2</text>
+  <text class="name" x="158" y="59" text-anchor="middle">Frame</text>
+  <path class="arrow" d="M204 48 h8"/><path class="ah" d="M212 44.5 l7 3.5 -7 3.5 z"/>
+
+  <rect class="chip" x="220" y="26" width="92" height="44" rx="10"/>
+  <text class="num"  x="266" y="43" text-anchor="middle">3</text>
+  <text class="name" x="266" y="59" text-anchor="middle">Design</text>
+  <path class="arrow" d="M312 48 h8"/><path class="ah" d="M320 44.5 l7 3.5 -7 3.5 z"/>
+
+  <rect class="chip" x="328" y="26" width="92" height="44" rx="10"/>
+  <text class="num"  x="374" y="43" text-anchor="middle">4</text>
+  <text class="name" x="374" y="59" text-anchor="middle">Rank</text>
+  <path class="arrow" d="M420 48 h8"/><path class="ah" d="M428 44.5 l7 3.5 -7 3.5 z"/>
+
+  <rect class="gatec" x="436" y="26" width="92" height="44" rx="10"/>
+  <text class="num"   x="482" y="43" text-anchor="middle">5 · the gate</text>
+  <text class="gname" x="482" y="59" text-anchor="middle">Promote</text>
+  <path class="arrow" d="M528 48 h8"/><path class="ah" d="M536 44.5 l7 3.5 -7 3.5 z"/>
+
+  <rect class="devc"  x="544" y="26" width="92" height="44" rx="10"/>
+  <text class="num"   x="590" y="43" text-anchor="middle">6</text>
+  <text class="dname" x="590" y="59" text-anchor="middle">Develop</text>
+</svg>

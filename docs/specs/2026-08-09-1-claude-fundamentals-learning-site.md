@@ -13,7 +13,8 @@ two-diamond method page gains one link to it and is otherwise unchanged.
 
 - **Issue:** #1
 - **Date:** 2026-08-09
-- **Status:** Draft
+- **Status:** Done — shipped in PR #3 (2026-08-09); status closed
+  retroactively per spec 9 (D9-4)
 
 ## Context
 

@@ -14,7 +14,8 @@ the finished page.
 
 - **Issue:** #4
 - **Date:** 2026-08-09
-- **Status:** Draft
+- **Status:** Done — shipped in PR #10 (2026-08-09); status closed
+  retroactively per spec 9 (D9-4)
 
 ## Context
 

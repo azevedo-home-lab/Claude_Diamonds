@@ -8,21 +8,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%92%A0%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css">
 <style>
-  .dflow { display:flex; align-items:stretch; gap:0; margin:1.6rem 0 .4rem; }
-  .dm { flex:1; border:1.5px solid var(--border); border-radius:14px; padding:.9rem 1rem; background:var(--bg-raised); }
-  .dm h3 { margin:0 0 .15rem; font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; }
-  .dm .who { color:var(--ink-faint); font-size:.8rem; margin:0 0 .7rem; }
-  .dm.d1 h3 { color:var(--pattern, var(--accent)); }
-  .dm.d2 h3 { color:var(--turn, var(--accent)); }
-  .phases { display:flex; gap:.4rem; }
-  .ph { flex:1; text-align:center; border:1px solid var(--border-soft); border-radius:9px; padding:.5rem .3rem; background:var(--bg); }
-  .ph .g { display:block; font-size:1.05rem; line-height:1; margin-bottom:.25rem; }
-  .ph.dv .g { color:var(--accent); } .ph.cv .g { color:var(--warn); }
-  .ph b { font-size:.82rem; font-weight:600; display:block; }
-  .ph span { font-size:.68rem; color:var(--ink-faint); }
-  .gatebox { align-self:center; margin:0 .5rem; text-align:center; border:1.5px dashed var(--warn); border-radius:12px; padding:.7rem .7rem; min-width:130px; background:var(--warn-soft, transparent); }
-  .gatebox b { display:block; font-size:.72rem; letter-spacing:.07em; text-transform:uppercase; color:var(--warn); margin-bottom:.3rem; }
-  .gatebox span { font-size:.75rem; color:var(--ink-soft); }
+  .diamonds-fig { display:block; width:100%; height:auto; margin:1.6rem 0 .4rem; }
   .legend-line { color:var(--ink-faint); font-size:.78rem; margin:.2rem 0 0; }
   .contract-grid { display:grid; grid-template-columns:1fr 1fr; gap:.8rem; margin:1rem 0; }
   .terr { border:1px solid var(--border); border-radius:12px; padding:.8rem .95rem; background:var(--bg-raised); }
@@ -30,7 +16,7 @@
   .terr ul { margin:.4rem 0 0; padding-left:1.1rem; font-size:.85rem; color:var(--ink-soft); }
   .terr .no { color:var(--warn); font-weight:600; font-size:.8rem; display:block; margin-top:.45rem; }
   .loopnote { text-align:center; font-size:.82rem; color:var(--warn); border-top:1.5px dashed var(--warn); padding-top:.5rem; margin:.4rem 0 0; }
-  @media (max-width:720px){ .dflow{flex-direction:column} .gatebox{margin:.5rem 0} .contract-grid{grid-template-columns:1fr} }
+  @media (max-width:720px){ .contract-grid{grid-template-columns:1fr} }
 </style>
 </head>
 <body>
@@ -56,28 +42,10 @@
       </header>
 
       <h2>The shape</h2>
-      <div class="dflow">
-        <div class="dm d1">
-          <h3>Diamond 1 · Discovery &amp; Solution Design</h3>
-          <p class="who">Claude Desktop / Cowork — internally a double diamond itself</p>
-          <div class="phases">
-            <div class="ph dv"><span class="g">◇</span><b>Discover</b><span>parking lot, OST opportunity space</span></div>
-            <div class="ph cv"><span class="g">◆</span><b>Define</b><span>target opportunity + evidence</span></div>
-            <div class="ph dv"><span class="g">◇</span><b>Ideate</b><span>~3 compared solutions, assumption tests</span></div>
-            <div class="ph cv"><span class="g">◆</span><b>Decide</b><span>ranked bets → Product Spec</span></div>
-          </div>
-        </div>
-        <div class="gatebox"><b>Promotion gate</b><span>DECIDED entry → issue → publish the spec</span></div>
-        <div class="dm d2">
-          <h3>Diamond 2 · Development</h3>
-          <p class="who">Claude Code — spec-driven, judged</p>
-          <div class="phases">
-            <div class="ph dv"><span class="g">◇</span><b>Plan</b><span>options explored</span></div>
-            <div class="ph cv"><span class="g">◆</span><b>Build · verify · ship</b><span>against the published spec</span></div>
-          </div>
-        </div>
-      </div>
-      <p class="legend-line">◇ diverge · ◆ converge. Canvas vs ledger is a separate axis — artifact <em>identity</em>, not thinking direction: ideas move, merge and die on the canvas; promoted items have state and history in the ledger.</p>
+      <img class="diamonds-fig" src="assets/diamonds.svg"
+           alt="Diamond 1, Discovery and Solution Design (Claude Desktop / Cowork): Discover, Define, Ideate, Decide. The promotion gate: DECIDED entry, issue, publish the spec. Diamond 2, Development (Claude Code): Plan, then Build-verify-ship against the published spec.">
+      <p class="caption">Canonical diagram — this same file (<a href="https://github.com/azevedo-home-lab/Claude_Diamonds/blob/main/docs-site/assets/diamonds.svg">docs-site/assets/diamonds.svg</a>) is embedded by the repo README; edit it once, it changes everywhere (spec 9, D9-7).</p>
+      <p class="legend-line">Canvas vs ledger is a separate axis — artifact <em>identity</em>, not thinking direction: ideas move, merge and die on the canvas; promoted items have state and history in the ledger.</p>
 
       <h2>The repo contract</h2>
       <p>Each product repo carries both diamonds, separated by a one-way publish. Full text: <a href="https://github.com/azevedo-home-lab/Claude_Diamonds/blob/main/docs/repo-contract.md">docs/repo-contract.md</a>.</p>

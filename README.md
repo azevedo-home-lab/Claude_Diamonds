@@ -2,222 +2,109 @@
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-A method for running product decisions end to end with Claude, from a raw
-idea to shipped code. Two diamonds, with one deliberate gate between them.
-
-This repository explains the **process** and the **templates**. It does not
-carry the enforcement machinery. That lives in the reference implementation,
-[claude-code-workflows](https://github.com/azevedo-home-lab/claude-code-workflows)
-(WFM), which this document cites rather than copies. You can read this and
-understand the method without running WFM.
-
-New to how Claude Code itself works? A short [learning site](https://azevedo-home-lab.github.io/Claude_Diamonds/) covers turns, the agentic loop, and loop patterns — background for this method, published separately from it.
-
-## Why
-
-Two different kinds of thinking get asked of one tool, and the tool fails at
-one of them.
-
-The divergent half — capture an idea, frame it as a problem, weigh it against
-other problems, decide what comes first — wants a canvas. Ideas move, merge
-and die there, and most never become work.
-
-The convergent half — spec, plan, build, prove, ship — wants a ledger. Items
-have identity, state and history.
-
-A project board is a ledger. Asked to hold the divergent half, it demands
-identity and state from ideas that have neither yet. So the framing either
-never happens, or it happens in chat and is lost when the session ends. The
-symptom is a repository whose decision records all start at "decided" — the
-"why" is implicit, written after the direction was already chosen.
-
-The fix is not a better board. It is two surfaces with a gate between them.
-
-## What
-
-Two diamonds. A canvas for divergence, a ledger for convergence, and one
-human commit that separates them.
+A method for running product decisions end to end with Claude, from raw
+idea to shipped code. Two diamonds, each diverging then converging, with
+one deliberate human gate between them: **Discovery & Solution Design**
+(Claude Desktop / Cowork) ends in a Product Spec; **Development**
+(Claude Code) turns that spec into judged, shipped code. Ideas live on a
+canvas where they move, merge, and mostly die; committed work lives in a
+ledger with identity and history. Asking one surface to hold both is the
+failure this method exists to prevent.
 
 ```mermaid
-flowchart TB
-  stack["Decision stack — the why"]
-  subgraph CANVAS["Canvas · Claude Desktop — diverge"]
+flowchart LR
+  subgraph D1["Diamond 1 · Discovery & Solution Design — Claude Desktop / Cowork"]
     direction LR
-    z1["Parking lot"] --> z2["Framing"] --> z3["Prioritize + sequence"]
+    a["Discover ◇"] --> b["Define ◆"] --> c["Ideate ◇"] --> d["Decide ◆"]
   end
-  gate{{"Promotion gate"}}
-  subgraph LEDGER["Ledger · GitHub Projects — track"]
+  gate{{"Gate — publish the Product Spec"}}
+  subgraph D2["Diamond 2 · Development — Claude Code"]
     direction LR
-    l1["Backlog"] --> l2["In plan"] --> l3["Building"] --> l4["Shipped"]
+    e["Plan ◇"] --> f["Build · verify · ship ◆"]
   end
-  stack -.->|traceability| z3
-  z3 -->|survivor| gate
-  gate -->|issue + spike| l1
+  D1 --> gate --> D2
 ```
 
-### The boundary contract
+◇ diverge · ◆ converge. The learning companion site is at
+[azevedo-home-lab.github.io/Claude_Diamonds](https://azevedo-home-lab.github.io/Claude_Diamonds/) —
+its [Method page](https://azevedo-home-lab.github.io/Claude_Diamonds/method.html)
+is the visual version of this README.
 
-The operating rule, end to end:
+## Foundations
 
-| Layer | Surface | Does | Output |
-|---|---|---|---|
-| Front diamond | Claude Desktop | discover, frame, prioritize, sequence | vision and opportunity docs, plus a snapshot board |
-| Promotion gate | the human, deliberately | the survivor crosses | an issue and a decision record |
-| Back diamond | Claude Code | plan → spec → plan → judged build → ship | code, judged |
-| Ledger | GitHub Projects | tracks only what crossed the gate | issues, and everything downstream |
+Each foundation has a learning doc in [`docs/methods/`](docs/methods/)
+(for humans) and a compact `.claude.md` operating file (what binds Claude).
 
-Source of truth is always the repository — its docs and its `CLAUDE.md` —
-never tool-to-tool sync.
+### Double Diamond — Design Council (2004)
 
-The rule that falls out of this: **give the coding agent specs, not vision.**
-Don't ask Claude Code for strategy, and don't ask the strategy surface to
-debug. Ryan McDonald states the same boundary from the Cowork side. The
-surfaces share a project folder and a `CLAUDE.md`, not a live pipe.
-Overlapping their work is the failure mode to avoid.
+The shape. Both diamonds diverge then converge; the boundary between them
+is a *converged artifact*, never a switch from divergent to convergent
+thinking. Diamond 1 here is internally a double diamond itself — problem
+(discover → define) then solution design (ideate → decide) — ending in the
+Product Spec. [Framework for Innovation](https://www.designcouncil.org.uk/resources/framework-for-innovation/) ·
+[spec 8](docs/specs/2026-08-14-8-double-diamond-clarification.md).
 
-## The front diamond — divergent
+### The Decision Stack — Martin Eriksson
 
-Three zones, and no more. Each has to earn its place.
+The vertical *why*. Vision → Strategy → Objectives (outcomes, not
+outputs) → Opportunities → Principles; the how/why test walks any item up
+the stack, and the first link that can't be said in one sentence is the
+missing work. [thedecisionstack.com](https://www.thedecisionstack.com/what-is-the-decision-stack/) ·
+[learning doc](docs/methods/decision-stack.md).
 
-| Zone | Purpose | Framework |
-|---|---|---|
-| **1. Parking lot** | Cheap capture of raw ideas. Nothing is committed by being here. | — |
-| **2. Framing** | Raw idea becomes an opportunity: a problem plus the evidence for it. | Opportunity Solution Tree (Teresa Torres, *Continuous Discovery Habits*) |
-| **3. Prioritize + sequence** | Impact against effort, then a Now / Next / Later view. | Impact-effort scoring; Now/Next/Later roadmaps (Janna Bastow, ProdPad) |
+### Continuous Discovery & the Opportunity Solution Tree — Teresa Torres
 
-Two things people expect to see here are deliberately absent. A **funnel** is
-not a zone — it is the motion between these three. **Sequence** is not a zone
-either — it is a view of prioritization, which is why this is three zones and
-not five.
+The problem diamond and the divergent half of solution design: outcome →
+evidence-backed opportunities → ~3 compared solutions → assumption tests.
+Opportunities are evidenced, never invented; effort never selects a
+target. [producttalk.org](https://www.producttalk.org/opportunity-solution-trees/) ·
+[learning doc](docs/methods/opportunity-solution-tree.md).
 
-### The decision stack
+### Prioritization — John Cutler
 
-Running alongside the zones is the traceable why. It is John Cutler's Stack,
-built on the North Star framework:
+Diamond 1's convergence. Force-ranked 1-N bets — value vs urgency,
+opportunity cost, cost of delay — never scored buckets; ten named traps
+check the ranking. [TBM 399](https://cutlefish.substack.com/p/tbm-399-10-prioritization-traps) ·
+[learning doc](docs/methods/cutler-prioritization.md).
 
-```mermaid
-flowchart TB
-  v["Vision"] --> ns["North Star + input metrics"] --> sb["Strategy and bets"] --> ini["Initiatives"] --> iss["GH issues (ledger)"]
-```
+### Spec-driven development, measured — WFM
 
-This is vertical traceability, and it is exactly what a project board cannot
-show. Every issue traces up to a bet; every bet traces up to the strategy.
-A board shows what is moving. The stack shows why any of it should move at
-all.
-
-### The canvas is a snapshot, not live state
-
-Hand-author the board as committed HTML. State lives in the browser's
-`localStorage`, so the committed file is a **starting arrangement, not a
-system of record**. WFM's `docs/prioritization/` is the precedent and carries
-the same caveat in its own README.
-
-Do not build this on Claude Design. Design runs VM-isolated with a separate
-localhost and has no automatic pipe from Desktop — you upload to it by hand.
-That makes it a view and deck tool. Use it to author the *look* of a board
-or a shareable vision deck. Do not let it hold the board's data. Marc Bara's
-stack breakdown is the source for both constraints.
-
-## The promotion gate — one deliberate human commit
-
-Nothing on the canvas is real until it crosses.
-
-The idea that survives becomes two things at once:
-
-1. a **GitHub issue** — its identity in the ledger, and
-2. a **decision record** citing the stack. WFM calls this a *spike*. It
-   carries the issue it answers, its status and date, the decision, the
-   evidence that forced it, the consequences, and what it does not change.
-
-This step is manual on purpose. It is not automation deferred to later. The
-research is explicit that Desktop-to-Code handoffs are manual uploads through
-a shared folder, not live sync. A deliberate gate matches how the tools
-actually behave. The gate is also where the
-commitment happens: a canvas item costs nothing, and an issue costs
-attention.
-
-## The back diamond — convergent
-
-Once through the gate, the work runs plan → spec → plan → judged build →
-ship, on the coding surface.
-
-What makes this half durable is not the prompt text. It is four things a
-coding agent cannot supply for itself, which is why they are worth
-externalizing as mechanism.
-
-| Pillar | What it is | Why the model cannot do it alone |
-|---|---|---|
-| **Enforcement** | Deterministic hooks that deny tool calls outside the sanctioned paths | A prompt can be rationalized around; a blocked tool call cannot |
-| **Structure** | Phases, PR and issue slots, required artifacts | Shape is imposed from outside the model |
-| **Memory** | Issues, boards, cross-session observations | Sessions end; without an external record, decisions are lost |
-| **Measurement** | A rule earns its place only against a recorded failure of the bare model, and is re-tested when the model changes | The model cannot know what it no longer needs to be told |
-
-The four pillars, and the wording above, come from WFM's
-[README](https://github.com/azevedo-home-lab/claude-code-workflows#goal) and
-its positioning decision record,
-[`docs/spikes/wfm-positioning.md`](https://github.com/azevedo-home-lab/claude-code-workflows/blob/main/docs/spikes/wfm-positioning.md).
-
-### Why there are no personas in this method
-
-The measurement pillar has a result that shapes the front diamond too.
-
-WFM's eval harness ran three pressure tests, each under "tests pass, hurry
-up" pressure. A planted security bug, a planted state bug, and a
-boundary-testing task. The bare model, with no agent prompt and no workflow
-framework, passed all three. Its conclusion: prompt text that teaches the
-model what it already knows is not an asset. It is maintenance cost that
-goes stale as models improve.
-
-Persona and role-play prompt text specifically does not survive that test.
-So the front diamond above uses **named lenses with required outputs** — an
-angle plus the artifact it must produce — and never a role-played
-personality. A lens that cannot name the output it produces has not earned
-its place.
+Diamond 2 runs against the published spec with deterministic enforcement
+(hooks, judges, evals) that must *earn its place* against a recorded
+failure of the bare model — which is also why this method uses named
+lenses with required outputs, never personas.
+[claude-code-workflows](https://github.com/azevedo-home-lab/claude-code-workflows#goal).
 
 ## How to run it
 
-1. **Capture** into the parking lot. No commitment, no framing yet.
-2. **Frame** the ones worth framing: the problem, and the evidence for it.
-3. **Score and sequence** what survives framing — impact against effort,
-   then Now / Next / Later.
-4. **Check the stack.** If the item does not trace up to a bet, and the bet
-   to the strategy, it is not ready to cross.
-5. **Promote.** File the issue, write the decision record, cite the stack.
-6. **Build in the back diamond**, judged, against the spec — not against the
+1. **Capture** into the parking lot — no commitment, no framing.
+2. **Frame**: opportunity + evidence on the product's OST.
+3. **Design**: ~3 compared solutions, riskiest assumptions tested cheaply.
+4. **Rank**: force-ranked bets; check the stack — no trace up, no crossing.
+5. **Promote**: DECIDED log entry → GitHub issue → publish the spec into
+   `/plan`.
+6. **Develop** against the published spec, judged — never against the
    vision.
 
-The board is republished as a snapshot when its arrangement changes. The
-ledger carries state from there on.
+## The repo contract
 
-## Scope
+Each product repo carries both diamonds: `/product` (canvas + append-only
+decision memory, diamond 1 only), `/plan` (the published spec and stack,
+Claude Code's only source of product intent), and implementation. One-way
+publish at the gate; a `spec-change` issue is the only channel back.
+Full contract: [`docs/repo-contract.md`](docs/repo-contract.md).
 
-**In scope for this repository:** the method, the zones, the gate, the
-boundary contract, and the templates that go with them.
+## Repo map and scope
 
-**Out of scope:** hooks, judges, evals, and every other enforcement script.
-Those belong to the reference implementation and are cited here rather than
-duplicated. Two copies drift.
+[`docs/methods/`](docs/methods/) foundations (human + claude files) ·
+[`docs/templates/`](docs/templates/) canonical paste blocks for the
+Desktop project and product-repo CLAUDE.md ·
+[`docs/specs/`](docs/specs/) dated candidate specs — how this method
+changes · [`docs/repo-contract.md`](docs/repo-contract.md) ·
+[`docs/canvas-snapshot.md`](docs/canvas-snapshot.md) board-as-snapshot
+guidance · [`CLAUDE.md`](CLAUDE.md) working rules (PR-based, mandatory).
 
-## References
-
-The method is assembled from these, and they are worth reading directly.
-
-**The surface boundary**
-
-- Ryan McDonald, [The Orchestrator and the Dev](https://ryancmcdonald.com/blog/claude-cowork-and-claude-code-together/) — Cowork and Code together; the manual handoff through `CLAUDE.md`.
-- iwoszapar, [Claude Code CLI vs Desktop](https://www.iwoszapar.com/p/claude-code-cli-vs-desktop) — the feature matrix behind "the work decides the surface".
-- Marc Bara, [Claude Design is here — where does it fit in the stack](https://medium.com/@marc.bara.iniesta/claude-design-is-here-where-does-it-fit-in-the-stack-22d98c934970) — Design as a view; VM isolation and no automatic pipe.
-
-**The product frameworks**
-
-- Teresa Torres, *Continuous Discovery Habits* — the Opportunity Solution Tree.
-- John Cutler, the Stack and the North Star framework — vision down to initiatives.
-- Janna Bastow (ProdPad), Now / Next / Later roadmaps.
-
-**The reference implementation**
-
-- [claude-code-workflows](https://github.com/azevedo-home-lab/claude-code-workflows) — hooks, judges, evals, and the conventions the back diamond runs on.
-
-## License
-
-[GPL v3](LICENSE)
+In scope: the method, the zones, the gate, the contract, the templates.
+Out of scope: enforcement machinery — hooks, judges, evals live in
+[claude-code-workflows](https://github.com/azevedo-home-lab/claude-code-workflows)
+and are cited, never duplicated.

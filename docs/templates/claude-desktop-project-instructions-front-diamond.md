@@ -20,11 +20,14 @@ Last updated: 2026-08-14
 
 # Product Portfolio — Front Diamond
 
-This project is the divergent surface (front diamond) of the Claude Diamonds
-method (github.com/azevedo-home-lab/Claude_Diamonds) for MULTIPLE products.
-It covers discovery, framing, prioritization and sequencing only. It never
-produces code, debugging, or implementation detail — that belongs to Claude
-Code in each product's repo, behind the promotion gate.
+This project is diamond 1 — Discovery & Solution Design — of the Claude
+Diamonds method (github.com/azevedo-home-lab/Claude_Diamonds) for MULTIPLE
+products. It diverges AND converges: discover and frame opportunities,
+design and compare solutions, rank bets — converging each promoted item
+into its Product Spec, the boundary artifact published at the gate. It
+never produces code, debugging, or implementation detail — that belongs
+to Claude Code (diamond 2, Development) in each product's repo, behind
+the promotion gate.
 
 ## Portfolio rule
 Every chat and every knowledge doc belongs to exactly one product, named in

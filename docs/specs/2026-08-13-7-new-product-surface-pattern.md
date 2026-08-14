@@ -1,5 +1,12 @@
 # Surface pattern for starting a new product
 
+> **Erratum (2026-08-14, per spec 8):** this spec's framing "Desktop
+> diverges, the human gates, Code converges" is superseded — both
+> diamonds diverge *and* converge, and the boundary artifact is the
+> Product Spec (Design Council double diamond, correctly applied). The
+> text below is kept unedited per the append-only spirit; read "vision is
+> divergent work" as "vision work belongs to diamond 1".
+
 ## TLDR
 
 A new product idea gets one Claude Project, and each of its three founding

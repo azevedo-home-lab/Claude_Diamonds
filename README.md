@@ -61,6 +61,8 @@ failure of the bare model.
 
 ## How to run it
 
+![Six steps: Capture, Frame, Design, Rank, Promote at the gate, Develop.](docs-site/assets/run-steps.svg)
+
 1. **Capture** into the parking lot — no commitment, no framing.
 2. **Frame**: opportunity + evidence on the product's OST.
 3. **Design**: ~3 compared solutions, riskiest assumptions tested cheaply.
@@ -71,6 +73,8 @@ failure of the bare model.
    vision.
 
 ## The repo contract
+
+![/product publishes one-way through the gate into /plan, which feeds implementation; a spec-change issue is the only channel back.](docs-site/assets/contract.svg)
 
 Each product repo carries both diamonds: `/product` (canvas + append-only
 decision memory, diamond 1 only), `/plan` (the published spec and stack,

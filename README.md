@@ -80,13 +80,20 @@ Full contract: [`docs/repo-contract.md`](docs/repo-contract.md).
 
 ## Repo map and scope
 
-[`docs/methods/`](docs/methods/) foundations (human + claude files) ·
-[`docs/templates/`](docs/templates/) canonical paste blocks for the
-Desktop project and product-repo CLAUDE.md ·
-[`docs/specs/`](docs/specs/) dated candidate specs — how this method
-changes · [`docs/repo-contract.md`](docs/repo-contract.md) ·
-[`docs/canvas-snapshot.md`](docs/canvas-snapshot.md) board-as-snapshot
-guidance · [`CLAUDE.md`](CLAUDE.md) working rules (PR-based, mandatory).
+- [`docs/methods/`](docs/methods/) — the foundations: human learning
+  docs (canonical summaries) plus their `.claude.md` operating files.
+- [`docs/templates/`](docs/templates/) — canonical paste blocks for the
+  Desktop project instructions and the product-repo CLAUDE.md.
+- [`docs/specs/`](docs/specs/) — dated candidate specs: how this method
+  changes, closed on merge.
+- [`docs/repo-contract.md`](docs/repo-contract.md) — the /product ·
+  /plan contract and the one-way publish.
+- [`docs/canvas-snapshot.md`](docs/canvas-snapshot.md) —
+  board-as-snapshot guidance.
+- [`docs-site/`](docs-site/) — the learning site and the method's
+  visual page, published via GitHub Pages.
+- [`CLAUDE.md`](CLAUDE.md) — working rules for this repo (PR-based,
+  mandatory).
 
 In scope: the method, the zones, the gate, the contract, the templates.
 Out of scope: enforcement machinery — hooks, judges, evals live in

@@ -86,9 +86,38 @@ Product Discovery / Triple Diamond of Product Management).
    how WFM's in-repo spec-PR stage is reinterpreted — review/refinement of
    the published spec, rather than spec authoring. (Flagged, not decided.)
 
+## README restructure (proposed outline, ~80 lines from ~220)
+
+Research and sources first, per Pedro's direction; one sub-chapter per
+foundational concept.
+
+1. **What** — one paragraph + one corrected mermaid diagram: two diamonds,
+   each diverge→converge — Discovery/Solution Design ending in the Product
+   Spec, the human gate, Development ending in shipped code. Three lines of
+   the board-asked-to-hold-ideas failure story, compressed, not deleted.
+2. **Foundations** (sub-chapters, 3–5 lines each: what the method takes
+   from it + primary source + in-repo summary link):
+   Double Diamond (Design Council) · Decision Stack (Eriksson) ·
+   Continuous Discovery & OST (Torres) · Prioritization (Cutler) ·
+   Spec-driven development + WFM eval evidence.
+3. **How to run it** — the six steps, one line each; "promote" becomes
+   "publish the spec into /plan".
+4. **The repo contract** — three lines + link to docs/repo-contract.md.
+5. **Repo map and scope** — docs/methods, docs/templates, docs/specs;
+   enforcement cited to WFM, never duplicated.
+
+Moves, not deletions: canvas-snapshot guidance (localStorage caveat,
+Claude Design constraints) → docs/canvas-snapshot.md; four-pillars table
+and persona rationale → two lines + WFM links; zones/stack detail is
+already carried by docs/methods/.
+
+Counterargument on record: research-first can bury "what is this" for a
+first-time visitor (mitigated by the What paragraph on top), and the split
+adds one file to keep honest (docs/canvas-snapshot.md).
+
 ## Correction checklist (next loop)
 
-- `README.md` — rewrite the Why/What framing: two diamonds, each
+- `README.md` — rewrite per the outline above: two diamonds, each
   diverge+converge; problem/solution-design vs development; canvas/ledger
   as identity axis; move spec out of the back-diamond chain; fix the
   mermaid labels and the front/back section headings.

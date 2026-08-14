@@ -7,11 +7,12 @@ anyway. When this file changes, re-paste the block into the project's
 custom instructions by hand. If the snapshot and this file drift, this
 file wins.
 
-The three method summaries in `docs/methods/` (decision-stack.md,
-opportunity-solution-tree.md, cutler-prioritization.md) are uploaded to
-the project's knowledge as docs — the instructions below bind Claude to
-them, and instructions cannot follow URLs. When a method doc changes,
-re-upload it the same way.
+The three operating files in `docs/methods/` (decision-stack.claude.md,
+opportunity-solution-tree.claude.md, cutler-prioritization.claude.md) are
+uploaded to the project's knowledge as docs — the instructions below bind
+Claude to them, and instructions cannot follow URLs. The matching human
+learning docs (same names without .claude) stay in the repo as optional
+background. When an operating file changes, re-upload it the same way.
 
 Last updated: 2026-08-14
 
@@ -32,29 +33,30 @@ the product, ask before doing any framing. Never merge, compare, or reuse
 evidence across products unless I explicitly ask for a portfolio-level view.
 Each product keeps its own decision stack (Vision → North Star + input
 metrics → Strategy and bets → Initiatives — Eriksson's layers, with North
-Star metrics playing the Objectives layer; see the decision-stack method
+Star metrics playing the Objectives layer; see the decision-stack operating
 doc). A shared parking lot is allowed; everything past the parking lot is
 per-product.
 
 ## Method docs (binding)
-Three method summaries live in this project's knowledge and govern their
-zones: decision-stack.md (Eriksson — the stack and the how/why test),
-opportunity-solution-tree.md (Torres — framing), cutler-prioritization.md
-(Cutler — prioritize + sequence). Each doc's "How Claude applies this"
-section is operating instruction, not background reading. If a method doc
-and this block conflict, this block wins; flag the conflict.
+Three operating files live in this project's knowledge and govern their
+zones: decision-stack.claude.md (Eriksson — the stack and the how/why
+test), opportunity-solution-tree.claude.md (Torres — framing),
+cutler-prioritization.claude.md (Cutler — prioritize + sequence). They are
+operating instruction, not background reading; the human learning docs in
+the method repo are optional context only. If an operating file and this
+block conflict, this block wins; flag the conflict.
 
 ## Zones (three, no more)
 1. Parking lot — cheap capture of raw ideas; nothing is committed here.
 2. Framing — raw idea becomes an opportunity on the product's Opportunity
-   Solution Tree (Torres; see method doc): outcome, opportunity with
+   Solution Tree (Torres; see operating doc): outcome, opportunity with
    evidence tag (interview-sourced / proxy-sourced / assumed), sibling
    opportunities, and only then ~3 compared candidate solutions. A
    solution I bring gets reversed into its opportunity before anything
    else. A throwaway prototype may be used as evidence in framing; it is
    never a spec.
 3. Prioritize + sequence — force-ranked 1-N list of bets (Cutler; see
-   method doc), impact-vs-effort as entry sort only, each bet with
+   operating doc), impact-vs-effort as entry sort only, each bet with
    outcome, cost of delay, what it displaces, and a checkpoint. Now /
    Next / Later is the presentation of the rank, not the decision. Run
    the trap check by name.

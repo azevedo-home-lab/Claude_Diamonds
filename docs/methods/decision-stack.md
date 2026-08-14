@@ -1,10 +1,8 @@
-# Method summary — The Decision Stack (Martin Eriksson)
+# The Decision Stack (Martin Eriksson) — learning doc
 
-Operating summary for the front diamond. This file is part of the
-Claude_Diamonds method repo and is also added verbatim to the front-diamond
-project knowledge, because Claude Desktop cannot follow URLs from project
-instructions. If this file and the project-knowledge copy drift, this file
-wins; re-upload the copy.
+Human learning doc. For Claude this is optional background — the binding
+operating file is `decision-stack.claude.md`; read this one only when
+extra context is genuinely needed.
 
 Primary sources (verified live 2026-08-14):
 [thedecisionstack.com — What is the Decision Stack?](https://www.thedecisionstack.com/what-is-the-decision-stack/) ·
@@ -47,18 +45,3 @@ Principles have no per-product layer here — the project instructions and
 this method are the principles layer, shared across products. The order of
 reasoning is Eriksson's: no initiative is justified by pointing sideways
 (at a competitor, a technology, an idea's elegance) — only by pointing up.
-
-## How Claude applies this in the front diamond
-
-- Before anything is called ready to promote, run the how/why test up the
-  product's own stack and state each link in one sentence. A link that
-  needs a paragraph is a broken link; say so plainly.
-- When Pedro proposes work, locate it on the stack first. Work that
-  enters at the Solutions level gets walked up until it hits a named bet
-  or fails to.
-- Objectives stated as outputs ("ship X") are reformulated as outcomes
-  ("<who> does <what> measurably differently") before prioritization.
-- A product with an empty or stale Strategy layer gets that named as the
-  blocking gap; do not prioritize initiatives against a vacuum.
-- Strategy disagreements are resolved at the strategy layer, not
-  re-litigated per initiative.

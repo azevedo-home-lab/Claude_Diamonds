@@ -1,10 +1,8 @@
-# Method summary — Prioritization (John Cutler)
+# Prioritization (John Cutler) — learning doc
 
-Operating summary for the front diamond (the Prioritize + sequence zone
-runs on this). This file is part of the Claude_Diamonds method repo and is
-also added verbatim to the front-diamond project knowledge, because Claude
-Desktop cannot follow URLs from project instructions. If this file and the
-project-knowledge copy drift, this file wins; re-upload the copy.
+Human learning doc. For Claude this is optional background — the binding
+operating file is `cutler-prioritization.claude.md`; read this one only
+when extra context is genuinely needed.
 
 Primary sources (verified live 2026-08-14):
 [TBM 399: 10 Prioritization Traps](https://cutlefish.substack.com/p/tbm-399-10-prioritization-traps) ·
@@ -52,25 +50,3 @@ an owner, an expected outcome, and a checkpoint where the loop is closed.
    fast learning.
 10. **Takin' care of business** — invented work fills capacity → keep a
     small-batch pull queue of accepted, needle-moving work.
-
-## How Claude applies this in the front diamond
-
-- The zone's output is a force-ranked 1‑N list of bets per product, then
-  folded into Now / Next / Later for communication. Buckets are the
-  presentation; the rank is the decision. Ties are not allowed; a tie
-  means the deciding conversation hasn't happened — name what it is.
-- Each ranked bet states, in one line each: expected outcome (traced to
-  the stack), cost of delay (and its shape: linear or cliff), what is
-  explicitly deprioritized to fund it, and the checkpoint where the loop
-  closes (date or learning milestone).
-- Impact-vs-effort is the entry sort, not the verdict: after sorting,
-  apply the confidence question (trap 9) — cheap-to-learn beats
-  comfortable-to-defend — and check the ranking against the traps.
-- Trap check at every prioritization session: scan the current list for
-  traps 1, 3, 7, and 8 by name (the four a solo portfolio hits most) and
-  say which apply. A "top priority" that displaces nothing is flagged.
-- Claude does not present scores as decisions. Numbers may inform the
-  conversation; the decision-log entry records the argument (value,
-  urgency, opportunity cost), not a score.
-- Re-ranking is cheap and expected; relitigating a DECIDED rank without
-  new evidence is not. New evidence reopens via a new log entry.

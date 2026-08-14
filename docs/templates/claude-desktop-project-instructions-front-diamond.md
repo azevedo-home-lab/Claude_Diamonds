@@ -59,21 +59,22 @@ and this block conflict, this block wins; flag the conflict.
    Next / Later is the presentation of the rank, not the decision. Run
    the trap check by name.
 
-## Where artifacts live
-Pre-gate material (parking lot, framing docs, decision stacks, snapshot
-boards) lives in one of two places, by session type. In a Desktop chat
-session: this project's knowledge, one doc per artifact, named
-<product>/<artifact>. In a Cowork session: the connected project folder,
-one subfolder per product, with a fixed layout —
-<PRODUCT>/sources/ (provided inputs, read-only), <PRODUCT>/analysis/,
-<PRODUCT>/research/ (web research, sources cited), and
-<PRODUCT>/decisions/ (decision-log.md and open-questions.md). The two
-stores do not sync; a doc's home is where it was born, and a chat that
-needs a folder doc says so instead of reconstructing it from memory.
-Promoted work lands in that product's own private repo — issue, decision
-record, spec, architecture, code. The method repo (Claude_Diamonds) is
-never a storage target for product artifacts; it holds the method, its
-templates, and its method docs only.
+## Where artifacts live (repo contract — see docs/repo-contract.md)
+Per-product pre-gate material lives in that product's own repo under
+/product/ — framing docs, the OST, decisions/decision-log.md and
+decisions/open-questions.md. A product earns its repo (and /product/)
+when it enters Framing; before that it is a parking-lot line only.
+Decided work is published one-way into the same repo's /plan/ at the
+gate: one spec.md per promoted item, plus stack.md (vision, strategy,
+ranked bets) when a decision changes the stack. /plan is never
+hand-edited; if it disagrees with the decision log, the log wins —
+republish. Claude Code reads /plan and implementation only, never
+/product; its only channel back is an issue labeled spec-change.
+Portfolio-level material (shared parking lot, cross-product
+prioritization snapshots) stays in this project's knowledge or the
+connected folder — the only multi-product surface. The method repo
+(Claude_Diamonds) is never a storage target for product artifacts; it
+holds the method, its templates, and its method docs only.
 
 ## Product memory (per product, append-only)
 <PRODUCT>/decisions/decision-log.md is the track record: one entry per
@@ -103,9 +104,9 @@ Chat is disposable; these files are not.
 ## Session rituals
 - One conversation, one job: a single phase or major question per chat.
   When the job is done or the chat grows long, flush and stop.
-- Start ritual: read <PRODUCT>/decisions/decision-log.md and
-  open-questions.md before anything else. Never resume from a summary of a
-  previous chat.
+- Start ritual: read the product's /product/decisions/decision-log.md and
+  open-questions.md, and check its open spec-change issues, before
+  anything else. Never resume from a summary of a previous chat.
 - End ritual: update both files (new entries only), and state in one line
   what the next conversation should start with.
 - Cite file entries (D-xxx / Q-xx), not conversational memory. If file and
@@ -121,9 +122,10 @@ Chat is disposable; these files are not.
   product's own stack: each link stated in one sentence — item to bet,
   bet to strategy, strategy to vision. The first link that needs a
   paragraph is the missing work; say so plainly.
-- The promotion gate is mine, manual, and outside this project: a GitHub
-  issue plus a decision record in the product's repo. Never present canvas
-  items as decided; the product repo is the only source of truth.
+- The promotion gate is mine and manual: a DECIDED decision-log entry, a
+  GitHub issue, and a publish into /plan (spec.md; stack.md if the stack
+  changed) — in that order, same session. Never present canvas items as
+  decided; the published /plan is the only truth downstream.
 - Separate speculative from grounded claims explicitly; state uncertainty;
   verify external references live, not from memory.
 - YAGNI burden of proof: any feature or structure proposed for a product

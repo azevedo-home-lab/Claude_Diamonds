@@ -12,13 +12,19 @@
 
 ## Repo boundaries
 
-- This repo holds the method only: README, docs/methods (foundations),
-  docs/templates (canonical paste blocks), docs/specs (candidate specs),
-  docs/repo-contract.md. Product artifacts never land here — they live in
-  each product's own repo under the repo contract.
+- This repo holds the method and its learning site: README, docs/methods
+  (foundations), docs/templates (canonical paste blocks), docs/specs
+  (candidate specs), docs/repo-contract.md, docs/canvas-snapshot.md, and
+  docs-site/ (the published learning site — an official resident per
+  spec 9, D9-1). Product artifacts never land here — they live in each
+  product's own repo under the repo contract.
 - Method changes are captured as dated, numbered candidate specs in
   docs/specs/, decided by Pedro, then executed in a later loop. Never
   applied ad hoc in the same conversation they were proposed.
+- Specs are closed on merge: the PR that ships a spec updates that
+  spec's Status line (e.g. "Done — shipped in PR #NN") in the same PR.
+  A spec folder that records proposals but never outcomes is drift
+  (spec 9, D9-4).
 - Templates are canonical copies: each states where its pasted snapshot
   lives (Desktop project instructions, product-repo CLAUDE.md). The file
   in this repo wins over any snapshot; changing a template implies the

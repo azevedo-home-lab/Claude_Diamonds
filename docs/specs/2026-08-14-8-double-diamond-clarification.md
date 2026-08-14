@@ -1,7 +1,10 @@
 # Candidate spec — Correct the diamond framing: both diamonds diverge and converge
 
-Status: PROPOSED 2026-08-14. Research and pinpointing done; doc corrections
-are the next loop, after Pedro confirms the corrected framing.
+Status: DONE 2026-08-14 — framing confirmed by Pedro and the correction
+checklist executed in PR #23 (correction loop). Status closed
+retroactively per spec 9 (D9-4). Original status line: "PROPOSED
+2026-08-14. Research and pinpointing done; doc corrections are the next
+loop, after Pedro confirms the corrected framing."
 
 ## The misunderstanding, pinpointed
 

@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The method — Claude Diamonds</title>
+<meta name="description" content="The Claude Diamonds method: two diamonds that each diverge and converge, a Product Spec at the boundary, and the repo contract that keeps the surfaces apart.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%92%A0%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .dflow { display:flex; align-items:stretch; gap:0; margin:1.6rem 0 .4rem; }
+  .dm { flex:1; border:1.5px solid var(--border); border-radius:14px; padding:.9rem 1rem; background:var(--bg-raised); }
+  .dm h3 { margin:0 0 .15rem; font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; }
+  .dm .who { color:var(--ink-faint); font-size:.8rem; margin:0 0 .7rem; }
+  .dm.d1 h3 { color:var(--pattern, var(--accent)); }
+  .dm.d2 h3 { color:var(--turn, var(--accent)); }
+  .phases { display:flex; gap:.4rem; }
+  .ph { flex:1; text-align:center; border:1px solid var(--border-soft); border-radius:9px; padding:.5rem .3rem; background:var(--bg); }
+  .ph .g { display:block; font-size:1.05rem; line-height:1; margin-bottom:.25rem; }
+  .ph.dv .g { color:var(--accent); } .ph.cv .g { color:var(--warn); }
+  .ph b { font-size:.82rem; font-weight:600; display:block; }
+  .ph span { font-size:.68rem; color:var(--ink-faint); }
+  .gatebox { align-self:center; margin:0 .5rem; text-align:center; border:1.5px dashed var(--warn); border-radius:12px; padding:.7rem .7rem; min-width:130px; background:var(--warn-soft, transparent); }
+  .gatebox b { display:block; font-size:.72rem; letter-spacing:.07em; text-transform:uppercase; color:var(--warn); margin-bottom:.3rem; }
+  .gatebox span { font-size:.75rem; color:var(--ink-soft); }
+  .legend-line { color:var(--ink-faint); font-size:.78rem; margin:.2rem 0 0; }
+  .contract-grid { display:grid; grid-template-columns:1fr 1fr; gap:.8rem; margin:1rem 0; }
+  .terr { border:1px solid var(--border); border-radius:12px; padding:.8rem .95rem; background:var(--bg-raised); }
+  .terr code.path { font-weight:700; }
+  .terr ul { margin:.4rem 0 0; padding-left:1.1rem; font-size:.85rem; color:var(--ink-soft); }
+  .terr .no { color:var(--warn); font-weight:600; font-size:.8rem; display:block; margin-top:.45rem; }
+  .loopnote { text-align:center; font-size:.82rem; color:var(--warn); border-top:1.5px dashed var(--warn); padding-top:.5rem; margin:.4rem 0 0; }
+  @media (max-width:720px){ .dflow{flex-direction:column} .gatebox{margin:.5rem 0} .contract-grid{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">Claude Diamonds — Learning</a>
+    <nav>
+      <a href="index.html">Learning hub</a>
+      <a href="method.html" aria-current="page">Method</a>
+      <a href="loops.html">Loops</a>
+      <a href="context.html">Context</a>
+      <a href="hooks.html">Hooks</a>
+      <a href="subagents.html">Subagents</a>
+      <a href="https://github.com/azevedo-home-lab/Claude_Diamonds">GitHub ↗</a>
+    </nav>
+  </header>
+
+  <div class="shell no-toc">
+    <main>
+      <header class="doc-head">
+        <p class="eyebrow">Claude Diamonds — method</p>
+        <h1 class="head">Two diamonds, one gate</h1>
+        <p class="dek">Product decisions end to end with Claude. Each diamond diverges then converges — the boundary between them is a converged artifact, the Product Spec, crossed by one deliberate human commit. This page is the visual version of the <a href="https://github.com/azevedo-home-lab/Claude_Diamonds#readme">README</a>.</p>
+      </header>
+
+      <h2>The shape</h2>
+      <div class="dflow">
+        <div class="dm d1">
+          <h3>Diamond 1 · Discovery &amp; Solution Design</h3>
+          <p class="who">Claude Desktop / Cowork — internally a double diamond itself</p>
+          <div class="phases">
+            <div class="ph dv"><span class="g">◇</span><b>Discover</b><span>parking lot, OST opportunity space</span></div>
+            <div class="ph cv"><span class="g">◆</span><b>Define</b><span>target opportunity + evidence</span></div>
+            <div class="ph dv"><span class="g">◇</span><b>Ideate</b><span>~3 compared solutions, assumption tests</span></div>
+            <div class="ph cv"><span class="g">◆</span><b>Decide</b><span>ranked bets → Product Spec</span></div>
+          </div>
+        </div>
+        <div class="gatebox"><b>Promotion gate</b><span>DECIDED entry → issue → publish the spec</span></div>
+        <div class="dm d2">
+          <h3>Diamond 2 · Development</h3>
+          <p class="who">Claude Code — spec-driven, judged</p>
+          <div class="phases">
+            <div class="ph dv"><span class="g">◇</span><b>Plan</b><span>options explored</span></div>
+            <div class="ph cv"><span class="g">◆</span><b>Build · verify · ship</b><span>against the published spec</span></div>
+          </div>
+        </div>
+      </div>
+      <p class="legend-line">◇ diverge · ◆ converge. Canvas vs ledger is a separate axis — artifact <em>identity</em>, not thinking direction: ideas move, merge and die on the canvas; promoted items have state and history in the ledger.</p>
+
+      <h2>The repo contract</h2>
+      <p>Each product repo carries both diamonds, separated by a one-way publish. Full text: <a href="https://github.com/azevedo-home-lab/Claude_Diamonds/blob/main/docs/repo-contract.md">docs/repo-contract.md</a>.</p>
+      <div class="contract-grid">
+        <div class="terr">
+          <code class="path">/product</code> — canvas + memory (diamond 1 only)
+          <ul>
+            <li>framing docs · Opportunity Solution Tree</li>
+            <li>decisions/decision-log.md — append-only, the <em>why</em></li>
+            <li>decisions/open-questions.md</li>
+          </ul>
+          <span class="no">Invisible to Claude Code — always.</span>
+        </div>
+        <div class="terr">
+          <code class="path">/plan</code> — published canon (diamond 2 reads here)
+          <ul>
+            <li>stack.md — vision · strategy · ranked bets</li>
+            <li>&lt;issue-id&gt;/spec.md — binding per item</li>
+            <li>header: <em>Published from /product · D-xxx</em></li>
+          </ul>
+          <span class="no">Never hand-edited. Log disagrees? Log wins — republish.</span>
+        </div>
+      </div>
+      <p class="loopnote">spec-change issue — diamond 2's only channel back · accepted change = new log entry → republish</p>
+
+      <h2>The foundations</h2>
+      <div class="lesson-grid">
+        <a class="lesson-card built" href="https://www.designcouncil.org.uk/resources/framework-for-innovation/">
+          <span class="lc-status">Shape</span>
+          <h3>Double Diamond — Design Council</h3>
+          <p>Both diamonds diverge then converge; the boundary is a converged artifact. Here: the Product Spec.</p>
+        </a>
+        <a class="lesson-card built" href="https://github.com/azevedo-home-lab/Claude_Diamonds/blob/main/docs/methods/decision-stack.md">
+          <span class="lc-status">Why</span>
+          <h3>Decision Stack — Eriksson</h3>
+          <p>Vision → Strategy → Objectives → Opportunities → Principles. The how/why test finds the first broken link.</p>
+        </a>
+        <a class="lesson-card built" href="https://github.com/azevedo-home-lab/Claude_Diamonds/blob/main/docs/methods/opportunity-solution-tree.md">
+          <span class="lc-status">Problem</span>
+          <h3>Opportunity Solution Tree — Torres</h3>
+          <p>Outcome → evidenced opportunities → ~3 compared solutions → assumption tests. Evidence, never invention.</p>
+        </a>
+        <a class="lesson-card built" href="https://github.com/azevedo-home-lab/Claude_Diamonds/blob/main/docs/methods/cutler-prioritization.md">
+          <span class="lc-status">What first</span>
+          <h3>Prioritization — Cutler</h3>
+          <p>Force-ranked 1-N bets: value vs urgency, opportunity cost, cost of delay. Ten named traps check the rank.</p>
+        </a>
+        <a class="lesson-card built" href="https://github.com/azevedo-home-lab/claude-code-workflows#goal">
+          <span class="lc-status">Diamond 2</span>
+          <h3>Spec-driven development — WFM</h3>
+          <p>Development against the published spec, with enforcement that must earn its place against a recorded failure of the bare model.</p>
+        </a>
+      </div>
+
+      <h2>How to run it</h2>
+      <p>Capture into the parking lot → frame the opportunity with evidence → design ~3 compared solutions and test the riskiest assumptions → force-rank the bets and check the stack → promote (DECIDED entry, issue, publish the spec into <code>/plan</code>) → develop against the published spec, judged — never against the vision.</p>
+
+      <footer>
+        Claude Diamonds — <a href="https://github.com/azevedo-home-lab/Claude_Diamonds">azevedo-home-lab/Claude_Diamonds</a>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

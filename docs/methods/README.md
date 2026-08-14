@@ -6,15 +6,11 @@ the file convention that keeps Claude's context lean.
 ## Why these three
 
 They cover the three questions every product decision must answer, in
-order. **The Decision Stack** (Martin Eriksson) answers *why* — it is the
-vertical spine: vision → objectives → opportunities → initiatives, with
-the how/why test walking any item up until a link breaks. **The
-Opportunity Solution Tree** (Teresa Torres) answers *what problem and
-which solution* — it is the shape of the Framing zone: outcome →
-evidence-backed opportunities → compared solutions → assumption tests.
-**Cutler-style prioritization** (John Cutler) answers *what first* —
-force-ranked bets argued through value, urgency, opportunity cost and
-cost of delay, with ten named traps to check the ranking against.
+order: **The Decision Stack** (Eriksson) answers *why*, **The
+Opportunity Solution Tree** (Torres) answers *what problem and which
+solution*, and **Cutler-style prioritization** answers *what first*.
+Each model's summary lives in its own learning doc below — canonical
+per spec 9 (D9-5); this file only explains how they compose.
 
 Composed, they make the front diamond's two internal diamonds concrete:
 Torres runs the problem diamond (discover → define a target opportunity)

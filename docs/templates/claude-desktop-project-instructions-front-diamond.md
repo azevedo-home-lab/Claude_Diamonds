@@ -1,11 +1,13 @@
 # Template — Claude Desktop project instructions: portfolio front diamond
 
-Canonical copy. The Claude Desktop project holds a pasted snapshot of the
-block below, not a live link — there is no mechanism for a project to read
-its instructions from a URL, and the method rejects tool-to-tool sync
-anyway. When this file changes, re-paste the block into the project's
-custom instructions by hand. If the snapshot and this file drift, this
-file wins.
+Canonical copy. Binding is a hybrid rule (spec 9, D9-6). A Cowork
+session may bind by URL pointer: project instructions that say "follow
+this file at its GitHub URL as the operating contract" are valid,
+because Cowork can fetch the canonical file live at session start — no
+snapshot to drift. A plain Desktop chat cannot follow URLs, so a
+project used for plain chats still holds a pasted snapshot of the block
+below; when this file changes, re-paste by hand. In every case, if a
+snapshot and this file drift, this file wins.
 
 The three operating files in `docs/methods/` (decision-stack.claude.md,
 opportunity-solution-tree.claude.md, cutler-prioritization.claude.md) are
@@ -14,7 +16,7 @@ Claude to them, and instructions cannot follow URLs. The matching human
 learning docs (same names without .claude) stay in the repo as optional
 background. When an operating file changes, re-upload it the same way.
 
-Last updated: 2026-08-14
+Last updated: 2026-08-14 (hybrid binding rule, spec 9 D9-6)
 
 ---
 

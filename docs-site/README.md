@@ -1,21 +1,19 @@
 # docs-site
 
-The Claude fundamentals learning site, published via GitHub Pages.
-Sibling to the two-diamond method in the repo's root `README.md`, not
-part of it — see `docs/specs/2026-08-09-1-claude-fundamentals-learning-site.md`
-for what this is and how to tell it's done.
+The Claude fundamentals learning site plus the method's visual page,
+published via GitHub Pages. An official resident of this repo (spec 9,
+D9-1) — see `docs/specs/2026-08-09-1-claude-fundamentals-learning-site.md`
+for the original scope.
 
 ## Status
 
-`loops.html` — turns, the agentic loop, and loop patterns. Fully built,
-sourced from three Anthropic pages, cited on the page itself.
-
-`subagents.html` — a subagent's fresh context window, what it inherits
-at spawn, and what returns to its parent. Fully built, sourced from
-Anthropic's `sub-agents` documentation, cited on the page itself.
-
-`context.html`, `hooks.html` — placeholders, reserving the URL and
-shared shell for future lessons.
+All four lessons are fully built, each sourced from Anthropic's own
+documentation and cited on the page itself: `loops.html` (turns, the
+agentic loop, loop patterns), `context.html` (context window and
+compaction), `hooks.html` (hooks in the loop), and `subagents.html`
+(subagent context). `method.html` is the visual version of the repo
+README's method. The hub (`index.html`) lists the method section first,
+then the fundamentals lessons.
 
 ## Serving this
 
@@ -32,5 +30,9 @@ from an existing page and linking `styles.css`, the same approach
 
 ## Diagrams
 
-Every diagram is hand-authored inline SVG using `currentColor`, so it
-renders correctly in both color schemes with no external dependency.
+Lesson diagrams are hand-authored inline SVG using `currentColor`, so
+they render correctly in both color schemes with no external dependency.
+The two-diamond diagram is the exception: its canonical source is
+`assets/diamonds.svg` (self-contained, light/dark via
+`prefers-color-scheme`), included by both `method.html` and the repo
+README — one file, edited once (spec 9, D9-7).

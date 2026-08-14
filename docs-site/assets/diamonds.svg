@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 300" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" role="img" aria-label="The Claude Diamonds method: Diamond 1, Discovery and Solution Design, with phases Discover, Define, Ideate, Decide; the promotion gate; Diamond 2, Development, with phases Plan and Build-verify-ship.">
+  <title>Two diamonds, one gate — canonical diagram (docs-site/assets/diamonds.svg)</title>
+  <style>
+    .box   { fill:#ffffff; stroke:#d8d4cb; stroke-width:1.5; }
+    .cell  { fill:#faf9f6; stroke:#e7e4dc; stroke-width:1; }
+    .gate  { fill:#f7e7e5; stroke:#a83232; stroke-width:1.5; stroke-dasharray:5 4; }
+    .t1    { fill:#a66a2e; font-size:12px; font-weight:700; letter-spacing:.08em; }
+    .t2    { fill:#5c7a5c; font-size:11.5px; font-weight:700; letter-spacing:.02em; }
+    .tg    { fill:#a83232; font-size:11px; font-weight:700; letter-spacing:.07em; }
+    .who   { fill:#83868d; font-size:11.5px; }
+    .name  { fill:#1e2024; font-size:13px; font-weight:600; }
+    .desc  { fill:#83868d; font-size:10.5px; }
+    .gsub  { fill:#4a4d54; font-size:10.5px; }
+    .dv    { fill:#3b5a78; font-size:16px; }
+    .cv    { fill:#a83232; font-size:16px; }
+    .leg   { fill:#83868d; font-size:11px; }
+    .arrow { stroke:#83868d; stroke-width:1.3; fill:none; }
+    .ah    { fill:#83868d; }
+    @media (prefers-color-scheme: dark) {
+      .box  { fill:#1f2124; stroke:#35373b; }
+      .cell { fill:#17181b; stroke:#2a2c2f; }
+      .gate { fill:#2e1e1d; stroke:#d97a7a; }
+      .t1   { fill:#d0975a; }
+      .t2   { fill:#8fb28f; }
+      .tg   { fill:#d97a7a; }
+      .who  { fill:#83868d; }
+      .name { fill:#eceae4; }
+      .desc { fill:#83868d; }
+      .gsub { fill:#b8b6ae; }
+      .dv   { fill:#7ea3c2; }
+      .cv   { fill:#d97a7a; }
+      .leg  { fill:#83868d; }
+    }
+  </style>
+
+  <!-- Diamond 1 -->
+  <rect class="box" x="8" y="20" width="540" height="240" rx="14"/>
+  <text class="t1" x="28" y="48">DIAMOND 1 · DISCOVERY &amp; SOLUTION DESIGN</text>
+  <text class="who" x="28" y="68">Claude Desktop / Cowork — internally a double diamond itself</text>
+
+  <rect class="cell" x="28"  y="88" width="119" height="150" rx="9"/>
+  <text class="dv" x="87.5" y="115" text-anchor="middle">◇</text>
+  <text class="name" x="87.5" y="138" text-anchor="middle">Discover</text>
+  <text class="desc" x="87.5" y="158" text-anchor="middle">parking lot,</text>
+  <text class="desc" x="87.5" y="172" text-anchor="middle">OST opportunity</text>
+  <text class="desc" x="87.5" y="186" text-anchor="middle">space</text>
+
+  <rect class="cell" x="155" y="88" width="119" height="150" rx="9"/>
+  <text class="cv" x="214.5" y="115" text-anchor="middle">◆</text>
+  <text class="name" x="214.5" y="138" text-anchor="middle">Define</text>
+  <text class="desc" x="214.5" y="158" text-anchor="middle">target opportunity</text>
+  <text class="desc" x="214.5" y="172" text-anchor="middle">+ evidence</text>
+
+  <rect class="cell" x="282" y="88" width="119" height="150" rx="9"/>
+  <text class="dv" x="341.5" y="115" text-anchor="middle">◇</text>
+  <text class="name" x="341.5" y="138" text-anchor="middle">Ideate</text>
+  <text class="desc" x="341.5" y="158" text-anchor="middle">~3 compared</text>
+  <text class="desc" x="341.5" y="172" text-anchor="middle">solutions,</text>
+  <text class="desc" x="341.5" y="186" text-anchor="middle">assumption tests</text>
+
+  <rect class="cell" x="409" y="88" width="119" height="150" rx="9"/>
+  <text class="cv" x="468.5" y="115" text-anchor="middle">◆</text>
+  <text class="name" x="468.5" y="138" text-anchor="middle">Decide</text>
+  <text class="desc" x="468.5" y="158" text-anchor="middle">ranked bets</text>
+  <text class="desc" x="468.5" y="172" text-anchor="middle">→ Product Spec</text>
+
+  <!-- Gate -->
+  <path class="arrow" d="M548 140 h14"/><path class="ah" d="M562 135 l9 5 -9 5 z"/>
+  <rect class="gate" x="574" y="86" width="132" height="118" rx="12"/>
+  <text class="tg" x="640" y="112" text-anchor="middle">PROMOTION GATE</text>
+  <text class="gsub" x="640" y="136" text-anchor="middle">DECIDED entry</text>
+  <text class="gsub" x="640" y="152" text-anchor="middle">→ issue</text>
+  <text class="gsub" x="640" y="168" text-anchor="middle">→ publish the spec</text>
+  <path class="arrow" d="M706 140 h14"/><path class="ah" d="M720 135 l9 5 -9 5 z"/>
+
+  <!-- Diamond 2 -->
+  <rect class="box" x="732" y="20" width="220" height="240" rx="14"/>
+  <text class="t2" x="750" y="48" letter-spacing="0.3">DIAMOND 2 · DEVELOPMENT</text>
+  <text class="who" x="750" y="68">Claude Code — spec-driven, judged</text>
+
+  <rect class="cell" x="750" y="88"  width="184" height="72" rx="9"/>
+  <text class="dv" x="774" y="118">◇</text>
+  <text class="name" x="792" y="113">Plan</text>
+  <text class="desc" x="792" y="130">options explored</text>
+
+  <rect class="cell" x="750" y="166" width="184" height="72" rx="9"/>
+  <text class="cv" x="774" y="196">◆</text>
+  <text class="name" x="792" y="191">Build · verify · ship</text>
+  <text class="desc" x="790" y="208">against the published spec</text>
+
+  <!-- Legend -->
+  <text class="leg" x="480" y="286" text-anchor="middle">◇ diverge · ◆ converge — the boundary between the diamonds is a converged artifact: the Product Spec</text>
+</svg>

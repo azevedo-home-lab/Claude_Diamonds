@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prioritization — Cutler — Claude Diamonds</title>
+<meta name="description" content="John Cutler's prioritization method, learned properly: force-ranked 1-N bets, the pairwise-argument machine, the ten named traps, and how Claude Diamonds applies it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%92%A0%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">Claude Diamonds — Learning</a>
+    <nav>
+      <a href="index.html">Learning hub</a>
+      <a href="method.html">Method</a>
+      <a href="cutler.html" aria-current="page">Prioritization</a>
+      <a href="loops.html">Loops</a>
+      <a href="context.html">Context</a>
+      <a href="hooks.html">Hooks</a>
+      <a href="subagents.html">Subagents</a>
+      <a href="https://github.com/azevedo-home-lab/Claude_Diamonds">GitHub ↗</a>
+    </nav>
+  </header>
+
+  <div class="shell">
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-label">On this page</p>
+      <ol>
+        <li><a href="#s1"><span class="n">01</span>The whole method on one page</a></li>
+        <li><a href="#s2"><span class="n">02</span>Why: the stance</a></li>
+        <li><a href="#s3"><span class="n">03</span>Building blocks</a></li>
+        <li><a href="#s4"><span class="n">04</span>The machine</a></li>
+        <li><a href="#s5"><span class="n">05</span>The ten traps</a></li>
+        <li><a href="#s6"><span class="n">06</span>After the rank: accountability</a></li>
+        <li><a href="#s7"><span class="n">07</span>In Claude Diamonds</a></li>
+        <li><a href="#s8"><span class="n">08</span>Self-test</a></li>
+      </ol>
+    </nav>
+
+    <main>
+      <header class="doc-head">
+        <p class="eyebrow">Claude Diamonds — method foundations</p>
+        <h1 class="head">Prioritization — Cutler</h1>
+        <p class="dek">Force-ranked 1-N bets instead of scored buckets: an argument made out loud and recorded, checked by ten named traps. This page teaches the method for solo use and for facilitating it in a workshop.</p>
+        <div class="doc-meta">
+          <span><strong>3</strong> primary sources</span>
+          <span><strong>8</strong> sections</span>
+          <span>Sources: <a href="https://cutlefish.substack.com/p/tbm-399-10-prioritization-traps">TBM 399</a> · <a href="https://cutlefish.substack.com/p/tbm-230-from-prioritization-to-accountability">TBM 230</a></span>
+        </div>
+      </header>
+
+      <section class="stage" id="s1">
+        <div class="stage-head"><span class="stage-num">01</span><h2>The whole method on one page</h2></div>
+        <p class="stage-sub">You have N candidate pieces of work. The method turns them into one decided, defensible order.</p>
+
+        <div class="figure">
+          <svg viewBox="0 0 680 548" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Cutler prioritization flow: collect all candidates, entry sort by impact vs effort, pairwise argument (the real decision), trap check (the adversary), ratified 1-N rank, record arguments in the log, present as Now/Next/Later, revisit at checkpoints — with a loop back from revisit to pairwise argument on new evidence.">
+            <defs>
+              <marker id="c1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="currentColor"/></marker>
+              <marker id="c2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="currentColor" class="pattern-c"/></marker>
+            </defs>
+
+            <rect x="40" y="20" width="300" height="48" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+            <text x="190" y="49" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="600" fill="currentColor">Collect all candidates</text>
+            <text x="360" y="40" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor" opacity="0.75">including the invisible ones:</text>
+            <text x="360" y="56" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor" opacity="0.75">friction, deferred options, maintenance</text>
+            <path d="M190,68 V80" stroke="currentColor" stroke-width="2" fill="none" marker-end="url(#c1)"/>
+
+            <rect x="40" y="84" width="300" height="48" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+            <text x="190" y="113" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="600" fill="currentColor">Entry sort: impact vs effort</text>
+            <text x="360" y="112" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor" opacity="0.75">10-min gut draft — decides nothing</text>
+            <path d="M190,132 V144" stroke="currentColor" stroke-width="2" fill="none" marker-end="url(#c1)"/>
+
+            <rect x="40" y="148" width="300" height="64" rx="8" fill="none" stroke="currentColor" class="accent" stroke-width="2.5"/>
+            <text x="190" y="176" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="700" class="accent" fill="currentColor">Pairwise argument</text>
+            <text x="190" y="196" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="10" class="accent" fill="currentColor" opacity="0.85">value · urgency · cost of delay + shape · displacement</text>
+            <text x="360" y="166" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor" opacity="0.75">the real decision: argue neighbors,</text>
+            <text x="360" y="182" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor" opacity="0.75">swap when the lower bet wins,</text>
+            <text x="360" y="198" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor" opacity="0.75">repeat until stable — no ties</text>
+            <path d="M190,212 V224" stroke="currentColor" stroke-width="2" fill="none" marker-end="url(#c1)"/>
+
+            <rect x="40" y="228" width="300" height="48" rx="8" fill="none" stroke="currentColor" class="pattern-c" stroke-width="2.5"/>
+            <text x="190" y="257" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="700" class="pattern-c" fill="currentColor">Trap check</text>
+            <text x="360" y="248" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor" opacity="0.75">the adversary: 10 named failure</text>
+            <text x="360" y="264" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor" opacity="0.75">patterns read against the whole rank</text>
+            <path d="M190,276 V288" stroke="currentColor" stroke-width="2" fill="none" marker-end="url(#c1)"/>
+
+            <rect x="40" y="292" width="300" height="48" rx="8" fill="none" stroke="currentColor" class="turn-c" stroke-width="2.5"/>
+            <text x="190" y="321" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="700" class="turn-c" fill="currentColor">Ratified 1-N rank</text>
+            <text x="360" y="320" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor" opacity="0.75">each bet: owner, outcome, checkpoint</text>
+            <path d="M190,340 V352" stroke="currentColor" stroke-width="2" fill="none" marker-end="url(#c1)"/>
+
+            <rect x="40" y="356" width="300" height="48" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+            <text x="190" y="385" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="600" fill="currentColor">Record arguments in the log</text>
+            <text x="360" y="384" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor" opacity="0.75">never scores</text>
+            <path d="M190,404 V416" stroke="currentColor" stroke-width="2" fill="none" marker-end="url(#c1)"/>
+
+            <rect x="40" y="420" width="300" height="48" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+            <text x="190" y="449" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="600" fill="currentColor">Present as Now / Next / Later</text>
+            <text x="360" y="448" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor" opacity="0.75">communication only</text>
+            <path d="M190,468 V480" stroke="currentColor" stroke-width="2" fill="none" marker-end="url(#c1)"/>
+
+            <rect x="40" y="484" width="300" height="48" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+            <text x="190" y="513" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="600" fill="currentColor">Revisit at checkpoints</text>
+            <text x="360" y="504" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor" opacity="0.75">re-rank only on new evidence,</text>
+            <text x="360" y="520" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor" opacity="0.75">as a new log entry</text>
+
+            <path d="M40,508 H16 V180 H32" stroke="currentColor" class="pattern-c" stroke-width="1.5" fill="none" stroke-dasharray="5 4" marker-end="url(#c2)"/>
+            <text transform="translate(12,392) rotate(-90)" font-family="Iowan, Georgia, serif" font-size="10.5" class="pattern-c" fill="currentColor">new evidence → re-rank</text>
+          </svg>
+          <p class="figcaption">The blue box is where the decision is made; the amber box is where it is challenged; the green box is the first moment the rank is ratifiable.</p>
+        </div>
+
+        <div class="callout bridge">
+          <strong>Two sentences to remember.</strong> Rank is the decision; buckets are presentation. And: you haven't prioritized anything until you can name what it displaces.
+        </div>
+      </section>
+
+      <section class="stage" id="s2">
+        <div class="stage-head"><span class="stage-num">02</span><h2>Why: the stance</h2></div>
+        <p class="stage-sub">Cutler is framework-skeptical, not framework-free. The target is false rigor.</p>
+        <p>Scoring systems — RICE, weighted matrices, estimation bingo — tend to produce a number so nobody has to have the hard conversation. The weights get gamed, the scores get horse-traded, and nobody ever checks whether the work delivered its outcome. What replaces the score is an <strong>argument, made out loud and recorded</strong>: "this ranks above that because of value, urgency, and what waiting costs — and here is what we are explicitly <em>not</em> doing as a result."</p>
+        <p>Three beliefs underneath everything. First, <strong>rank is the decision; buckets are presentation.</strong> A "Now" bucket with three items dodges the question of which drops when capacity runs short — deferring the hard conversation to the worst possible moment, mid-execution. A 1-N rank cannot dodge: when time runs out, the bottom drops, and that was decided calmly, in advance. Second, <strong>prioritizing means deprioritizing.</strong> Every yes is a no to something; if you can't name the no, you haven't decided anything. Third, <strong>good-enough beats perfect.</strong> The aim is marginally better decisions made quickly and revisited — not a perfect ordering defended forever.</p>
+      </section>
+
+      <section class="stage" id="s3">
+        <div class="stage-head"><span class="stage-num">03</span><h2>Building blocks</h2></div>
+        <p class="stage-sub">One unit of work, four argument lenses, and one tool demoted to scaffolding.</p>
+        <p>A <strong>bet</strong> is a unit of prioritized work framed as a wager, not a promise — calling it a bet admits it can lose. Every bet carries three attachments that close its loop:</p>
+        <div class="scrollwrap">
+          <table>
+            <thead><tr><th>Attachment</th><th>Question it answers</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Owner</strong></td><td>Who is accountable for closing the loop?</td></tr>
+              <tr><td><strong>Expected outcome</strong></td><td>What changes if this wins? (traced to strategy)</td></tr>
+              <tr><td><strong>Checkpoint</strong></td><td>When do we look — a date, a learning milestone, or a decision point, set in advance?</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Every ranking argument uses <strong>the four lenses</strong>, and only these — never personal preference:</p>
+        <div class="scrollwrap">
+          <table>
+            <thead><tr><th>Lens</th><th>The question</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Value</strong></td><td>Which moves the outcome more?</td></tr>
+              <tr><td><strong>Urgency</strong></td><td>Which one can't wait — and why?</td></tr>
+              <tr><td><strong>Cost of delay + shape</strong></td><td>What does a month of waiting cost? <strong>Linear</strong> (steady bleed) or <strong>cliff</strong> (fine until a date, then value collapses)? Cliffs justify urgency; bleeds justify scheduling, not panic.</td></tr>
+              <tr><td><strong>Opportunity cost</strong></td><td>What does each bet displace? (the "Displaces" column)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Impact-vs-effort</strong> — the familiar 2×2 — survives in this method only as the <em>entry sort</em>: a cheap way to get a draft order. Never the verdict.</p>
+      </section>
+
+      <section class="stage" id="s4">
+        <div class="stage-head"><span class="stage-num">04</span><h2>The machine</h2></div>
+        <p class="stage-sub">There is no formula. Ranking is manual sorting with arguments as the comparator — three phases.</p>
+
+        <h3>Phase 1 — Entry sort (~10 min, decides nothing)</h3>
+        <p>Gut-place every candidate on impact-vs-effort and read off a first 1-N line. Why bother? Arguing every possible pair is O(N²) — 8 bets means 28 comparisons. A gut sort gets the order roughly right so the real arguing happens only at borderline neighbors. It's scaffolding; nothing from this phase is recorded. Before sorting, check the <em>list itself</em> is complete — the invisible candidates must be on it: systemic friction, deferred big options, maintenance. A perfect sort of an incomplete list is still wrong.</p>
+
+        <h3>Phase 2 — Pairwise argument (the real decision)</h3>
+        <p>Walk the line top-down. For each adjacent pair ask one question: <strong>"If I could only do one of these two next month — which, and why?"</strong> The "why" must be argued in the four lenses. If the lower bet wins, swap. Re-walk until no swap survives. The final rank IS this accumulated pile of small pairwise arguments — nothing more mystical than that.</p>
+        <p><strong>The tie rule.</strong> If a pair genuinely can't be ordered, you're not stuck — you're missing information. Name it ("is this pain 1h/week or 1h/day?"). Getting that answer is itself work, usually cheap.</p>
+        <div class="callout bridge">
+          <strong>Worked example.</strong> Bet A: an honesty gate (a verifier that cannot fake a green result). Bet B: a shared STOP vocabulary (every halt names a human action). One month, one bet — which? <em>Value:</em> A guards the outcome itself; B saves debug time — A leads. <em>Cost of delay:</em> A is a near-cliff — every merge until then carries fake-green risk, and one fake green destroys trust in the whole system; B bleeds linearly, one wasted debug session per stall. <em>Displacement:</em> both cheap to name. Verdict: A above B — and the argument, not a score, goes in the log.
+        </div>
+
+        <h3>Phase 3 — Trap check (the adversary, ~15 min)</h3>
+        <p>Pairwise arguing has a blind spot: it can perfectly order a <em>wrong list</em>. The trap check catches what arguing can't. Read all ten trap names against the <strong>rank as a whole</strong> — not per bet, so the cost is fixed regardless of N. Some traps point at specific bets when they fire (3: who claims to displace nothing? 8: which big option sank to the bottom out of fear?). Others check what's <em>missing</em> from the list entirely (1: where's the protected slice? 7: which friction never became a bet? 10: which bets are invented work?). Each hit adds a bet, forces a swap, or attaches a fix. State the no-hits too — a check that only reports hits invites skipping. Only after the trap check is the rank <strong>ratifiable</strong>.</p>
+
+        <h3>Closing out</h3>
+        <p>Attach owner, outcome, and checkpoint to each surviving bet. Record the arguments in the log — never scores. Fold into Now/Next/Later for communication only. Revisit only on new evidence, as a new log entry; relitigating a decided rank without new evidence is churn.</p>
+      </section>
+
+      <section class="stage" id="s5">
+        <div class="stage-head"><span class="stage-num">05</span><h2>The ten traps</h2></div>
+        <p class="stage-sub">From <a href="https://cutlefish.substack.com/p/tbm-399-10-prioritization-traps">TBM 399</a>. Each named after a song; each has a remedy. Scan by name, every session.</p>
+        <div class="scrollwrap">
+          <table>
+            <thead><tr><th>#</th><th>Trap (song)</th><th>Failure pattern</th><th>Remedy</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">1</td><td>Burning Down the House</td><td>All capacity reactive; firefighting eats everything</td><td>Protect a fixed slice (10–20%) for preventative work</td></tr>
+              <tr><td class="mono">2</td><td>Too Much Time on My Hands</td><td>Over-polishing medium-value work</td><td>Define the smallest version that teaches something real in 2–4 weeks</td></tr>
+              <tr><td class="mono">3</td><td>Everybody Wants to Rule the World</td><td>"Top priority" that displaces nothing</td><td>Name one thing explicitly allowed to drop, out loud</td></tr>
+              <tr><td class="mono">4</td><td>Just Enough Is Never Enough</td><td>MVP ships, follow-on never funded, value never captured</td><td>Pre-authorize one follow-on investment at the start</td></tr>
+              <tr><td class="mono">5</td><td>Running on Empty</td><td>Death march with no off-track signal</td><td>Set a date, learning milestone, or decision checkpoint in advance</td></tr>
+              <tr><td class="mono">6</td><td>Dreamer</td><td>Innovation with no constraints, drifts forever</td><td>Add one enabling constraint (deadline to ship real, forced integration)</td></tr>
+              <tr><td class="mono">7</td><td>Slow Ride</td><td>Invisible systemic friction never makes the list</td><td>Quantify the drag; reframe as cost of delay, not "cleanup"</td></tr>
+              <tr><td class="mono">8</td><td>Someday Never Comes</td><td>Big options deferred for lack of confidence</td><td>Run one cheap experiment aimed <em>only</em> at reducing uncertainty</td></tr>
+              <tr><td class="mono">9</td><td>The Logical Song</td><td>Frameworks favor high-confidence, untestable work</td><td>Ask "how cheaply can we raise confidence?"; favor fast learning</td></tr>
+              <tr><td class="mono">10</td><td>Takin' Care of Business</td><td>Invented work fills capacity</td><td>Keep a small-batch pull queue of accepted, needle-moving work</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Memory aid — the traps come in rough pairs: <strong>1 &amp; 10</strong> are about what fills capacity (reaction / invention); <strong>2 &amp; 4</strong> about investment sizing (too much polish / too little follow-through); <strong>5 &amp; 6</strong> about missing boundaries (no exit signal / no constraints); <strong>7 &amp; 8</strong> about what never gets picked (friction / scary big options). <strong>3</strong> is the honesty trap (no displacement) and <strong>9</strong> the framework trap (the tool itself biases the choice).</p>
+        <div class="callout">
+          <strong>Solo-portfolio regulars: 1, 3, 7, 8.</strong> When time is short, scan those four at minimum — every session. For one builder they fire far more often than the rest.
+        </div>
+      </section>
+
+      <section class="stage" id="s6">
+        <div class="stage-head"><span class="stage-num">06</span><h2>After the rank: accountability</h2></div>
+        <p class="stage-sub">Source: <a href="https://cutlefish.substack.com/p/tbm-230-from-prioritization-to-accountability">TBM 230</a>. Ranking is the small piece.</p>
+        <p>Some uncomfortable share of prioritized work will fail to produce its intended outcome — and most organizations never find out, because they're "too busy with the next planning cycle." The loop never closes. Cutler's move: treat funding like <strong>startup-style progressive investment</strong>, not an internal-contractor game (deliver features, ask for more budget). Every bet has an owner accountable for closing the loop, not just shipping. Checkpoints are set in advance, and looking at them is scheduled work, not an afterthought. Prove value small before funding big — bets earn continued investment at checkpoints by showing evidence. And if you don't set up this governance yourself, someone else eventually imposes a worse version — so it might as well be you.</p>
+      </section>
+
+      <section class="stage" id="s7">
+        <div class="stage-head"><span class="stage-num">07</span><h2>In Claude Diamonds</h2></div>
+        <p class="stage-sub">How the front diamond's Prioritize + sequence zone applies the method. The binding rules live in <a href="https://github.com/azevedo-home-lab/Claude_Diamonds/blob/main/docs/methods/cutler-prioritization.claude.md">cutler-prioritization.claude.md</a>.</p>
+        <div class="scrollwrap">
+          <table>
+            <thead><tr><th>Method concept</th><th>Concrete artifact</th></tr></thead>
+            <tbody>
+              <tr><td>The force-ranked bets</td><td>The plan section of the vision/OST doc — a 1-N table, one row per bet</td></tr>
+              <tr><td>Owner / outcome / checkpoint</td><td>Columns in that table: Outcome, Cost of delay, Displaces, Checkpoint</td></tr>
+              <tr><td>The recorded argument</td><td>A decision-log entry per rank decision — the argument, never a score</td></tr>
+              <tr><td>Now/Next/Later</td><td>One presentation line under the table — communication only</td></tr>
+              <tr><td>Re-rank on new evidence</td><td>A <em>new</em> decision-log entry citing the evidence; old entries never rewritten</td></tr>
+              <tr><td>The trap check</td><td>Run by name each session on the current rank, before ratification</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Four local additions, because one builder plus an AI fails differently than a team: <strong>no ties</strong>, and an unorderable pair must name its missing conversation; <strong>trap scan minimum 1/3/7/8</strong> every session, even when time is short; <strong>append-only history</strong>, so the trail of <em>why</em> survives (scores destroy this; arguments preserve it); and <strong>the AI must challenge before agreeing</strong> — the adversarial protocol substitutes for the colleagues who would push back in a team.</p>
+      </section>
+
+      <section class="stage" id="s8">
+        <div class="stage-head"><span class="stage-num">08</span><h2>Self-test</h2></div>
+        <p class="stage-sub">If you can answer these from memory, you can run the method — solo or in a room.</p>
+        <ol>
+          <li>Why is a tie in the rank forbidden, and what does a tie actually signal?</li>
+          <li>What are the two shapes of cost of delay, and why does shape matter more than size?</li>
+          <li>"Rank is the decision; buckets are presentation" — what conversation does a bucket let you dodge, and when does that dodge hurt?</li>
+          <li>Which trap does an empty "Displaces" column indicate, and what's the remedy?</li>
+          <li>What three things must be attached to every bet, and which trap does each guard against?</li>
+          <li>What's wrong with using impact-vs-effort as the final verdict?</li>
+          <li>Does the trap check judge each bet individually? What does it actually scan?</li>
+          <li>When is re-ranking legitimate, and when is it churn?</li>
+        </ol>
+      </section>
+
+      <hr class="divider">
+
+      <footer>
+        Primary sources: <a href="https://cutlefish.substack.com/p/tbm-399-10-prioritization-traps">TBM 399 — 10 Prioritization Traps</a> · <a href="https://cutlefish.substack.com/p/tbm-230-from-prioritization-to-accountability">TBM 230 — From Prioritization to Accountability</a> · Maven — Run an Effective Prioritization Activity (course page now retired). This page restates John Cutler's public writing; his posts are canonical and update ahead of this one. Repo learning doc: <a href="https://github.com/azevedo-home-lab/Claude_Diamonds/blob/main/docs/methods/cutler-prioritization.md">docs/methods/cutler-prioritization.md</a>.
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decision Stack — Eriksson — Claude Diamonds</title>
+<meta name="description" content="Martin Eriksson's Decision Stack, learned properly: five connected layers, the how/why test that finds the missing work, the failure-mode scan — and how Claude Diamonds applies it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%92%A0%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+<style>
+  td.fail { color: var(--warn); font-weight: 600; }
+  td.dim { color: var(--ink-faint); font-style: italic; }
+  .howwhy th.walk { color: var(--accent); }
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">Claude Diamonds — Learning</a>
+    <nav>
+      <a href="index.html">Learning hub</a>
+      <span class="nav-sep" aria-hidden="true" style="color:var(--border);user-select:none">|</span>
+      <a href="index.html#product-methodologies">Product Methodologies</a>
+      <span class="nav-sep" aria-hidden="true" style="color:var(--border);user-select:none">|</span>
+      <a href="index.html#claude-aspects">Claude Aspects</a>
+      <span class="nav-sep" aria-hidden="true" style="color:var(--border);user-select:none">|</span>
+      <a href="https://github.com/azevedo-home-lab/Claude_Diamonds">GitHub ↗</a>
+    </nav>
+  </header>
+
+  <div class="shell">
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-label">On this page</p>
+      <ol>
+        <li><a href="#s1"><span class="n">01</span>The whole method on one page</a></li>
+        <li><a href="#s2"><span class="n">02</span>Why: the stance</a></li>
+        <li><a href="#s3"><span class="n">03</span>Building blocks</a></li>
+        <li><a href="#s4"><span class="n">04</span>The machine</a></li>
+        <li><a href="#s5"><span class="n">05</span>The failure modes</a></li>
+        <li><a href="#s6"><span class="n">06</span>The OST &amp; Cutler handoffs</a></li>
+        <li><a href="#s7"><span class="n">07</span>In Claude Diamonds</a></li>
+        <li><a href="#s8"><span class="n">08</span>Self-test</a></li>
+      </ol>
+    </nav>
+
+    <main>
+      <header class="doc-head">
+        <p class="eyebrow">Claude Diamonds — method foundations</p>
+        <h1 class="head">Decision Stack — Eriksson</h1>
+        <p class="dek">The vertical why: five connected layers from vision to everyday principles, read down for <em>how</em> and up for <em>why</em> — and one test that finds the first broken link, which is exactly where the missing work is.</p>
+        <div class="doc-meta">
+          <span><strong>2</strong> primary sources</span>
+          <span><strong>8</strong> sections</span>
+          <span>Sources: <a href="https://www.thedecisionstack.com/what-is-the-decision-stack/">The Decision Stack</a> · <a href="https://www.mindtheproduct.com/the-product-decision-stack-martin-eriksson/">Mind the Product talk</a></span>
+        </div>
+      </header>
+
+      <section class="stage" id="s1">
+        <div class="stage-head"><span class="stage-num">01</span><h2>The whole method on one page</h2></div>
+        <p class="stage-sub">Five layers, each answering one question — connected, or they are just five posters.</p>
+
+        <div class="figure">
+          <svg viewBox="0 0 680 452" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Decision Stack: Vision and Mission at the top, then Strategy, Objectives, and Opportunities and Solutions, with a down arrow labeled how and an up arrow labeled why between every pair of layers. Principles sit beside the stack, written as X even over Y, governing everyday choices. Annotations: vision is the fixed point; strategy is explicit trade-offs; objectives here are the North Star plus input metrics; the Opportunity Solution Tree expands the opportunities layer.">
+            <defs>
+              <marker id="d1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="currentColor"/></marker>
+            </defs>
+
+            <rect x="40" y="16" width="300" height="52" rx="8" fill="none" stroke="currentColor" class="accent" stroke-width="2.5"/>
+            <text x="190" y="38" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="700" class="accent" fill="currentColor">VISION / MISSION</text>
+            <text x="190" y="56" text-anchor="middle" font-family="Iowan, Georgia, serif" font-size="10.5" class="accent" fill="currentColor" opacity="0.85">where are we going — why does it matter?</text>
+            <text x="360" y="40" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor" opacity="0.75">the fixed point —</text>
+            <text x="360" y="56" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor" opacity="0.75">changes rarely, if ever</text>
+
+            <path d="M120,68 V96" stroke="currentColor" stroke-width="2" fill="none" marker-end="url(#d1)"/>
+            <text x="108" y="87" text-anchor="end" font-family="Helvetica Neue, Arial, sans-serif" font-size="10.5" fill="currentColor" opacity="0.7">how?</text>
+            <path d="M260,96 V68" stroke="currentColor" stroke-width="2" fill="none" marker-end="url(#d1)"/>
+            <text x="272" y="87" font-family="Helvetica Neue, Arial, sans-serif" font-size="10.5" fill="currentColor" opacity="0.7">why?</text>
+
+            <rect x="40" y="100" width="300" height="52" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+            <text x="190" y="122" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="600" fill="currentColor">STRATEGY</text>
+            <text x="190" y="140" text-anchor="middle" font-family="Iowan, Georgia, serif" font-size="10.5" fill="currentColor" opacity="0.7">where to play · how to win</text>
+            <text x="360" y="124" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor" opacity="0.75">explicit trade-offs — a strategy that</text>
+            <text x="360" y="140" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor" opacity="0.75">excludes nothing is not a strategy</text>
+
+            <path d="M120,152 V180" stroke="currentColor" stroke-width="2" fill="none" marker-end="url(#d1)"/>
+            <text x="108" y="171" text-anchor="end" font-family="Helvetica Neue, Arial, sans-serif" font-size="10.5" fill="currentColor" opacity="0.7">how?</text>
+            <path d="M260,180 V152" stroke="currentColor" stroke-width="2" fill="none" marker-end="url(#d1)"/>
+            <text x="272" y="171" font-family="Helvetica Neue, Arial, sans-serif" font-size="10.5" fill="currentColor" opacity="0.7">why?</text>
+
+            <rect x="40" y="184" width="300" height="52" rx="8" fill="none" stroke="currentColor" class="turn-c" stroke-width="2.5"/>
+            <text x="190" y="206" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="700" class="turn-c" fill="currentColor">OBJECTIVES</text>
+            <text x="190" y="224" text-anchor="middle" font-family="Iowan, Georgia, serif" font-size="10.5" class="turn-c" fill="currentColor" opacity="0.85">outcomes, never outputs</text>
+            <text x="360" y="208" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor" opacity="0.75">what matters right now — in this</text>
+            <text x="360" y="224" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor" opacity="0.75">method: North Star + input metrics</text>
+
+            <path d="M120,236 V264" stroke="currentColor" stroke-width="2" fill="none" marker-end="url(#d1)"/>
+            <text x="108" y="255" text-anchor="end" font-family="Helvetica Neue, Arial, sans-serif" font-size="10.5" fill="currentColor" opacity="0.7">how?</text>
+            <path d="M260,264 V236" stroke="currentColor" stroke-width="2" fill="none" marker-end="url(#d1)"/>
+            <text x="272" y="255" font-family="Helvetica Neue, Arial, sans-serif" font-size="10.5" fill="currentColor" opacity="0.7">why?</text>
+
+            <rect x="40" y="268" width="300" height="52" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+            <text x="190" y="290" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="600" fill="currentColor">OPPORTUNITIES &amp; SOLUTIONS</text>
+            <text x="190" y="308" text-anchor="middle" font-family="Iowan, Georgia, serif" font-size="10.5" fill="currentColor" opacity="0.7">what actions are we taking?</text>
+            <text x="360" y="292" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor" opacity="0.75">customer needs first; the OST</text>
+            <text x="360" y="308" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor" opacity="0.75">expands exactly this layer</text>
+
+            <path d="M190,320 V352" stroke="currentColor" class="pattern-c" stroke-width="1.5" fill="none" stroke-dasharray="5 4"/>
+
+            <rect x="40" y="356" width="300" height="52" rx="8" fill="none" stroke="currentColor" class="pattern-c" stroke-width="2.5"/>
+            <text x="190" y="378" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="700" class="pattern-c" fill="currentColor">PRINCIPLES</text>
+            <text x="190" y="396" text-anchor="middle" font-family="Iowan, Georgia, serif" font-size="10.5" class="pattern-c" fill="currentColor" opacity="0.85">"X even over Y"</text>
+            <text x="360" y="374" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor" opacity="0.75">beside the stack — governs the thousand</text>
+            <text x="360" y="390" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor" opacity="0.75">everyday choices no layer above</text>
+            <text x="360" y="406" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor" opacity="0.75">can anticipate</text>
+
+            <text x="340" y="440" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="currentColor">down answers <tspan class="accent" fill="currentColor">how</tspan> · up answers <tspan class="turn-c" fill="currentColor">why</tspan> · the first link you cannot state in one sentence is the missing work</text>
+          </svg>
+          <p class="figcaption">The stack ladder: every pair of layers is connected twice — down as <em>how</em>, up as <em>why</em>. The how/why test walks any item up and stops at the first link that needs a paragraph.</p>
+        </div>
+
+        <div class="callout bridge">
+          <strong>Two sentences to remember.</strong> Nothing is justified by pointing sideways — only by pointing up. And: the layers change at different rates — a vision that changes monthly and objectives that never change are both broken.
+        </div>
+      </section>
+
+      <section class="stage" id="s2">
+        <div class="stage-head"><span class="stage-num">02</span><h2>Why: the stance</h2></div>
+        <p class="stage-sub">Eriksson's diagnosis: not an execution problem — a clarity problem.</p>
+        <p>Most organizations have some form of vision, strategy, and well-intentioned objectives. The problem is that <strong>none of it connects</strong>. When the connection is absent, choices that should have been made once instead get made thousands of times, by hundreds of people, inconsistently. The stack is not a planning ritual; it is a machine for making each decision <strong>once, at the right layer</strong>, so every layer below inherits it instead of re-deciding it.</p>
+
+        <div class="figure">
+          <svg viewBox="0 0 680 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two panels. Without the stack: one recurring choice fans out to many scattered, inconsistent decisions made by different people. With the stack: the choice is decided once at its layer and every decision below inherits the same answer.">
+            <defs>
+              <marker id="d2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="currentColor"/></marker>
+            </defs>
+            <line x1="340" y1="16" x2="340" y2="234" stroke="currentColor" stroke-width="1" stroke-dasharray="5 4" opacity="0.4"/>
+
+            <text x="170" y="30" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="700" class="pattern-c" fill="currentColor">WITHOUT THE STACK</text>
+            <rect x="70" y="46" width="200" height="40" rx="8" fill="none" stroke="currentColor" class="pattern-c" stroke-width="2"/>
+            <text x="170" y="70" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="11.5" font-weight="600" class="pattern-c" fill="currentColor">one recurring choice</text>
+            <path d="M110,86 C 80,110 66,130 60,150" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.6" marker-end="url(#d2)"/>
+            <path d="M140,86 C 130,116 118,136 116,158" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.6" marker-end="url(#d2)"/>
+            <path d="M170,86 V146" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.6" marker-end="url(#d2)"/>
+            <path d="M200,86 C 212,112 224,132 228,152" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.6" marker-end="url(#d2)"/>
+            <path d="M230,86 C 258,106 274,126 282,144" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.6" marker-end="url(#d2)"/>
+            <text x="56" y="172" text-anchor="middle" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor">yes</text>
+            <text x="114" y="180" text-anchor="middle" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor">no</text>
+            <text x="170" y="168" text-anchor="middle" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor">maybe</text>
+            <text x="230" y="174" text-anchor="middle" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor">escalate</text>
+            <text x="288" y="166" text-anchor="middle" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor">depends</text>
+            <text x="170" y="212" text-anchor="middle" font-family="Iowan, Georgia, serif" font-size="11.5" class="pattern-c" fill="currentColor">made thousands of times, by hundreds</text>
+            <text x="170" y="228" text-anchor="middle" font-family="Iowan, Georgia, serif" font-size="11.5" class="pattern-c" fill="currentColor">of people, inconsistently</text>
+
+            <text x="510" y="30" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="700" class="turn-c" fill="currentColor">WITH THE STACK</text>
+            <rect x="410" y="46" width="200" height="40" rx="8" fill="none" stroke="currentColor" class="turn-c" stroke-width="2.5"/>
+            <text x="510" y="70" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="11.5" font-weight="700" class="turn-c" fill="currentColor">decided once, at its layer</text>
+            <path d="M450,86 V146" stroke="currentColor" class="turn-c" stroke-width="1.5" fill="none" marker-end="url(#d2)"/>
+            <path d="M510,86 V146" stroke="currentColor" class="turn-c" stroke-width="1.5" fill="none" marker-end="url(#d2)"/>
+            <path d="M570,86 V146" stroke="currentColor" class="turn-c" stroke-width="1.5" fill="none" marker-end="url(#d2)"/>
+            <text x="450" y="168" text-anchor="middle" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor">same</text>
+            <text x="510" y="168" text-anchor="middle" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor">same</text>
+            <text x="570" y="168" text-anchor="middle" font-family="Iowan, Georgia, serif" font-size="12" fill="currentColor">same</text>
+            <text x="510" y="212" text-anchor="middle" font-family="Iowan, Georgia, serif" font-size="11.5" class="turn-c" fill="currentColor">every layer below inherits the answer —</text>
+            <text x="510" y="228" text-anchor="middle" font-family="Iowan, Georgia, serif" font-size="11.5" class="turn-c" fill="currentColor">alignment is what buys autonomy</text>
+          </svg>
+          <p class="figcaption">The stack's economic argument: a decision made once at the right layer is inherited everywhere below; a decision made at no layer is re-made inconsistently forever.</p>
+        </div>
+
+        <p>Three beliefs underneath. First, <strong>alignment is what buys autonomy</strong>: upper layers are meaningful constraints, and inside them people can move fast without asking. Second, <strong>clarity = transparency + understanding</strong> — a published strategy nobody can apply to their next decision is transparency without clarity. Third, <strong>each layer has its own tempo</strong>: vision nearly static, strategy revised on evidence, objectives evolving continuously, opportunities churning weekly. A stack whose layers all change at the same rate — usually zero — is a poster, not a stack.</p>
+      </section>
+
+      <section class="stage" id="s3">
+        <div class="stage-head"><span class="stage-num">03</span><h2>Building blocks</h2></div>
+        <p class="stage-sub">Five layers, one question each — and for each, the look-alike to reject.</p>
+        <div class="scrollwrap">
+          <table>
+            <thead><tr><th>Layer</th><th>The question it answers</th><th>Changes</th><th>Look-alikes to reject</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Vision / Mission</strong></td><td>Where are we going, and why does it matter?</td><td>Rarely, if ever</td><td>A revenue target; a feature list with adjectives</td></tr>
+              <tr><td><strong>Strategy</strong></td><td>How will we get there? Where to play, how to win</td><td>On evidence, not on mood</td><td>A strategy that excludes nothing — that's a wish</td></tr>
+              <tr><td><strong>Objectives</strong></td><td>What is important right now?</td><td>Per cycle</td><td>Outputs ("ship X") dressed as objectives</td></tr>
+              <tr><td><strong>Opportunities &amp; Solutions</strong></td><td>What actions are we taking?</td><td>Continuously</td><td>Solutions with no named opportunity above them</td></tr>
+              <tr><td><strong>Principles</strong></td><td>How do we make everyday choices without escalating?</td><td>Slowly</td><td>Values posters — a principle without an "even over" is a platitude</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The <strong>vision</strong> is the fixed point the rest of the stack triangulates against — allowed to be unreachable, not allowed to be vague about why it matters. A <strong>strategy</strong> is a set of explicit trade-offs; its test is what it <em>rules out</em> — if no reasonable person would choose the opposite, it isn't a choice. <strong>Objectives</strong> are outcomes — what changes for whom — never outputs: "ship the verifier" is a plan item; "merge on a green verdict without re-reading the diff" is an objective. <strong>Opportunities</strong> come before solutions because solutions serve specific opportunities — this layer is where the <a href="ost.html">Opportunity Solution Tree</a> lives. <strong>Principles</strong> are best written as trade-offs — "X <em>even over</em> Y" — because a principle that never costs anything never decides anything.</p>
+      </section>
+
+      <section class="stage" id="s4">
+        <div class="stage-head"><span class="stage-num">04</span><h2>The machine</h2></div>
+        <p class="stage-sub">No ceremony to install — three recurring moves, worked on the running example: one product, outcome "merge on a green verdict without re-reading the diff."</p>
+
+        <h3>Move 1 — Write the stack down, one layer at a time</h3>
+        <p>Each layer in the product's own words. Short is a feature: a layer entry that doesn't fit a table cell is hiding an unmade decision.</p>
+        <div class="scrollwrap">
+          <table>
+            <thead><tr><th>Layer</th><th>The worked entry</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Vision</strong></td><td>A solo builder ships like a team: work is delegated to an AI workflow and the result is trusted without redoing it by hand</td></tr>
+              <tr><td><strong>Strategy</strong></td><td>Win on <strong>verifiable trust</strong> (proof artifacts, fresh evidence) even over speed; play in single-builder repos even over team platforms</td></tr>
+              <tr><td><strong>Objectives</strong></td><td>North Star: share of merges landing on a green verdict with the diff unread. Inputs: fake-green incidents (target 0) · median verification time · share of stalls with a named cause</td></tr>
+              <tr><td><strong>Opportunities</strong></td><td>"Done is not proven done" — the target from the <a href="ost.html">tree</a>; siblings "no signal of progress" and "found work never filed" wait</td></tr>
+              <tr><td><strong>Principles</strong></td><td>Fresh evidence even over reported success · challenge before agreeing · append-only memory even over tidy files</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Move 2 — The how/why test, before any promotion</h3>
+        <p>Walk the candidate up the stack, one sentence per link. Two walks below: a bet that passes, and a proposal that fails at its very first link — the failure IS the finding.</p>
+        <div class="scrollwrap">
+          <table class="howwhy">
+            <thead><tr><th>Link</th><th class="walk">"Fresh-context verifier" (bet)</th><th class="walk">"Template marketplace" (proposal)</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Initiative → Bet</strong></td><td>One of three compared candidates under the "done is not proven done" bet.</td><td class="fail">BREAKS — no bet names it; the justification points sideways at a competitor, not up. This link is the missing work.</td></tr>
+              <tr><td><strong>Bet → Objectives</strong></td><td>A verdict that must show fresh evidence makes a green trustworthy enough to merge on unread.</td><td class="dim">never reached</td></tr>
+              <tr><td><strong>Objectives → Strategy</strong></td><td>Merges-on-green measures whether verifiable trust — the chosen way to win — is actually delivered.</td><td class="dim">never reached</td></tr>
+              <tr><td><strong>Strategy → Vision</strong></td><td>Winning on verifiable trust is how delegation stops costing the trust it saves in labor.</td><td class="dim">never reached</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="caption spaced">Each link one sentence. The verifier walks to the top; the marketplace fails at the first link — and the honest response is to say so plainly, not to write the paragraph that papers over it.</p>
+        <div class="callout">
+          <strong>The test's output is a location, not a verdict.</strong> A failed walk doesn't kill the idea — it names the layer where work is missing. Sometimes the marketplace idea is right and the <em>strategy</em> is what needs the update — decided at the strategy layer, once, on evidence.
+        </div>
+
+        <h3>Move 3 — Route every incoming proposal to its layer</h3>
+        <p>Locate the proposal on the stack <em>before</em> discussing its merits. A feature request is solution-level: walk it up until it hits a named bet or fails to. "We should focus more on X" is strategy-level: resolve it there, once — never re-litigate it per initiative. A recurring escalation ("do we take shortcuts under deadline?") is a missing principle: write the "even over" and stop deciding it weekly.</p>
+      </section>
+
+      <section class="stage" id="s5">
+        <div class="stage-head"><span class="stage-num">05</span><h2>The failure modes</h2></div>
+        <p class="stage-sub">The connective failures from Eriksson's framing plus the structural ones the operating file guards — scan them by name against the stack, the way the ten traps are scanned against a rank.</p>
+        <div class="scrollwrap">
+          <table>
+            <thead><tr><th>#</th><th>Failure mode</th><th>What it looks like</th><th>Remedy</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">1</td><td>The everything-strategy</td><td>Strategy that excludes nothing</td><td>Name what you will NOT do; a strategy is its exclusions</td></tr>
+              <tr><td class="mono">2</td><td>Output objective</td><td>"Ship X by Q3" as an objective</td><td>Reformulate: who does what measurably differently</td></tr>
+              <tr><td class="mono">3</td><td>Strategy vacuum</td><td>Objectives set against no (or stale) strategy</td><td>The vacuum is the blocking gap; do not prioritize into it</td></tr>
+              <tr><td class="mono">4</td><td>Sideways justification</td><td>"Competitor has it" / "the tech is elegant"</td><td>Only pointing up justifies; re-run the how/why walk</td></tr>
+              <tr><td class="mono">5</td><td>The floating objective</td><td>An objective no strategy sentence explains</td><td>Connect it or kill it — an orphan objective is invented work</td></tr>
+              <tr><td class="mono">6</td><td>Layer skipping</td><td>Vision straight to features</td><td>The skipped layers are where the thousand daily decisions leak</td></tr>
+              <tr><td class="mono">7</td><td>Per-initiative relitigation</td><td>Strategy debated again on every item</td><td>Resolve at the strategy layer once; record it</td></tr>
+              <tr><td class="mono">8</td><td>Principles as posters</td><td>Values with no "even over"</td><td>Rewrite as trade-offs, or delete them</td></tr>
+              <tr><td class="mono">9</td><td>The frozen stack</td><td>Every layer changes at the same rate: zero</td><td>Each layer has its own tempo; a stack is used, not laminated</td></tr>
+              <tr><td class="mono">10</td><td>Decided a thousand times</td><td>The same small call escalated weekly</td><td>The missing principle — write it once</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout">
+          <strong>Solo-portfolio regulars: 2, 3, 4, 10.</strong> One builder plus an AI produces output-objectives and sideways justifications faster than a team does — the AI will happily elaborate either. Scan those four at minimum, every session.
+        </div>
+      </section>
+
+      <section class="stage" id="s6">
+        <div class="stage-head"><span class="stage-num">06</span><h2>The OST &amp; Cutler handoffs</h2></div>
+        <p class="stage-sub">The stack is the frame the other two methods run inside — one vertical spine, two horizontal machines.</p>
+        <div class="scrollwrap">
+          <table>
+            <thead><tr><th>Question</th><th>Method</th><th>Where on the stack it runs</th></tr></thead>
+            <tbody>
+              <tr><td>Does this point up?</td><td>Decision Stack</td><td>The vertical spine — all layers</td></tr>
+              <tr><td>What's worth betting on?</td><td><a href="ost.html">OST</a> (Torres)</td><td>Opportunities &amp; Solutions, expanded into a tree</td></tr>
+              <tr><td>What first?</td><td><a href="cutler.html">Cutler rank</a></td><td>Ordering <em>within</em> the Opportunities layer</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The OST's root outcome IS the Objectives-layer entry — the tree expands one layer of the stack into evidence and compared solutions. When a solution survives its assumption tests and leaves the tree as a bet, the <a href="cutler.html">Cutler rank</a> orders it against the other bets — and the rank's "value" lens (<em>which moves the outcome more?</em>) is an upward-pointing question: the how/why test worn as a comparator. Neither handoff works if the stack above is broken — a tree rooted in an output, or a rank argued against a strategy vacuum, inherits the defect.</p>
+      </section>
+
+      <section class="stage" id="s7">
+        <div class="stage-head"><span class="stage-num">07</span><h2>In Claude Diamonds</h2></div>
+        <p class="stage-sub">How the front diamond applies the stack, per product. The binding rules live in <a href="https://github.com/azevedo-home-lab/Claude_Diamonds/blob/main/docs/methods/decision-stack.claude.md">decision-stack.claude.md</a>.</p>
+        <div class="scrollwrap">
+          <table>
+            <thead><tr><th>Eriksson layer</th><th>Concrete artifact</th></tr></thead>
+            <tbody>
+              <tr><td>Vision / Mission</td><td>The vision line of the product's stack — published into <code>/plan/stack.md</code> at the gate</td></tr>
+              <tr><td>Strategy</td><td>The strategy section of the same stack — explicit trade-offs, revised only on evidence</td></tr>
+              <tr><td>Objectives</td><td><strong>North Star + input metrics</strong> — a standing outcome metric instead of quarterly OKRs</td></tr>
+              <tr><td>Opportunities &amp; Solutions</td><td>The force-ranked bets (portfolio grain) and their initiatives (solution level)</td></tr>
+              <tr><td>Principles</td><td>No per-product layer — the project instructions and the method itself are the shared principles layer</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The operating rules, in one paragraph: the how/why test runs before any promotion — item to bet, bet to strategy, strategy to vision, each link one sentence, the first paragraph-length link named plainly as the missing work. Every incoming proposal is located on the stack before its merits are discussed. Output-objectives are reformulated as outcomes before prioritizing. An empty or stale Strategy layer is the blocking gap — nothing is prioritized into a vacuum. Strategy disagreements are resolved at the strategy layer, never re-litigated per initiative. And nothing is justified by pointing sideways — at a competitor, a technology, an idea's elegance — only by pointing up.</p>
+      </section>
+
+      <section class="stage" id="s8">
+        <div class="stage-head"><span class="stage-num">08</span><h2>Self-test</h2></div>
+        <p class="stage-sub">If you can answer these from memory, you can run the stack — solo or in a room.</p>
+        <ol>
+          <li>Name the five layers in order, and the question each answers.</li>
+          <li>State the how/why test in two sentences. What exactly does the first unstateable link tell you — and why is it a location, not a verdict?</li>
+          <li>Why must a strategy exclude something? What is a strategy that excludes nothing?</li>
+          <li>"Ship the verifier by March" — which failure mode fires, and what is the reformulation?</li>
+          <li>Why do the layers change at different rates, and what does it mean when they all change at the same rate?</li>
+          <li>A proposal is justified by "our main competitor just launched this." Which rule fires, and what would the legitimate version of the argument look like?</li>
+          <li>In Claude Diamonds, which artifact plays the Objectives layer, and how does it differ from quarterly OKRs?</li>
+          <li>Where does the OST plug into the stack, and what defect does a tree inherit if the layer above it is broken?</li>
+          <li>The same shortcut-vs-quality argument recurs every week. Which layer is missing its entry, and in what form should the entry be written?</li>
+        </ol>
+      </section>
+
+      <hr class="divider">
+
+      <footer>
+        Primary sources: <a href="https://www.thedecisionstack.com/what-is-the-decision-stack/">The Decision Stack — What is the Decision Stack?</a> · <a href="https://www.mindtheproduct.com/the-product-decision-stack-martin-eriksson/">Mind the Product — The Product Decision Stack</a> · Martin Eriksson, <em>The Decision Stack</em> (book). This page restates Eriksson's public writing; his site is canonical and updates ahead of this one. (The 2021 talk ordered Principles under Vision; this page follows the current site's ordering.) Repo learning doc: <a href="https://github.com/azevedo-home-lab/Claude_Diamonds/blob/main/docs/methods/decision-stack.md">docs/methods/decision-stack.md</a>.
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

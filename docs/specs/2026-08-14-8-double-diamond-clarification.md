@@ -1,10 +1,10 @@
 # Candidate spec — Correct the diamond framing: both diamonds diverge and converge
 
-Status: DONE 2026-08-14 — framing confirmed by Pedro and the correction
+Status: DONE 2026-08-14 — framing confirmed by the Owner and the correction
 checklist executed in PR #23 (correction loop). Status closed
 retroactively per spec 9 (D9-4). Original status line: "PROPOSED
 2026-08-14. Research and pinpointing done; doc corrections are the next
-loop, after Pedro confirms the corrected framing."
+loop, after the Owner confirms the corrected framing."
 
 ## The misunderstanding, pinpointed
 
@@ -52,7 +52,7 @@ that discovery's output is a validated backlog/spec, with delivery as its
 own subsequent process. Source: huryn.medium.com (Double Diamond of
 Product Discovery / Triple Diamond of Product Management).
 
-## The corrected framing (Pedro's, confirmed by the research)
+## The corrected framing (the Owner's, confirmed by the research)
 
 - **Front diamond — Discovery / Solution Design** (Claude Desktop/Cowork).
   Internally it is itself a double diamond:
@@ -91,7 +91,7 @@ Product Discovery / Triple Diamond of Product Management).
 
 ## README restructure (proposed outline, ~80 lines from ~220)
 
-Research and sources first, per Pedro's direction; one sub-chapter per
+Research and sources first, per the Owner's direction; one sub-chapter per
 foundational concept.
 
 1. **What** — one paragraph + one corrected mermaid diagram: two diamonds,

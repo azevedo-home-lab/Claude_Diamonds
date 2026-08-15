@@ -1,6 +1,6 @@
 # The product repo contract — /product, /plan, and the publish
 
-Status: DECIDED 2026-08-14 (Pedro, discovery session; supersedes the
+Status: DECIDED 2026-08-14 (the Owner, discovery session; supersedes the
 "private product-work repo" and "GDrive folder as per-product store"
 variants — both were challenged and retired in the same session).
 Relabeled per spec 8: diamond 1 = Discovery & Solution Design, diamond 2 =
@@ -44,7 +44,7 @@ flowchart LR
 
 ## The publish (deliberately lightweight)
 
-Publishing is a session action at the gate, not tooling. When Pedro
+Publishing is a session action at the gate, not tooling. When the Owner
 confirms a decision as DECIDED, the same session, in order:
 
 1. Appends the DECIDED entry to `/product/decisions/decision-log.md`

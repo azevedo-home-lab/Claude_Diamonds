@@ -19,7 +19,7 @@
   spec 9, D9-1). Product artifacts never land here — they live in each
   product's own repo under the repo contract.
 - Method changes are captured as dated, numbered candidate specs in
-  docs/specs/, decided by Pedro, then executed in a later loop. Never
+  docs/specs/, decided by the Owner, then executed in a later loop. Never
   applied ad hoc in the same conversation they were proposed.
 - Specs are closed on merge: the PR that ships a spec updates that
   spec's Status line (e.g. "Done — shipped in PR #NN") in the same PR.

@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Opportunity Solution Tree — Torres — Claude Diamonds</title>
+<meta name="description" content="Teresa Torres's Opportunity Solution Tree, learned properly: outcome, evidenced opportunities, three compared solutions, assumption tests — and how Claude Diamonds applies it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%92%A0%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">Claude Diamonds — Learning</a>
+    <nav>
+      <a href="index.html">Learning hub</a>
+      <a href="method.html">Method</a>
+      <a href="ost.html" aria-current="page">OST</a>
+      <a href="cutler.html">Prioritization</a>
+      <a href="loops.html">Loops</a>
+      <a href="context.html">Context</a>
+      <a href="hooks.html">Hooks</a>
+      <a href="subagents.html">Subagents</a>
+      <a href="https://github.com/azevedo-home-lab/Claude_Diamonds">GitHub ↗</a>
+    </nav>
+  </header>
+
+  <div class="shell">
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-label">On this page</p>
+      <ol>
+        <li><a href="#s1"><span class="n">01</span>The whole method on one page</a></li>
+        <li><a href="#s2"><span class="n">02</span>Why: the stance</a></li>
+        <li><a href="#s3"><span class="n">03</span>Building blocks</a></li>
+        <li><a href="#s4"><span class="n">04</span>The machine</a></li>
+        <li><a href="#s5"><span class="n">05</span>The anti-patterns</a></li>
+        <li><a href="#s6"><span class="n">06</span>The Cutler handoff</a></li>
+        <li><a href="#s7"><span class="n">07</span>In Claude Diamonds</a></li>
+        <li><a href="#s8"><span class="n">08</span>Self-test</a></li>
+      </ol>
+    </nav>
+
+    <main>
+      <header class="doc-head">
+        <p class="eyebrow">Claude Diamonds — method foundations</p>
+        <h1 class="head">Opportunity Solution Tree — Torres</h1>
+        <p class="dek">One tree per product: a measurable outcome, customer opportunities sourced from evidence, three compared solutions per target, and small assumption tests that let evidence — not argument — kill the losers.</p>
+        <div class="doc-meta">
+          <span><strong>2</strong> primary sources</span>
+          <span><strong>8</strong> sections</span>
+          <span>Sources: <a href="https://www.producttalk.org/opportunity-solution-trees/">Product Talk — OST</a> · <a href="https://www.producttalk.org/assumption-testing/">Assumption Testing</a></span>
+        </div>
+      </header>
+
+      <section class="stage" id="s1">
+        <div class="stage-head"><span class="stage-num">01</span><h2>The whole method on one page</h2></div>
+        <p class="stage-sub">Four levels, strictly ordered, revised every 3–4 interviews. Never finished — used.</p>
+
+        <div class="figure">
+          <svg viewBox="0 0 680 415" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Opportunity Solution Tree: one measurable outcome at the root; opportunities from customer evidence below it; one target opportunity selected by four factors, never effort; three compared solutions under the target; assumption tests mapped by importance versus evidence at the leaves. A dashed loop returns kill, refine, retarget to the tree; the surviving solution leaves the tree and becomes a bet in the Cutler rank.">
+            <defs>
+              <marker id="o1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="currentColor"/></marker>
+              <marker id="o2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="currentColor" class="pattern-c"/></marker>
+            </defs>
+
+            <rect x="230" y="14" width="220" height="48" rx="8" fill="none" stroke="currentColor" class="accent" stroke-width="2.5"/>
+            <text x="340" y="34" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="700" class="accent" fill="currentColor">OUTCOME</text>
+            <text x="340" y="52" text-anchor="middle" font-family="Iowan, Georgia, serif" font-size="10.5" class="accent" fill="currentColor" opacity="0.85">one · measurable customer behavior</text>
+
+            <path d="M300,62 C 240,80 180,88 140,100" stroke="currentColor" stroke-width="2" fill="none" marker-end="url(#o1)"/>
+            <path d="M340,62 V100" stroke="currentColor" stroke-width="2" fill="none" marker-end="url(#o1)"/>
+            <path d="M380,62 C 440,80 500,88 540,100" stroke="currentColor" stroke-width="2" fill="none" marker-end="url(#o1)"/>
+
+            <rect x="40" y="104" width="180" height="52" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+            <text x="130" y="126" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="currentColor">Opportunity</text>
+            <text x="130" y="144" text-anchor="middle" font-family="Iowan, Georgia, serif" font-size="10" fill="currentColor" opacity="0.7">from customer evidence</text>
+
+            <rect x="250" y="104" width="180" height="52" rx="8" fill="none" stroke="currentColor" class="turn-c" stroke-width="2.5"/>
+            <text x="340" y="126" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="700" class="turn-c" fill="currentColor">Target opportunity</text>
+            <text x="340" y="144" text-anchor="middle" font-family="Iowan, Georgia, serif" font-size="10" class="turn-c" fill="currentColor" opacity="0.85">4 factors — never effort</text>
+
+            <rect x="460" y="104" width="180" height="52" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+            <text x="550" y="126" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="currentColor">Opportunity</text>
+            <text x="550" y="144" text-anchor="middle" font-family="Iowan, Georgia, serif" font-size="10" fill="currentColor" opacity="0.7">from customer evidence</text>
+
+            <path d="M300,156 C 260,172 230,180 205,190" stroke="currentColor" class="turn-c" stroke-width="2" fill="none" marker-end="url(#o1)"/>
+            <path d="M340,156 V190" stroke="currentColor" class="turn-c" stroke-width="2" fill="none" marker-end="url(#o1)"/>
+            <path d="M380,156 C 420,172 450,180 475,190" stroke="currentColor" class="turn-c" stroke-width="2" fill="none" marker-end="url(#o1)"/>
+
+            <rect x="120" y="194" width="140" height="44" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+            <text x="190" y="221" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="currentColor">Solution A</text>
+            <rect x="270" y="194" width="140" height="44" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+            <text x="340" y="221" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="currentColor">Solution B</text>
+            <rect x="420" y="194" width="140" height="44" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+            <text x="490" y="221" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="currentColor">Solution C</text>
+            <text x="620" y="221" font-family="Iowan, Georgia, serif" font-size="11" fill="currentColor" opacity="0.7" text-anchor="middle">~3, always</text>
+            <text x="620" y="236" font-family="Iowan, Georgia, serif" font-size="11" fill="currentColor" opacity="0.7" text-anchor="middle">compared</text>
+
+            <path d="M190,238 C 220,260 270,272 305,280" stroke="currentColor" stroke-width="2" fill="none" marker-end="url(#o1)"/>
+            <path d="M340,238 V280" stroke="currentColor" stroke-width="2" fill="none" marker-end="url(#o1)"/>
+            <path d="M490,238 C 460,260 410,272 375,280" stroke="currentColor" stroke-width="2" fill="none" marker-end="url(#o1)"/>
+
+            <rect x="170" y="284" width="340" height="52" rx="8" fill="none" stroke="currentColor" class="pattern-c" stroke-width="2.5"/>
+            <text x="340" y="306" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="700" class="pattern-c" fill="currentColor">ASSUMPTION TESTS</text>
+            <text x="340" y="324" text-anchor="middle" font-family="Iowan, Georgia, serif" font-size="10.5" class="pattern-c" fill="currentColor" opacity="0.85">map importance × evidence — test the riskiest first</text>
+
+            <path d="M510,310 H648 V130 H648" stroke="currentColor" class="pattern-c" stroke-width="1.5" fill="none" stroke-dasharray="5 4"/>
+            <path d="M648,130 H646" stroke="currentColor" class="pattern-c" stroke-width="1.5" fill="none" marker-end="url(#o2)"/>
+            <text transform="translate(664,282) rotate(-90)" font-family="Iowan, Georgia, serif" font-size="10.5" class="pattern-c" fill="currentColor">kill · refine · retarget</text>
+
+            <path d="M340,336 V368" stroke="currentColor" class="turn-c" stroke-width="2" fill="none" marker-end="url(#o1)"/>
+            <text x="340" y="392" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" class="turn-c" fill="currentColor">survivor leaves the tree → becomes a bet → the Cutler rank takes over</text>
+          </svg>
+          <p class="figcaption">The loop: target opportunity → ~3 candidate solutions → decompose into assumptions → test the riskiest → discard / refine / retarget. Repeat, revising every 3–4 interviews.</p>
+        </div>
+
+        <div class="callout bridge">
+          <strong>Two sentences to remember.</strong> Opportunities come from customers, not from the team's imagination. And: compare-and-contrast beats evaluate-in-isolation — always three solutions, never one.
+        </div>
+      </section>
+
+      <section class="stage" id="s2">
+        <div class="stage-head"><span class="stage-num">02</span><h2>Why: the stance</h2></div>
+        <p class="stage-sub">The tree is the antidote to two failure modes — and the frame for continuous discovery.</p>
+        <p>The first failure mode is the <strong>solution-first reflex</strong>: someone arrives with a feature idea, the team builds it, and only afterwards discovers which problem — if any — it solved. The tree forces every solution to hang under an evidenced customer opportunity, which hangs under a measurable outcome. If a solution can't name its opportunity, it has no branch to hang on.</p>
+        <p>The second is <strong>whether-or-not decisions</strong>: evaluating one idea in isolation ("should we build this?"), which produces measurably worse decisions than comparing alternatives ("which of these three best addresses the target?"). The tree structurally prevents single-option thinking: three solutions per target, compared, with tests that let evidence kill the losers.</p>
+        <p>Underneath both: <strong>continuous discovery</strong>. Not a research phase before building, but story-based interviews week over week, the tree revised as evidence arrives, decisions made on the freshest picture available.</p>
+      </section>
+
+      <section class="stage" id="s3">
+        <div class="stage-head"><span class="stage-num">03</span><h2>Building blocks</h2></div>
+        <p class="stage-sub">Four node types, one test that separates the middle two, and five flavors of assumption.</p>
+        <p>The <strong>outcome</strong> (root) is a <em>product</em> outcome: a measurable customer behavior or sentiment the team can move. One per team/product at a time. Two look-alikes to reject: business outcomes (revenue, churn) — too broad for the team to move directly; traction metrics (clicks on a feature) — too narrow to discover against.</p>
+        <p>An <strong>opportunity</strong> is a customer need, pain point, or desire that, if addressed, drives the outcome — sourced from story-based customer input, structured by an <strong>experience map</strong> first (the customer's moments, in order), then arranged in parent/child branches.</p>
+        <div class="callout">
+          <strong>The opportunity-vs-solution test:</strong> is there more than one way to address it? If only one, it's a solution wearing an opportunity's clothes. "Users need a dashboard" → solution. "Users can't tell whether yesterday's run succeeded" → opportunity.
+        </div>
+        <p>A <strong>solution</strong> is anything offered to address a known opportunity — feature, service, workflow, document. Effort is allowed into the conversation <em>here</em>, and only here. An <strong>assumption</strong> is a statement that must be true for a solution to work, in five flavors: desirability (do customers want it?), viability (does it benefit the business?), feasibility (can we build it?), usability (can customers use it?), ethical (could it harm?). The categories exist to surface diverse risks, not to be debated. An <strong>assumption test</strong> is a small, fast experiment on ONE assumption — never the whole idea — with success criteria defined <em>before</em> running, so results can't be rationalized afterwards.</p>
+      </section>
+
+      <section class="stage" id="s4">
+        <div class="stage-head"><span class="stage-num">04</span><h2>The machine</h2></div>
+        <p class="stage-sub">Prerequisites, then a five-step loop that never finishes — it converges per target and starts again.</p>
+
+        <h3>Prerequisites</h3>
+        <p>A theory of who the customer is and what value you offer; a clearly defined outcome; at least three story-based interviews. A tree built on zero interviews is a diagram of the team's imagination.</p>
+
+        <h3>Step 1 — Map the experience, then the opportunities</h3>
+        <p>From interview stories, draw the experience map. Map top-level opportunities to moments; group individual needs under them as children. Keep it a <strong>crummy first draft</strong> — pick a target early and revise as evidence arrives. If the tree is still messy after 6–8 interviews, restructure then.</p>
+
+        <h3>Step 2 — Select ONE target opportunity</h3>
+        <p>A genuine prioritization moment — comparing sibling opportunities, argued not scored, across four factor groups: <strong>opportunity sizing</strong> (how many customers, how often), <strong>market factors</strong>, <strong>company factors</strong> (fit with vision and strategy), and <strong>customer factors</strong> (importance; satisfaction with existing alternatives). The pairwise-argument mechanics from the <a href="cutler.html">prioritization lesson</a> transfer directly — same sorting, different lenses.</p>
+        <div class="callout">
+          <strong>The effort rule — the method's hardest constraint.</strong> Effort does NOT enter opportunity selection. "That one looks expensive" is a statement about solutions you haven't compared yet. Effort enters one level down, never here.
+        </div>
+
+        <h3>Step 3 — Generate ~3 solutions, together</h3>
+        <p>For the target opportunity only. All three must genuinely address it — re-run the opportunity-vs-solution test on each. If someone arrived solution-first, reverse it: which opportunity is this for, and what else would address it? At least two alternatives beside it before any comparing happens.</p>
+
+        <h3>Step 4 — Map assumptions, test the riskiest</h3>
+        <p>Decompose all three candidates into assumptions, then place them on Torres's 2×2 (adopted from David Bland): <strong>importance to the idea's success</strong> × <strong>strength of existing evidence</strong>. High importance + weak evidence is what you test first — the same entry-sort trick as impact-vs-effort in the ranking method: a fast quadrant placement that produces a test order, not a verdict. Test small: one assumption, one test, criteria written down first, first test doable within an hour. Never decide from a single test — look for patterns across tests and across the competing solutions.</p>
+
+        <h3>Step 5 — Close the loop</h3>
+        <p>Each test kills, refines, or promotes candidates. When a solution survives its riskiest assumptions, it leaves the tree and becomes a <strong>bet</strong> — and the <a href="cutler.html">Cutler machine</a> takes over. When all candidates die, return to Step 3 — or retarget to a different opportunity.</p>
+      </section>
+
+      <section class="stage" id="s5">
+        <div class="stage-head"><span class="stage-num">05</span><h2>The anti-patterns</h2></div>
+        <p class="stage-sub">Torres's named mistakes plus the structural ones — scan them against your tree the way the ten traps are scanned against a rank.</p>
+        <div class="scrollwrap">
+          <table>
+            <thead><tr><th>#</th><th>Anti-pattern</th><th>What it looks like</th><th>Remedy</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">1</td><td>Invented opportunities</td><td>Nodes from introspection, not interviews</td><td>Evidence or it's marked assumed; assumed nodes can't be targets</td></tr>
+              <tr><td class="mono">2</td><td>Solution in opportunity's clothes</td><td>"Users need a dashboard" as a node</td><td>Run the more-than-one-way test; reverse it to its real opportunity</td></tr>
+              <tr><td class="mono">3</td><td>Single-story overreaction</td><td>One vivid interview reshapes the tree</td><td>Revise every 3–4 interviews, not after each one</td></tr>
+              <tr><td class="mono">4</td><td>Effort in opportunity selection</td><td>"Let's target the cheap one"</td><td>Four factors only; effort waits for the solutions level</td></tr>
+              <tr><td class="mono">5</td><td>Whether-or-not framing</td><td>One solution, evaluated in isolation</td><td>Three compared candidates, always</td></tr>
+              <tr><td class="mono">6</td><td>Testing whole ideas</td><td>"Let's beta the feature and see"</td><td>One assumption per test, criteria defined first</td></tr>
+              <tr><td class="mono">7</td><td>Vague assumptions</td><td>"People will like it"</td><td>Specific enough that a one-hour test exists</td></tr>
+              <tr><td class="mono">8</td><td>Single-test decisions</td><td>One survey decides the winner</td><td>Patterns across tests and across candidates</td></tr>
+              <tr><td class="mono">9</td><td>Polished-tree theater</td><td>Weeks perfecting branches, no target picked</td><td>Crummy first draft; pick a target early, revise as you learn</td></tr>
+              <tr><td class="mono">10</td><td>Tree sprawl</td><td>One giant tree for the whole company</td><td>One tree per product/team, one outcome at a time</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="stage" id="s6">
+        <div class="stage-head"><span class="stage-num">06</span><h2>The Cutler handoff</h2></div>
+        <p class="stage-sub">The two methods split the front diamond's deciding work — same sorting mechanics, never the same comparator.</p>
+        <div class="scrollwrap">
+          <table>
+            <thead><tr><th>Question</th><th>Method</th><th>Comparator</th></tr></thead>
+            <tbody>
+              <tr><td>What's worth betting on?</td><td>OST</td><td>Evidence — interviews, assumption tests</td></tr>
+              <tr><td>What first?</td><td>Cutler rank</td><td>Argument — value, urgency, cost of delay, displacement</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Quadrant entry sorts and pairwise comparison transfer between the methods; the comparator never does. Inside the tree, evidence decides and arguing is a smell; inside the rank, argument decides because the evidence work is already done. The three OST moments where prioritization mechanics legitimately appear: choosing the target opportunity (pairwise, four factors), ordering assumption tests (importance × evidence quadrant), and — deliberately never — choosing between solutions, where tests kill and arguments don't.</p>
+      </section>
+
+      <section class="stage" id="s7">
+        <div class="stage-head"><span class="stage-num">07</span><h2>In Claude Diamonds</h2></div>
+        <p class="stage-sub">How the front diamond's Framing zone applies the tree. The binding rules live in <a href="https://github.com/azevedo-home-lab/Claude_Diamonds/blob/main/docs/methods/opportunity-solution-tree.claude.md">opportunity-solution-tree.claude.md</a>.</p>
+        <p>Framing means producing or extending the OST — never writing a solution pitch. The framing artifact names: outcome, opportunity + evidence, siblings considered, then candidate solutions. Every opportunity carries an <strong>evidence tag</strong>: interview-sourced, proxy-sourced (tickets, analytics, the Owner's domain experience — legal but named), or assumed — and an assumed node cannot be a target; it becomes an open-questions entry instead. When the Owner arrives with a solution, it gets reversed: which opportunity, for whom, what else would address it — at least two alternatives beside it before any prioritization. Assumption tests are desk-scale evidence (a throwaway prototype, a data pull, an interview question) — never a spec; the promotion gate is unchanged. Target-opportunity choices go in the decision log with the four selection factors stated — the argument, never a score.</p>
+        <div class="callout bridge">
+          <strong>Worked example.</strong> A current product's tree runs: Outcome ("merge on a green verdict without re-reading the diff") → seven opportunities, each tagged interview (Owner-named pain) or proxy (recorded gaps, vendor-confirmed mechanisms) → candidate solutions compared per target — one opportunity's table shows a full compare-and-contrast of three approaches, with the winner chosen on argued evidence — and the survivors became the eight force-ranked bets of the plan.
+        </div>
+      </section>
+
+      <section class="stage" id="s8">
+        <div class="stage-head"><span class="stage-num">08</span><h2>Self-test</h2></div>
+        <p class="stage-sub">If you can answer these from memory, you can run the tree — solo or in a room.</p>
+        <ol>
+          <li>What makes an outcome a <em>product</em> outcome, and why are business outcomes and traction metrics both rejected as roots?</li>
+          <li>State the opportunity-vs-solution test. Apply it to "customers need dark mode."</li>
+          <li>Why is effort banned from target-opportunity selection, and where does it enter instead?</li>
+          <li>Why three solutions instead of one? What does comparison buy that isolation can't?</li>
+          <li>Name the five assumption categories, and the two axes of the assumption map. Which corner do you test first?</li>
+          <li>What must be defined before an assumption test runs, and what mistake does it prevent?</li>
+          <li>When does a solution leave the tree, and which method takes over at that moment?</li>
+          <li>Your tree has a node "build a mobile app." Which anti-patterns fire, and what do you do?</li>
+        </ol>
+      </section>
+
+      <hr class="divider">
+
+      <footer>
+        Primary sources: <a href="https://www.producttalk.org/opportunity-solution-trees/">Product Talk — Opportunity Solution Trees</a> · <a href="https://www.producttalk.org/assumption-testing/">Product Talk — Assumption Testing</a> · Teresa Torres, <em>Continuous Discovery Habits</em> (2021). This page restates Torres's public writing; her posts are canonical and update ahead of this one. Repo learning doc: <a href="https://github.com/azevedo-home-lab/Claude_Diamonds/blob/main/docs/methods/opportunity-solution-tree.md">docs/methods/opportunity-solution-tree.md</a>.
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

@@ -2,104 +2,100 @@
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-A method for running product decisions end to end with Claude, from raw
-idea to shipped code. Two diamonds, each diverging then converging, with
-one deliberate human gate between them: **Discovery & Solution Design**
-(Claude Desktop / Cowork) ends in a Product Spec; **Development**
-(Claude Code) turns that spec into judged, shipped code. Ideas live on a
-canvas where they move, merge, and mostly die; committed work lives in a
-ledger with identity and history. Asking one surface to hold both is the
-failure this method exists to prevent.
+One repo, two jobs:
+
+1. **Learn the product job.** A [learning hub](https://azevedo-home-lab.github.io/Claude_Diamonds/)
+   that teaches the product methodologies any product person can use —
+   and the Claude mechanics that make them runnable — each lesson built
+   from verified primary sources.
+2. **Run the product job.** The Claude Diamonds method: product
+   decisions end to end with Claude, from raw idea to shipped code —
+   producing each product's pre-gate artifacts and handing development
+   to spec-driven workflows ([WFM](https://github.com/azevedo-home-lab/claude-code-workflows#goal)).
+
+Both grow over time; the hub is the source of truth for what's built.
+
+## 🎓 Learning hub — start here
+
+**[azevedo-home-lab.github.io/Claude_Diamonds](https://azevedo-home-lab.github.io/Claude_Diamonds/)**
+
+**Product Methodologies** — the theory of the product job:
+[Decision Stack — Eriksson](https://azevedo-home-lab.github.io/Claude_Diamonds/decision-stack.html) ·
+[Opportunity Solution Tree — Torres](https://azevedo-home-lab.github.io/Claude_Diamonds/ost.html) ·
+[Prioritization — Cutler](https://azevedo-home-lab.github.io/Claude_Diamonds/cutler.html)
+
+**Claude Aspects** — the mechanics underneath, for running the method
+with Claude:
+[Turns & loops](https://azevedo-home-lab.github.io/Claude_Diamonds/loops.html) ·
+[Context & compaction](https://azevedo-home-lab.github.io/Claude_Diamonds/context.html) ·
+[Hooks](https://azevedo-home-lab.github.io/Claude_Diamonds/hooks.html) ·
+[Subagents](https://azevedo-home-lab.github.io/Claude_Diamonds/subagents.html)
+
+Each methodology also has a canonical learning doc in
+[`docs/methods/`](docs/methods/), with a compact `.claude.md` operating
+file beside it — the files that bind Claude in product sessions.
+
+## 🛠 The method — running real product work
+
+Two diamonds, each diverging then converging, with one deliberate human
+gate between them: **Discovery & Solution Design** (Claude Desktop /
+Cowork) ends in a Product Spec; **Development** (Claude Code) turns that
+spec into judged, shipped code. Ideas live on a canvas where they move,
+merge, and mostly die; committed work lives in a ledger with identity
+and history. Asking one surface to hold both is the failure this method
+exists to prevent.
 
 ![The Claude Diamonds method: Diamond 1 (Discovery & Solution Design — Discover, Define, Ideate, Decide), the promotion gate (DECIDED entry → issue → publish the spec), and Diamond 2 (Development — Plan, then Build · verify · ship).](docs-site/assets/diamonds.svg)
 
-The canonical diagram source is
-[`docs-site/assets/diamonds.svg`](docs-site/assets/diamonds.svg) — the
-method page embeds the same file (spec 9, D9-7). The learning companion
-site is at
-[azevedo-home-lab.github.io/Claude_Diamonds](https://azevedo-home-lab.github.io/Claude_Diamonds/) —
-its [Method page](https://azevedo-home-lab.github.io/Claude_Diamonds/method.html)
-is the visual version of this README.
+The method in three views:
+[Two diamonds, one gate](https://azevedo-home-lab.github.io/Claude_Diamonds/method.html) ·
+[How to run it](https://azevedo-home-lab.github.io/Claude_Diamonds/method.html#run) —
+capture → frame → design → rank → promote → develop ·
+[The repo contract](https://azevedo-home-lab.github.io/Claude_Diamonds/method.html#contract) —
+each product repo carries `/product` (canvas + append-only decision
+memory) and `/plan` (the published spec, Claude Code's only source of
+product intent); one-way publish at the gate, `spec-change` issue as the
+only channel back. Full text:
+[`docs/repo-contract.md`](docs/repo-contract.md). Product artifacts live
+in each product's repo — never here.
 
-## Foundations
+**Install it:** [`docs/templates/`](docs/templates/) holds the two
+canonical paste blocks that bind a workspace to the method — the
+[Desktop project instructions](docs/templates/claude-desktop-project-instructions-front-diamond.md)
+for a front-diamond project (diamond 1), and the
+[product-repo rules](docs/templates/claude-code-product-repo-rules.md)
+for each product's CLAUDE.md (diamond 2). The repo file is always
+canonical: when a template changes, every pasted snapshot must be
+re-pasted; if they drift, the repo file wins.
 
-Each foundation's canonical summary is its learning doc in
-[`docs/methods/`](docs/methods/) (spec 9, D9-5); a compact `.claude.md`
-operating file beside it is what binds Claude. The blurbs below only
-locate each foundation in the method — the learning doc is the summary.
+## 🗺 Repo map
 
-### Double Diamond — Design Council (2004)
+- [`docs/methods/`](docs/methods/) — canonical learning docs + `.claude.md` operating files.
+- [`docs/templates/`](docs/templates/) — the two canonical paste blocks that install the method (see **Install it** above); snapshots are re-pasted on change, the repo file wins on drift.
+- [`docs/specs/`](docs/specs/) — dated candidate specs: how this method changes, closed on merge.
+- [`docs/repo-contract.md`](docs/repo-contract.md) — the /product · /plan contract.
+- [`docs/canvas-snapshot.md`](docs/canvas-snapshot.md) — board-as-snapshot guidance.
+- [`docs-site/`](docs-site/) — the learning hub and method pages, published via GitHub Pages.
+- [`CLAUDE.md`](CLAUDE.md) — working rules for this repo (PR-based, mandatory).
 
-The shape: both diamonds diverge then converge, and the boundary between
-them is a *converged artifact* — here the Product Spec.
-[Framework for Innovation](https://www.designcouncil.org.uk/resources/framework-for-innovation/) ·
-[spec 8](docs/specs/2026-08-14-8-double-diamond-clarification.md).
-
-### The Decision Stack — Martin Eriksson
-
-The vertical *why*, and the how/why test that finds the missing work.
-Canonical summary: [decision-stack.md](docs/methods/decision-stack.md).
-
-### Continuous Discovery & the Opportunity Solution Tree — Teresa Torres
-
-The problem diamond and the divergent half of solution design.
-Canonical summary:
-[opportunity-solution-tree.md](docs/methods/opportunity-solution-tree.md).
-
-### Prioritization — John Cutler
-
-Diamond 1's convergence: force-ranked bets, never scored buckets.
-Canonical summary:
-[cutler-prioritization.md](docs/methods/cutler-prioritization.md).
-
-### Spec-driven development, measured — WFM
-
-Diamond 2 runs against the published spec with deterministic enforcement
-(hooks, judges, evals) that must *earn its place* against a recorded
-failure of the bare model.
-[claude-code-workflows](https://github.com/azevedo-home-lab/claude-code-workflows#goal).
-
-## How to run it
-
-![Six steps: Capture, Frame, Design, Rank, Promote at the gate, Develop.](docs-site/assets/run-steps.svg)
-
-1. **Capture** into the parking lot — no commitment, no framing.
-2. **Frame**: opportunity + evidence on the product's OST.
-3. **Design**: ~3 compared solutions, riskiest assumptions tested cheaply.
-4. **Rank**: force-ranked bets; check the stack — no trace up, no crossing.
-5. **Promote**: DECIDED log entry → GitHub issue → publish the spec into
-   `/plan`.
-6. **Develop** against the published spec, judged — never against the
-   vision.
-
-## The repo contract
-
-![/product publishes one-way through the gate into /plan, which feeds implementation; a spec-change issue is the only channel back.](docs-site/assets/contract.svg)
-
-Each product repo carries both diamonds: `/product` (canvas + append-only
-decision memory, diamond 1 only), `/plan` (the published spec and stack,
-Claude Code's only source of product intent), and implementation. One-way
-publish at the gate; a `spec-change` issue is the only channel back.
-Full contract: [`docs/repo-contract.md`](docs/repo-contract.md).
-
-## Repo map and scope
-
-- [`docs/methods/`](docs/methods/) — the foundations: human learning
-  docs (canonical summaries) plus their `.claude.md` operating files.
-- [`docs/templates/`](docs/templates/) — canonical paste blocks for the
-  Desktop project instructions and the product-repo CLAUDE.md.
-- [`docs/specs/`](docs/specs/) — dated candidate specs: how this method
-  changes, closed on merge.
-- [`docs/repo-contract.md`](docs/repo-contract.md) — the /product ·
-  /plan contract and the one-way publish.
-- [`docs/canvas-snapshot.md`](docs/canvas-snapshot.md) —
-  board-as-snapshot guidance.
-- [`docs-site/`](docs-site/) — the learning site and the method's
-  visual page, published via GitHub Pages.
-- [`CLAUDE.md`](CLAUDE.md) — working rules for this repo (PR-based,
-  mandatory).
-
-In scope: the method, the zones, the gate, the contract, the templates.
 Out of scope: enforcement machinery — hooks, judges, evals live in
 [claude-code-workflows](https://github.com/azevedo-home-lab/claude-code-workflows)
 and are cited, never duplicated.
+
+## 📚 Sources
+
+The primary sources every lesson restates — each verified live on its
+lesson page; the originals are canonical and update ahead of this repo.
+
+- **Double Diamond** — Design Council, [Framework for Innovation](https://www.designcouncil.org.uk/resources/framework-for-innovation/)
+- **Decision Stack** — Martin Eriksson, [What is the Decision Stack?](https://www.thedecisionstack.com/what-is-the-decision-stack/) · [Mind the Product talk](https://www.mindtheproduct.com/the-product-decision-stack-martin-eriksson/) · *The Decision Stack* (book)
+- **Opportunity Solution Tree** — Teresa Torres, [Product Talk — OST](https://www.producttalk.org/opportunity-solution-trees/) · [Assumption Testing](https://www.producttalk.org/assumption-testing/) · *Continuous Discovery Habits* (2021)
+- **Prioritization** — John Cutler, [TBM 399 — 10 Prioritization Traps](https://cutlefish.substack.com/p/tbm-399-10-prioritization-traps) · [TBM 230 — From Prioritization to Accountability](https://cutlefish.substack.com/p/tbm-230-from-prioritization-to-accountability)
+- **Spec-driven development** — [claude-code-workflows (WFM)](https://github.com/azevedo-home-lab/claude-code-workflows#goal)
+- **Claude mechanics** — Anthropic documentation:
+  - [How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works) — turns and the loop (Turns & loops, Context lessons)
+  - [The agentic loop — Agent SDK](https://code.claude.com/docs/en/agent-sdk/agent-loop) — context window, compaction (Turns & loops, Context lessons)
+  - [Getting started with loops](https://claude.com/blog/getting-started-with-loops) — loop patterns (Turns & loops lesson)
+  - [Features overview](https://code.claude.com/docs/en/features-overview) — context costs (Context lesson)
+  - [Hooks](https://code.claude.com/docs/en/hooks) — (Hooks lesson)
+  - [Subagents](https://code.claude.com/docs/en/sub-agents) — (Subagents lesson)

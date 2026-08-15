@@ -7,6 +7,17 @@
 <meta name="description" content="Teresa Torres's Opportunity Solution Tree, learned properly: outcome, evidenced opportunities, three compared solutions, assumption tests — and how Claude Diamonds applies it.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%92%A0%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css">
+<style>
+  .xmap { min-width: 820px; border-collapse: collapse; font-size: .86rem; width: 100%; }
+  .xmap td, .xmap th { border-bottom: 1px solid var(--border-soft); padding: .55rem .7rem; vertical-align: top; text-align: left; }
+  .xmap th.rowlab { font-family: "Helvetica Neue", Arial, sans-serif; font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); white-space: nowrap; }
+  .xmap thead th.moment { font-family: "Helvetica Neue", Arial, sans-serif; font-size: .78rem; font-weight: 700; color: var(--accent); background: var(--accent-soft); border-bottom: 2px solid var(--accent); white-space: nowrap; }
+  .xmap .mnum { display: inline-block; background: var(--accent); color: var(--bg); border-radius: 50%; width: 1.25rem; height: 1.25rem; line-height: 1.25rem; text-align: center; font-size: .68rem; margin-right: .35rem; }
+  .xmap tr.feels td { font-style: italic; color: var(--ink-soft); }
+  .xmap tr.pains td { color: var(--pattern); font-weight: 600; font-size: .83rem; }
+  .xmap tr.opps td { font-family: "Helvetica Neue", Arial, sans-serif; font-size: .74rem; font-weight: 700; color: var(--turn); }
+  .xmap tbody tr:last-child td, .xmap tbody tr:last-child th { border-bottom: none; }
+</style>
 </head>
 <body>
   <header class="site-header">
@@ -146,6 +157,49 @@
 
         <h3>Step 1 — Map the experience, then the opportunities</h3>
         <p>From interview stories, draw the experience map. Map top-level opportunities to moments; group individual needs under them as children. Keep it a <strong>crummy first draft</strong> — pick a target early and revise as evidence arrives. If the tree is still messy after 6–8 interviews, restructure then.</p>
+        <p>What a map looks like, concretely — moments in sequence, an emotional layer, and pains that cluster at specific moments. This one maps "delegating one feature to an AI workflow":</p>
+
+        <div class="figure">
+          <div class="scrollwrap" style="border:none;border-radius:0;margin:0;">
+            <table class="xmap">
+              <thead>
+                <tr>
+                  <th class="rowlab"></th>
+                  <th class="moment"><span class="mnum">1</span>Frame the ticket</th>
+                  <th class="moment"><span class="mnum">2</span>Hand off</th>
+                  <th class="moment"><span class="mnum">3</span>Wait &amp; monitor</th>
+                  <th class="moment"><span class="mnum">4</span>Interrupted</th>
+                  <th class="moment"><span class="mnum">5</span>Review result</th>
+                  <th class="moment"><span class="mnum">6</span>Merge or rework</th>
+                  <th class="moment"><span class="mnum">7</span>Aftermath</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="feels">
+                  <th class="rowlab">Feels</th>
+                  <td>focused</td><td>hopeful</td><td>anxious</td><td>annoyed</td><td>distrustful</td><td>resigned</td><td>scattered</td>
+                </tr>
+                <tr class="pains">
+                  <th class="rowlab">Pain</th>
+                  <td>spec effort</td>
+                  <td>context lost at handoff</td>
+                  <td>no signal of progress</td>
+                  <td>stalls have no named cause</td>
+                  <td>"done" is not proven done</td>
+                  <td>re-reads every diff</td>
+                  <td>found work never filed</td>
+                </tr>
+                <tr class="opps">
+                  <th class="rowlab">Became</th>
+                  <td>—</td><td>O7</td><td>—</td><td>O3</td><td>O2</td><td>the outcome itself</td><td>O4</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="figcaption">Pains cluster at specific moments; each cluster became an opportunity on the tree (O-numbers from the worked example in §07). The moments — not the features — are the map's spine.</p>
+        </div>
+
+        <p>The discipline for drawing one: <strong>scope</strong> the experience by the outcome — the journey the outcome lives in, not the customer's whole life. <strong>Draw individually first</strong> — each person sketches before seeing anyone else's map, so the loudest voice doesn't anchor the room. <strong>Moments, not features</strong> — every node is something the customer does or experiences; a node containing your product's name is your solution wearing the customer's clothes. <strong>Add the emotional layer</strong> — where friction clusters is where opportunities live. <strong>Validate against stories</strong> — the map is a hypothesis until interviews confirm it, revised on the same 3–4-interview cadence as the tree.</p>
 
         <h3>Step 2 — Select ONE target opportunity</h3>
         <p>A genuine prioritization moment — comparing sibling opportunities, argued not scored, across four factor groups: <strong>opportunity sizing</strong> (how many customers, how often), <strong>market factors</strong>, <strong>company factors</strong> (fit with vision and strategy), and <strong>customer factors</strong> (importance; satisfaction with existing alternatives). The pairwise-argument mechanics from the <a href="cutler.html">prioritization lesson</a> transfer directly — same sorting, different lenses.</p>

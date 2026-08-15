@@ -17,6 +17,7 @@
   .xmap tr.pains td { color: var(--pattern); font-weight: 600; font-size: .83rem; }
   .xmap tr.opps td { font-family: "Helvetica Neue", Arial, sans-serif; font-size: .74rem; font-weight: 700; color: var(--turn); }
   .xmap tbody tr:last-child td, .xmap tbody tr:last-child th { border-bottom: none; }
+  td.verdict { color: var(--turn); font-weight: 700; }
 </style>
 </head>
 <body>
@@ -148,7 +149,7 @@
 
       <section class="stage" id="s4">
         <div class="stage-head"><span class="stage-num">04</span><h2>The machine</h2></div>
-        <p class="stage-sub">Prerequisites, then a five-step loop that never finishes — it converges per target and starts again.</p>
+        <p class="stage-sub">Prerequisites, then a five-step loop that never finishes — it converges per target and starts again. Every step below has its own visual; the running example is one product's outcome: "merge on a green verdict without re-reading the diff."</p>
 
         <h3>Prerequisites</h3>
         <p>A theory of who the customer is and what value you offer; a clearly defined outcome; at least three story-based interviews. A tree built on zero interviews is a diagram of the team's imagination.</p>
@@ -201,20 +202,93 @@
 
         <h3>Step 2 — Select ONE target opportunity</h3>
         <p>A genuine prioritization moment — comparing sibling opportunities, argued not scored, across four factor groups: <strong>opportunity sizing</strong> (how many customers, how often), <strong>market factors</strong>, <strong>company factors</strong> (fit with vision and strategy), and <strong>customer factors</strong> (importance; satisfaction with existing alternatives). The pairwise-argument mechanics from the <a href="cutler.html">prioritization lesson</a> transfer directly — same sorting, different lenses. Note what is <em>not</em> evaluated here: assumptions. An assumption exists only relative to a solution, and no solutions are in play yet.</p>
+        <div class="scrollwrap">
+          <table>
+            <thead><tr><th>Factor group</th><th>"No signal of progress"</th><th>"Done is not proven done"</th><th>"Found work never filed"</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Sizing</strong></td><td>Every run, mild</td><td>Every merge, severe</td><td>Weekly, mild</td></tr>
+              <tr><td><strong>Market</strong></td><td>Low — cosmetic</td><td>High — trust IS the product</td><td>Low</td></tr>
+              <tr><td><strong>Company fit</strong></td><td>Indirect</td><td>Direct hit on the vision</td><td>Supports focus</td></tr>
+              <tr><td><strong>Customer</strong></td><td>Tolerated; workarounds exist</td><td>No alternative — every diff re-read by hand</td><td>Notes as a workaround</td></tr>
+              <tr><td><strong>Verdict</strong></td><td>wait</td><td class="verdict">TARGET</td><td>wait</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="caption spaced">Three sibling opportunities argued through the four factor groups. Notice what is absent from the entire table: any estimate of build effort.</p>
         <div class="callout">
           <strong>The effort rule — the method's hardest constraint.</strong> Effort does NOT enter opportunity selection. "That one looks expensive" is a statement about solutions you haven't compared yet. Effort enters one level down, never here.
         </div>
 
         <h3>Step 3 — Generate ~3 solutions, together</h3>
         <p>For the target opportunity only. All three must genuinely address it — re-run the opportunity-vs-solution test on each. If someone arrived solution-first, reverse it: which opportunity is this for, and what else would address it? At least two alternatives beside it before any comparing happens.</p>
+        <div class="scrollwrap">
+          <table>
+            <thead><tr><th>Candidate</th><th>How it addresses the target</th><th>Re-test: genuinely different route?</th></tr></thead>
+            <tbody>
+              <tr><td><strong>A — fresh-context verifier</strong></td><td>A second session with no stake in the outcome re-runs the checks and must show fresh evidence</td><td>Yes — proof by independent re-execution</td></tr>
+              <tr><td><strong>B — acceptance tests from spec criteria</strong></td><td>The spec's own criteria become executable checks that run at the end</td><td>Yes — proof by pre-agreed executable criteria</td></tr>
+              <tr><td><strong>C — evidence-bound claims</strong></td><td>Every "done" claim must cite a fresh run artifact (attempt log + outputs)</td><td>Yes — proof by traceability, no re-execution</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="caption spaced">Three genuinely different routes to the same target. Which wins is NOT argued here — Step 4 decides it with tests.</p>
 
         <h3>Step 4 — Decompose into assumptions, map them, test the riskiest</h3>
         <p><strong>4a — Decompose: this is where the five flavors live.</strong> For each of the three candidates, ask "what must be true for this to work?" — walking the five categories from §03 as a <em>generative checklist</em>: desirable (do customers want it?), viable (does it benefit the business?), feasible (can we build it?), usable (can customers use it?), ethical (could it harm?). The categories are not scores and not gates — they exist to surface risks from every direction, not just the comfortable one.</p>
-        <p><strong>4b — Map and pick.</strong> Place every surfaced assumption on Torres's 2×2 (adopted from David Bland): <strong>importance to the idea's success</strong> × <strong>strength of existing evidence</strong>. High importance + weak evidence is what you test first — the same entry-sort trick as impact-vs-effort in the ranking method: a fast quadrant placement that produces a test order, not a verdict. Test small: one assumption, one test, criteria written down first, first test doable within an hour. Never decide from a single test — look for patterns across tests and across the competing solutions.</p>
-        <p>The contrast with Step 2 is the point: assumptions exist only relative to a solution, so none of this applies to opportunity selection — and the sharpest proof is feasibility, a legitimate flavor here but exactly the banned question there (the effort rule).</p>
+        <p><strong>4b — Map and pick.</strong> Place every surfaced assumption on Torres's 2×2 (adopted from David Bland): <strong>importance to the idea's success</strong> × <strong>strength of existing evidence</strong>. High importance + weak evidence is what you test first — the same entry-sort trick as impact-vs-effort in the ranking method: a fast quadrant placement that produces a test order, not a verdict.</p>
+
+        <div class="figure">
+          <svg viewBox="0 0 620 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Assumption map: a 2 by 2 grid with importance to success on the vertical axis and strength of existing evidence on the horizontal axis. Assumptions in the top-left corner, high importance and weak evidence, are tested first. Example dots from one candidate's decomposition are placed across the quadrants.">
+            <rect x="70" y="30" width="520" height="300" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+            <line x1="330" y1="30" x2="330" y2="330" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.5"/>
+            <line x1="70" y1="180" x2="590" y2="180" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.5"/>
+
+            <text x="200" y="56" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="700" class="pattern-c" fill="currentColor">TEST FIRST</text>
+            <text x="460" y="56" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="currentColor" opacity="0.7">verify cheaply later</text>
+            <text x="200" y="318" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="currentColor" opacity="0.6">monitor</text>
+            <text x="460" y="318" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="currentColor" opacity="0.6">safe to assume</text>
+
+            <circle cx="150" cy="90" r="7" fill="currentColor" class="pattern-c"/>
+            <text x="163" y="86" font-family="Iowan, Georgia, serif" font-size="11" fill="currentColor">the Owner trusts a verifier's green</text>
+            <text x="163" y="100" font-family="Helvetica Neue, Arial, sans-serif" font-size="9" class="pattern-c" fill="currentColor">DESIRABILITY</text>
+
+            <circle cx="210" cy="140" r="7" fill="currentColor" class="pattern-c"/>
+            <text x="223" y="136" font-family="Iowan, Georgia, serif" font-size="11" fill="currentColor">a verifier can drive the real surface</text>
+            <text x="223" y="150" font-family="Helvetica Neue, Arial, sans-serif" font-size="9" class="pattern-c" fill="currentColor">FEASIBILITY</text>
+
+            <circle cx="440" cy="110" r="7" fill="currentColor" class="accent"/>
+            <text x="453" y="106" font-family="Iowan, Georgia, serif" font-size="11" fill="currentColor">spec criteria can become checks</text>
+            <text x="453" y="120" font-family="Helvetica Neue, Arial, sans-serif" font-size="9" class="accent" fill="currentColor">FEASIBILITY</text>
+
+            <circle cx="250" cy="245" r="7" fill="currentColor" opacity="0.6"/>
+            <text x="263" y="241" font-family="Iowan, Georgia, serif" font-size="11" fill="currentColor" opacity="0.85">setup cost stays acceptable</text>
+            <text x="263" y="255" font-family="Helvetica Neue, Arial, sans-serif" font-size="9" fill="currentColor" opacity="0.6">VIABILITY</text>
+
+            <circle cx="470" cy="265" r="7" fill="currentColor" opacity="0.6"/>
+            <text x="483" y="261" font-family="Iowan, Georgia, serif" font-size="11" fill="currentColor" opacity="0.85">verdicts readable at a glance</text>
+            <text x="483" y="275" font-family="Helvetica Neue, Arial, sans-serif" font-size="9" fill="currentColor" opacity="0.6">USABILITY</text>
+
+            <text transform="translate(48,290) rotate(-90)" font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="currentColor" opacity="0.7">importance to success →</text>
+            <text x="330" y="360" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="currentColor" opacity="0.7">strength of existing evidence →</text>
+          </svg>
+          <p class="figcaption">One candidate's assumptions, surfaced by the 4a checklist and placed on importance × evidence. Only the amber top-left corner earns a test now — high importance, weak evidence.</p>
+        </div>
+
+        <p>Test small: one assumption, one test, criteria written down first, first test doable within an hour. Never decide from a single test — look for patterns across tests and across the competing solutions. The contrast with Step 2 is the point: assumptions exist only relative to a solution — and the sharpest proof is feasibility, a legitimate flavor here but exactly the banned question there (the effort rule).</p>
 
         <h3>Step 5 — Close the loop</h3>
-        <p>Each test kills, refines, or promotes candidates. When a solution survives its riskiest assumptions, it leaves the tree and becomes a <strong>bet</strong> — and the <a href="cutler.html">Cutler machine</a> takes over. When all candidates die, return to Step 3 — or retarget to a different opportunity.</p>
+        <p>Each test result maps to one of four actions — and each action names where the work goes next:</p>
+        <div class="scrollwrap">
+          <table>
+            <thead><tr><th>Test result</th><th>Action</th><th>Where it goes</th></tr></thead>
+            <tbody>
+              <tr><td>Riskiest assumption refuted</td><td><strong>Kill</strong> the candidate</td><td>Record the kill; the comparison continues with the survivors</td></tr>
+              <tr><td>Partially supported</td><td><strong>Refine</strong> and re-map</td><td>Back to Step 4 with the revised assumption set</td></tr>
+              <tr><td>Riskiest assumptions survive</td><td><strong>Promote</strong></td><td>Leaves the tree as a bet — the <a href="cutler.html">Cutler rank</a> takes over</td></tr>
+              <tr><td>All candidates die</td><td><strong>Retarget</strong></td><td>Back to Step 3 for new candidates — or Step 2 for a new target</td></tr>
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <section class="stage" id="s5">

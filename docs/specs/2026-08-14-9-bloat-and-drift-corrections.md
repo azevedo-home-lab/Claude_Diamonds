@@ -1,19 +1,19 @@
 # Spec 9 — Bloat and drift corrections (sequential repo review)
 
-Status: DECIDED 2026-08-14 (Pedro, portfolio front-diamond session) —
+Status: DECIDED 2026-08-14 (the Owner, portfolio front-diamond session) —
 executed same day, same session, PR #24.
 
 Process note, on the record: CLAUDE.md requires method changes to be
 "executed in a later loop, never in the same conversation they were
-proposed." Pedro explicitly overrode that rule for this spec ("write
+proposed." The Owner explicitly overrode that rule for this spec ("write
 decision log, then execute"). Reservation recorded here per the
 challenge protocol; executed without relitigating.
 
 ## Origin
 
 A sequential review of the repo at `main` (c974660, post spec-8
-correction loop) found seven bloat/drift items. Each was put to Pedro
-individually; his decisions follow. This spec is the decision record —
+correction loop) found seven bloat/drift items. Each was put to the Owner
+individually; the decisions follow. This spec is the decision record —
 the method repo's equivalent of a product decision log.
 
 ## Decisions

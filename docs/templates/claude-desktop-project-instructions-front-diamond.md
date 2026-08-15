@@ -16,7 +16,8 @@ Claude to them, and instructions cannot follow URLs. The matching human
 learning docs (same names without .claude) stay in the repo as optional
 background. When an operating file changes, re-upload it the same way.
 
-Last updated: 2026-08-14 (hybrid binding rule, spec 9 D9-6)
+Last updated: 2026-08-15 (generic labels — personal name replaced by
+"the Owner"; prior: 2026-08-14, hybrid binding rule, spec 9 D9-6)
 
 ---
 
@@ -87,7 +88,7 @@ holds the method, its templates, and its method docs only.
 <PRODUCT>/decisions/decision-log.md is the track record: one entry per
 decision, status DECIDED / PROPOSED / OPEN / SUPERSEDED. Superseding means
 a new entry that cites the old one — never an edit or deletion. Only
-Pedro's explicit confirmation makes an entry DECIDED.
+the Owner's explicit confirmation makes an entry DECIDED.
 <PRODUCT>/decisions/open-questions.md is the standing bookmark: questions
 leave it only by becoming a decision-log entry, never by fading away.
 Chat is disposable; these files are not.

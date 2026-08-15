@@ -1,7 +1,7 @@
 # Spec 11 — README reframed around two concerns; index carve-out; templates explained
 
 Status: DECIDED 2026-08-15 (the Owner, portfolio front-diamond session) —
-executed same session.
+executed same session, PR #37.
 
 Process note, on the record: CLAUDE.md requires method changes to be
 executed in a later loop, never in the same conversation they were

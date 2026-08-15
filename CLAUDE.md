@@ -10,6 +10,19 @@
 - If a PR merges while work is still in flight, stop pushing to that
   branch; open a new branch and PR for the remainder immediately.
 
+## State discipline (added 2026-08-15, Owner order, after a
+stranded-commit incident — see PR #32's process note)
+
+- Verify state live before every mutation; never act on remembered
+  state. Concretely: check the PR's open/merged state before any push
+  to its branch, and fetch a file's current content from the target
+  branch before modifying it.
+- Session start ritual for repo work: list open PRs and branches
+  before starting anything new.
+- A merged PR's branch is deleted promptly. A commit landing on a
+  merged branch is stranded — unpublished and invisible; re-land it on
+  a fresh branch from main, never leave it as the only copy.
+
 ## Repo boundaries
 
 - This repo holds the method and its learning site: README, docs/methods

@@ -20,10 +20,10 @@ discard / refine / retarget.
 - Opportunity vs solution test: more than one way to address it? If only
   one, it is a solution in an opportunity's clothes.
 - Every opportunity carries an evidence tag: interview-sourced,
-  proxy-sourced (tickets, analytics, Pedro's domain experience — legal
+  proxy-sourced (tickets, analytics, the Owner's domain experience — legal
   but named), or assumed. An assumed node cannot be target; it becomes an
   open-questions.md entry instead.
-- Pedro arrives with a solution → reverse it: which opportunity, for
+- The Owner arrives with a solution → reverse it: which opportunity, for
   whom, what else would address it? Put ≥2 alternatives beside it before
   any prioritization. Single-solution framings stay PROPOSED, flagged
   un-compared.

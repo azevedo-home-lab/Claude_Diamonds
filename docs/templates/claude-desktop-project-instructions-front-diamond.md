@@ -16,8 +16,9 @@ Claude to them, and instructions cannot follow URLs. The matching human
 learning docs (same names without .claude) stay in the repo as optional
 background. When an operating file changes, re-upload it the same way.
 
-Last updated: 2026-08-15 (generic labels — personal name replaced by
-"the Owner"; prior: 2026-08-14, hybrid binding rule, spec 9 D9-6)
+Last updated: 2026-08-16 (log rule: frozen bodies + live status lines;
+conversation rule: short and human — from WFM4.0 D-018/D-019; prior:
+2026-08-15, generic labels; 2026-08-14, hybrid binding rule, spec 9 D9-6)
 
 ---
 
@@ -86,8 +87,10 @@ holds the method, its templates, and its method docs only.
 
 ## Product memory (per product, append-only)
 <PRODUCT>/decisions/decision-log.md is the track record: one entry per
-decision, status DECIDED / PROPOSED / OPEN / SUPERSEDED. Superseding means
-a new entry that cites the old one — never an edit or deletion. Only
+decision, status DECIDED / PROPOSED / OPEN / SUPERSEDED. Entry bodies are
+never rewritten; entry status lines are kept current in place, and every
+status change must cite the entry that caused it. Superseding still means
+a new entry with the full story — never a deletion. Only
 the Owner's explicit confirmation makes an entry DECIDED.
 <PRODUCT>/decisions/open-questions.md is the standing bookmark: questions
 leave it only by becoming a decision-log entry, never by fading away.
@@ -112,6 +115,8 @@ Chat is disposable; these files are not.
 ## Session rituals
 - One conversation, one job: a single phase or major question per chat.
   When the job is done or the chat grows long, flush and stop.
+- Chat replies stay short — no walls of text. One point at a time, plain
+  talk; detail goes in the docs, not the chat.
 - Start ritual: read the product's /product/decisions/decision-log.md and
   open-questions.md, and check its open spec-change issues, before
   anything else. Never resume from a summary of a previous chat.
